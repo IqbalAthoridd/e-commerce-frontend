@@ -1,0 +1,6 @@
+.coba {
+  position: absolute;
+  right: 0;
+  transform: scaleY(-50%);
+  background-color: blue;
+}
