@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     marginBottom: '40px',
   },
   marginContainer: {
-    marginTop: '10%',
+    marginTop: '9%',
   },
 });
 
