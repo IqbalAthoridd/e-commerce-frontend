@@ -34,6 +34,11 @@ const CardList = () => {
     fetchData();
   }, [updated.success]);
 
+  const deleteItem = async (id) => {
+    const { data } = await deleteItems(id);
+    setUpdated({ success: data.success, message: data.message, alert: true });
+  };
+
   return (
     <Row className="mt-3">
       {items === undefined
