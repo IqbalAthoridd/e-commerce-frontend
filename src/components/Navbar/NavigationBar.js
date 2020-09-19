@@ -33,6 +33,11 @@ function NavigationBar() {
                   Login
                 </Link>
               </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/Register">
+                  Register
+                </Link>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>

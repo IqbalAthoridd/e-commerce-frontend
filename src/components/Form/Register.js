@@ -40,7 +40,7 @@ const useStyles = makeStyles({
     marginBottom: '20px',
   },
   marginLogin: {
-    marginBottom: '12',
+    marginBottom: '12px',
   },
   marginImage: {
     marginBottom: '40px',
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   marginInput: {
     marginBottom: '10px',
   },
-  marginTextRegister: {
+  marginbtnLogin: {
     marginTop: '40px',
     textAlign: 'center',
   },
@@ -71,7 +71,7 @@ const ButtonStyle = makeStyles({
   },
 });
 
-const Login = () => {
+const Register = () => {
   const classes = useStyles();
   const button = ButtonStyle();
   return (
@@ -92,7 +92,7 @@ const Login = () => {
               <img src={Logo} className={classes.image} alt="Logo" />
             </div>
             <div>
-              <span>Please login with your account</span>
+              <span>Please sign up with your account</span>
             </div>
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
@@ -107,13 +107,12 @@ const Login = () => {
             <Grid item md={12} xs={12} sm={12}>
               <from>
                 <FormControl fullWidth="true" className={classes.marginInput}>
+                  <InputLabel htmlFor="Name">Name</InputLabel>
+                  <Input id="email" fullWidth="true" type="text" />
+                </FormControl>
+                <FormControl fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
-                  <Input
-                    id="email"
-                    aria-describedby="my-helper-text"
-                    fullWidth="true"
-                    type="email"
-                  />
+                  <Input id="email" fullWidth="true" type="email" />
                 </FormControl>
                 <FormControl fullWidth="true">
                   <InputLabel htmlFor="password">Password</InputLabel>
@@ -124,10 +123,8 @@ const Login = () => {
                     fullWidth="true"
                   />
                 </FormControl>
-                <Grid md={12} className={classes.textRight}>
-                  <span>Forgot password?</span>
-                </Grid>
-                <Grid md={12}>
+
+                <Grid md={12} className={classes.marginbtnLogin}>
                   <Button
                     variant="contained"
                     color="secondary"
@@ -135,15 +132,15 @@ const Login = () => {
                     className={button.login}
                     size="medium"
                   >
-                    Login
+                    Register
                   </Button>
                 </Grid>
               </from>
             </Grid>
           </Grid>
-          <Grid item md={12} className={classes.marginTextRegister}>
+          <Grid item md={12} className={classes.marginbtnLogin}>
             <span>
-              Don't have a warung account? <span>Register</span>
+              Already have a warung account? <span>Register</span>
             </span>
           </Grid>
         </Grid>
@@ -152,4 +149,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
