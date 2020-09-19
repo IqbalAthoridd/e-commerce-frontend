@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchItem, deleteItems } from '../components/api/items';
 import axios from 'axios';
+import qs from 'querystring';
 import {
   Card,
   CardTitle,
@@ -8,11 +10,19 @@ import {
   Col,
   Button,
   ButtonGroup,
+  Alert,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Form,
+  FormGroup,
+  Label,
+  Input,
 } from 'reactstrap';
 
 const CardList = () => {
   const [items, setItems] = useState([]);
-
   let [updated, setUpdated] = useState({
     success: false,
     message: '',
@@ -118,6 +128,17 @@ const CardList = () => {
         {updated.alert === true ? closeAlert() : ''}
       </Row>
 
+      <Row className="mt-5">
+        <Col md="3">
+          <Button
+            onClick={() => setUpdated({ modal: true, button: 'create' })}
+            color="success"
+          >
+            Create
+          </Button>
+        </Col>
+      </Row>
+
       <Row className="mt-3">
         {items === undefined
           ? ''
@@ -143,7 +164,7 @@ const CardList = () => {
                 </Col>
               );
             })}
-        <Modal isOpen={updated.modal} toggle={toggle}>
+        <Modal isOpen={updated.modal} toggle={editItem}>
           <ModalHeader toggle={() => setUpdated({ modal: false })}>
             {updated.button === 'create' ? (
               <span>Create Item</span>

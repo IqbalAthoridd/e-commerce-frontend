@@ -19,15 +19,15 @@ function NavigationBar() {
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link className="nav-link" to="/Dasbord">
+                <Link className="nav-link" to="/Dasboard">
                   Dasboard
                 </Link>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <Link className="nav-link" to="/">
                   Home
                 </Link>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>
