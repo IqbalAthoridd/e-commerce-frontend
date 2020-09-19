@@ -107,8 +107,8 @@ const Register = () => {
             <Grid item md={12} xs={12} sm={12}>
               <from>
                 <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="Name">Name</InputLabel>
-                  <Input id="email" fullWidth="true" type="text" />
+                  <InputLabel htmlFor="name">Name</InputLabel>
+                  <Input id="name" fullWidth="true" type="text" />
                 </FormControl>
                 <FormControl fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
