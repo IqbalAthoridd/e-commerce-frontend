@@ -30,6 +30,7 @@ const useStyles = makeStyles({
   textRight: {
     textAlign: 'right',
     marginBottom: '40px',
+    marginTop: '20px',
   },
   image: {
     maxWidth: 140,
@@ -45,7 +46,10 @@ const useStyles = makeStyles({
     marginBottom: '40px',
   },
   marginContainer: {
-    marginTop: '9%',
+    marginTop: '6%',
+  },
+  marginInput: {
+    marginBottom: '10px',
   },
 });
 
@@ -72,16 +76,16 @@ const Login = () => {
         <Grid
           item
           md={5}
-          xs={11}
-          sm={8}
-          lg={4}
+          xs={10}
+          sm={5}
+          lg={3}
           xl={5}
           alignContent="center"
           className={classes.marginContainer}
         >
           <Grid item md={12} className={classes.textCenter}>
             <div className={classes.marginImage}>
-              <img src={Logo} className={classes.image} />
+              <img src={Logo} className={classes.image} alt="Logo" />
             </div>
             <div>
               <span>Please login with your account</span>
@@ -98,7 +102,7 @@ const Login = () => {
           <Grid item md={12} xs={12} className={classes.textCenter}>
             <Grid item md={12} xs={12} sm={12}>
               <from>
-                <FormControl fullWidth="true">
+                <FormControl fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
                   <Input
                     id="email"
@@ -135,54 +139,6 @@ const Login = () => {
           </Grid>
         </Grid>
       </Grid>
-      {/* <Row className="justify-content-center">
-        <Col md={4} className="text-center">
-          <Col md="12" xs="12" className="pl-5">
-            <Col md="" xs="6">
-              <img src={Logo} alt="Logo" className="img-fluid" />
-            </Col>
-          </Col>
-          <Col md="12">
-            <span>Please login with your account</span>
-          </Col>
-          <Col md="12">
-            <ButtonGroup>
-              <Button color="danger">Custommer</Button>
-              <Button>Seller</Button>
-            </ButtonGroup>
-          </Col>
-          <Col md="12" className="p-0">
-            <Form>
-              <FormGroup className="m-0">
-                <Label for="email"></Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="password"></Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="password"
-                />
-              </FormGroup>
-              <Col md="12" className="text-right p-0">
-                <span>Forgot Password</span>
-              </Col>
-              <Col md="12" className="p-0">
-                <Button className="rounded-pill" color="danger" block>
-                  Login
-                </Button>
-              </Col>
-            </Form>
-          </Col>
-        </Col>
-      </Row> */}
     </>
   );
 };
