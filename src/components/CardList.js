@@ -45,6 +45,62 @@ const CardList = () => {
     }, 3000);
   };
 
+  const editItem = async (id) => {
+    const {
+      data: { data },
+    } = await axios.get(`http://localhost:8080/item/${id}`);
+    setUpdated({
+      modal: !updated.modal,
+      name: data[0].name,
+      price: data[0].price,
+      description: data[0].description,
+      category: data[0].category,
+      id: data[0].id,
+    });
+  };
+
+  const changeInput = (e) => {
+    setUpdated({
+      ...updated,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const formSubmit = async (e) => {
+    if (updated.button === 'create') {
+      e.preventDefault();
+      const { data } = await axios.post(
+        'http://localhost:8080/item',
+        qs.stringify({
+          name: updated.name,
+          price: updated.price,
+          description: updated.description,
+          category: updated.category,
+        }),
+      );
+      setUpdated({
+        success: data.success,
+        message: data.message,
+        alert: true,
+      });
+    } else {
+      e.preventDefault();
+      const { data } = await axios.patch(
+        `http://localhost:8080/item/${updated.id}`,
+        qs.stringify({
+          name: updated.name,
+          price: updated.price,
+          description: updated.description,
+          category: updated.category,
+        }),
+      );
+      setUpdated({
+        success: data.success,
+        message: data.message,
+        alert: true,
+      });
+    }
+  };
+
   return (
     <>
       <Row className="justify-content-center position-relative mt-5">
@@ -73,7 +129,7 @@ const CardList = () => {
                     <CardText>{item.price}</CardText>
                     <CardText>{item.description}</CardText>
                     <ButtonGroup>
-                      <Button color="primary" onClick={() => toggle(item.id)}>
+                      <Button color="primary" onClick={() => editItem(item.id)}>
                         Edit
                       </Button>
                       <Button
@@ -87,6 +143,77 @@ const CardList = () => {
                 </Col>
               );
             })}
+        <Modal isOpen={updated.modal} toggle={toggle}>
+          <ModalHeader toggle={() => setUpdated({ modal: false })}>
+            {updated.button === 'create' ? (
+              <span>Create Item</span>
+            ) : (
+              <span>Update item</span>
+            )}
+          </ModalHeader>
+          <ModalBody>
+            <Form onSubmit={formSubmit}>
+              <FormGroup>
+                <Label for="name">Name</Label>
+                <Input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  value={updated.name}
+                  onChange={changeInput}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="price">Price</Label>
+                <Input
+                  type="text"
+                  name="price"
+                  id="price"
+                  placeholder="Price"
+                  value={updated.price}
+                  onChange={changeInput}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="description">Description</Label>
+                <Input
+                  type="text"
+                  name="description"
+                  id="description"
+                  placeholder="Description"
+                  value={updated.description}
+                  onChange={changeInput}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="category">Category</Label>
+                <Input
+                  type="text"
+                  name="category"
+                  id="category"
+                  placeholder="Category"
+                  value={updated.category}
+                  onChange={changeInput}
+                />
+              </FormGroup>
+              <ModalFooter>
+                {updated.button === 'create' ? (
+                  <Button color="success">Creat</Button>
+                ) : (
+                  <Button color="primary">Update</Button>
+                )}
+
+                <Button
+                  color="danger"
+                  onClick={() => setUpdated({ modal: false })}
+                >
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </Form>
+          </ModalBody>
+        </Modal>
       </Row>
     </>
   );
