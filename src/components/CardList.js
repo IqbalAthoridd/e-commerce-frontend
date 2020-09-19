@@ -39,6 +39,12 @@ const CardList = () => {
     setUpdated({ success: data.success, message: data.message, alert: true });
   };
 
+  const closeAlert = () => {
+    setTimeout(() => {
+      setUpdated((updated.alert = false));
+    }, 3000);
+  };
+
   return (
     <Row className="mt-3">
       {items === undefined
