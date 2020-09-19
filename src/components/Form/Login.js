@@ -137,6 +137,11 @@ const Login = () => {
               </from>
             </Grid>
           </Grid>
+          <Grid item md={12} className={classes.textCenter}>
+            <span>
+              Don't have a warung account? <span>Register</span>
+            </span>
+          </Grid>
         </Grid>
       </Grid>
     </>
