@@ -23,11 +23,16 @@ function NavigationBar() {
                   Dasboard
                 </Link>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <Link className="nav-link" to="/">
                   Home
                 </Link>
-              </NavItem> */}
+              </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/Login">
+                  Login
+                </Link>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>
