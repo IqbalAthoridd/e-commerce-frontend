@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavigationBar from '../components/Navbar/NavigationBar';
 import Courouser from '../components/Courosel/Courosel';
 import CourouserCategory from '../components/Courosel/CoroselCategory';
+import ItemList from '../components/ItemList/ItemList';
 
 import { Grid } from '@material-ui/core';
 
@@ -12,6 +13,7 @@ class Home extends Component {
         <NavigationBar />
         <Courouser />
         <CourouserCategory />
+        <ItemList />
       </>
     );
   }

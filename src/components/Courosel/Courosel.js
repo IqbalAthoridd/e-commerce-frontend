@@ -11,7 +11,7 @@ const CoroselStyles = makeStyles({
     textAlign: 'center',
   },
   containerGrid: {
-    padding: '0 100px',
+    padding: '0 0',
   },
   imageWidit: {
     width: '100%',
@@ -33,12 +33,9 @@ const Corouser = () => {
   ];
   return (
     <>
-      <Grid container>
+      <Grid container className={corosel.corouselCOntainer}>
         <Grid item lg={12} xs={12} md={12} sm={12}>
-          <Carousel
-            breakPoints={breakPoints}
-            className={corosel.corouselCOntainer}
-          >
+          <Carousel breakPoints={breakPoints}>
             <div className="corosel">
               <div className="text-image">Trend In 2020</div>
               <img src={image} className={corosel.imageWidit} />

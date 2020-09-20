@@ -92,3 +92,15 @@ button.sc-gKAblj.brcpxa.rec.rec-dot.rec.rec-dot_active:focus {
   color: #9b9b9b;
   font-size: 14px;
 }
+.text-medium span {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.text-title span {
+  font-weight: 600;
+}
+.text-price span {
+  color: #3285a8;
+  font-weight: 540;
+}

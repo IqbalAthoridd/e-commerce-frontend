@@ -11,7 +11,7 @@ const CoroselStyles = makeStyles({
     textAlign: 'center',
   },
   containerGrid: {
-    padding: '0 100px',
+    padding: '0 9%',
     marginTop: 50,
   },
   imageWidit: {
@@ -26,6 +26,9 @@ const CoroselStyles = makeStyles({
     paddingLeft: '8%',
     paddingRight: '8%',
   },
+  textContainer: {
+    marginBottom: '30px',
+  },
 });
 
 const CorouserCategory = () => {
@@ -33,14 +36,14 @@ const CorouserCategory = () => {
   const breakPoints = [
     { width: 400, itemsToShow: 1 },
     { width: 500, itemsToShow: 3 },
-    { width: 768, itemsToShow: 5 },
+    { width: 700, itemsToShow: 5 },
     { width: 1200, itemsToShow: 3 },
     { width: 1500, itemsToShow: 4 },
   ];
   return (
     <>
-      <Grid container>
-        <Grid item md={12} className={corosel.containerGrid}>
+      <Grid container className={corosel.containerGrid}>
+        <Grid item md={12} className={corosel.textContainer}>
           <div className="text-Category">
             <span>Category</span>
           </div>
@@ -49,10 +52,7 @@ const CorouserCategory = () => {
           </div>
         </Grid>
         <Grid item lg={12} xs={12} md={12} sm={12}>
-          <Carousel
-            breakPoints={breakPoints}
-            className={corosel.corouselCOntainer}
-          >
+          <Carousel breakPoints={breakPoints}>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
               <img src={image} className={corosel.imageWidit} />
