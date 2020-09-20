@@ -37,12 +37,14 @@ const CardList = () => {
     nextLink: '',
     prevLink: '',
   });
+  let [input, setInput] = useState({ search: '' });
 
   useEffect(() => {
     const fetchData = async () => {
       const { data, pageInfo } = await fetchItem(
         updated.nextLink,
         updated.prevLink,
+        [input.search],
       );
       setItems({ data, pageInfo });
     };
@@ -80,6 +82,14 @@ const CardList = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const changeSearch = (e) => {
+    setInput({
+      ...input,
+      search: e.target.value,
+    });
+  };
+
   const formSubmit = async (e) => {
     if (updated.button === 'create') {
       e.preventDefault();
@@ -127,7 +137,11 @@ const CardList = () => {
 
   return (
     <>
-      {console.log(items.data)}
+      {input.search.length > 0
+        ? setTimeout(() => {
+            setUpdated({ success: true });
+          }, 3000)
+        : console.log('ok')}
       <Row className="justify-content-center position-relative mt-5">
         <Col md="3" xs="4" sm="3 text-center position-absolute">
           {updated.alert === true ? (
@@ -151,6 +165,13 @@ const CardList = () => {
           >
             Create
           </Button>
+          <Form className="mt-2">
+            <Input
+              type="text"
+              placeholder="Search"
+              onChange={changeSearch}
+            ></Input>
+          </Form>
         </Col>
       </Row>
 
@@ -261,7 +282,7 @@ const CardList = () => {
             ) : (
               <Button onClick={handleUrlPrev}>Prev</Button>
             )}
-            {console.log(items.pageInfo.nextLink)}
+
             {items.pageInfo.nextLink === null ? (
               <Button color="primary" onClick={handleUrlNext} disabled>
                 Next

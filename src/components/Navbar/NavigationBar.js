@@ -1,18 +1,15 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import styles from './Navbar.module.css';
 import Logo from '../../assets/img/Logo.svg';
-import { Grid, Toolbar } from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import DirectionsIcon from '@material-ui/icons/Directions';
 import SortIcon from '@material-ui/icons/Sort';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   NavigationBar: {
@@ -129,12 +126,16 @@ const NavigationBar = () => {
           </Grid>
           <Grid item lg={4} xs={12} className={classes.linkContaier}>
             <ShoppingCartOutlinedIcon color="action" />
-            <Button variant="contained" className={classes.buttonLogin}>
-              Login
-            </Button>
-            <Button variant="outline" className={classes.buttonRegister}>
-              Register
-            </Button>
+            <Link to="/Login">
+              <Button variant="contained" className={classes.buttonLogin}>
+                Login
+              </Button>
+            </Link>
+            <Link to="/Register">
+              <Button variant="outline" className={classes.buttonRegister}>
+                Register
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </AppBar>

@@ -6,7 +6,6 @@ class Register extends Component {
   render() {
     return (
       <>
-        <NavigationBar />
         <FormRegister />
       </>
     );

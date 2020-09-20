@@ -29,7 +29,6 @@ class Dasbord extends Component {
   render() {
     return (
       <>
-        {console.log(this.state.data)}
         <NavigationBar />
         <Container>
           <CardList handleUrl={this.handleUrl} />
