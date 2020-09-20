@@ -5,3 +5,7 @@
 .navbar {
   background-color: red;
 }
+
+.containerLeft {
+  margin: 20px;
+}

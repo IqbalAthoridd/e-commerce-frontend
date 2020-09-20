@@ -1,49 +1,145 @@
 import React from 'react';
-import {
-  Container,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-function NavigationBar() {
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import styles from './Navbar.module.css';
+import Logo from '../../assets/img/Logo.svg';
+import { Grid, Toolbar } from '@material-ui/core';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import DirectionsIcon from '@material-ui/icons/Directions';
+import SortIcon from '@material-ui/icons/Sort';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+
+const useStyles = makeStyles((theme) => ({
+  NavigationBar: {
+    background: '#FFFF',
+    color: 'black',
+    padding: '20px 20px 20px 8%',
+  },
+  Logo: {
+    width: '70%',
+  },
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: 400,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    padding: '1% 18% 1% 1%',
+  },
+  iconButton: {
+    padding: 0,
+    right: 15,
+    top: 8,
+    position: 'absolute',
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+  searchBorder: {
+    border: '1px solid #9b9b9b',
+    borderRadius: '25px',
+    paddingLeft: ' 1%',
+  },
+  containerSearch: {
+    position: 'relative',
+  },
+  buttonSort: {
+    padding: '0',
+    flexGrow: 1,
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  linkContaier: {
+    textAlign: 'right',
+  },
+  buttonRegister: {
+    border: '1px solid #9b9b9b',
+    marginLeft: '30px',
+    borderRadius: '20px',
+    color: '#9b9b9b',
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  buttonLogin: {
+    border: '1px solid #3285A8',
+    marginLeft: '30px',
+    borderRadius: '20px',
+    color: '#FFFF',
+    paddingLeft: ' 8%',
+    paddingRight: '8%',
+    backgroundColor: '#3285A8',
+    '&:focus': {
+      outline: 'none',
+    },
+    '&:hover': {
+      backgroundColor: '#266985',
+    },
+  },
+}));
+
+const NavigationBar = () => {
+  const classes = useStyles();
   return (
     <>
-      <Navbar color="light" light expand="md">
-        <Container>
-          <NavbarBrand href="/">Admin</NavbarBrand>
-          <NavbarToggler />
-          <Collapse navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link className="nav-link" to="/Dasboard">
-                  Dasboard
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="/">
-                  Home
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="/Login">
-                  Login
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="/Register">
-                  Register
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Container>
-      </Navbar>
+      <AppBar position="static" className={classes.NavigationBar}>
+        <Grid
+          container
+          direction="row"
+          alignContent="center"
+          alignItems="center"
+        >
+          <Grid item md={2} lg={2} xs={4}>
+            <img src={Logo} alt="Logo" className={classes.Logo} />
+          </Grid>
+          <Grid item md={3} xs={5} lg={4} className={classes.searchBorder}>
+            <Grid item lg={12} className={classes.containerSearch}>
+              <InputBase
+                className={classes.input}
+                placeholder="Search.."
+                inputProps={{ 'aria-label': 'Search...' }}
+                fullWidth="true"
+              />
+              <IconButton
+                type="submit"
+                className={classes.iconButton}
+                aria-label="search"
+              >
+                <SearchIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+          <Grid item lg={1}>
+            <IconButton className={classes.buttonSort}>
+              <SortIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+          <Grid item lg={4} xs={12} className={classes.linkContaier}>
+            <ShoppingCartOutlinedIcon color="action" />
+            <Button variant="contained" className={classes.buttonLogin}>
+              Login
+            </Button>
+            <Button variant="outline" className={classes.buttonRegister}>
+              Register
+            </Button>
+          </Grid>
+        </Grid>
+      </AppBar>
     </>
   );
-}
+};
 
 export default NavigationBar;
