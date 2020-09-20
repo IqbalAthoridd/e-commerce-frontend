@@ -1,14 +1,4 @@
 import React from 'react';
-// import {
-//   Col,
-//   Row,
-//   Form,
-//   FormGroup,
-//   Label,
-//   Input,
-//   Button,
-//   ButtonGroup,
-// } from 'reactstrap';
 import Logo from '../../assets/img/Logo.svg';
 import style from './Form.module.css';
 import {
@@ -16,7 +6,6 @@ import {
   FormControl,
   Input,
   InputLabel,
-  FormHelperText,
   ButtonGroup,
   Button,
 } from '@material-ui/core';

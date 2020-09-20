@@ -1,0 +1,94 @@
+.corosel img {
+  border-radius: 9px;
+  z-index: 1;
+}
+.corosel {
+  padding-left: 20px;
+  position: relative;
+}
+
+.text-image {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+}
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-right {
+  background-color: #ffff !important;
+  width: 5px !important;
+  height: 50px;
+}
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-right:hover {
+  color: none !important;
+  background-color: #9b9b !important;
+}
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-right:focus,
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-right:active {
+  outline: none;
+  background-color: #9b9b9b !important;
+}
+
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-left {
+  background-color: #ffff !important;
+}
+
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-left:hover {
+  color: none !important;
+  background-color: #9b9b !important;
+}
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-left:focus,
+button.sc-bdnylx.chowzb.rec.rec-arrow.rec.rec-arrow-left:active {
+  outline: none;
+  background-color: #9b9b9b !important;
+}
+
+button.sc-gKAblj.brcpxa.rec.rec-dot.rec.rec-dot_active:active,
+button.sc-gKAblj.brcpxa.rec.rec-dot.rec.rec-dot_active:focus {
+  outline: none;
+  background-color: #99bb99;
+  box-shadow: none;
+}
+
+.sc-eCApGN.cfKeGQ.rec.rec-carousel:focus,
+.sc-eCApGN.cfKeGQ.rec.rec-carousel:active {
+  outline: none;
+}
+.sc-jSFkmK.llldhF.rec.rec-carousel-wrapper:focus,
+.sc-jSFkmK.llldhF.rec.rec-carousel-wrapper:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.sc-jSFkmK.llldhF.rec.rec-carousel-wrapper {
+}
+
+.coroselCard {
+  background-color: brown;
+  width: 80%;
+  height: 150px;
+  padding: 20px 0;
+  border-radius: 10px;
+  position: relative;
+  right: 0;
+}
+
+.text-category {
+  position: absolute;
+  color: #fff;
+  top: 35%;
+  left: 24%;
+  font-weight: 600;
+  font-size: 20px;
+
+  z-index: 2;
+}
+.text-Category span {
+  font-weight: 700;
+  font-size: 25px;
+}
+.text-small span {
+  color: #9b9b9b;
+  font-size: 14px;
+}

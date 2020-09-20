@@ -6,7 +6,6 @@ class Login extends Component {
   render() {
     return (
       <>
-        <NavigationBar />
         <FormLogin />
       </>
     );
