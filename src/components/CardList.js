@@ -22,7 +22,7 @@ import {
 } from 'reactstrap';
 
 const CardList = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState({ data: [], pageInfo: {} });
   let [updated, setUpdated] = useState({
     success: false,
     message: '',
@@ -34,12 +34,17 @@ const CardList = () => {
     category: '',
     id: '',
     button: '',
+    nextLink: '',
+    prevLink: '',
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await fetchItem();
-      setItems(data);
+      const { data, pageInfo } = await fetchItem(
+        updated.nextLink,
+        updated.prevLink,
+      );
+      setItems({ data, pageInfo });
     };
     fetchData();
   }, [updated.success]);
@@ -110,9 +115,19 @@ const CardList = () => {
       });
     }
   };
+  const handleUrlNext = async () => {
+    setUpdated({ success: true, nextLink: items.pageInfo.nextLink });
+  };
+  const handleUrlPrev = async () => {
+    setUpdated({
+      success: !updated.success,
+      prevLink: items.pageInfo.prevLink,
+    });
+  };
 
   return (
     <>
+      {console.log(items.data)}
       <Row className="justify-content-center position-relative mt-5">
         <Col md="3" xs="4" sm="3 text-center position-absolute">
           {updated.alert === true ? (
@@ -142,7 +157,7 @@ const CardList = () => {
       <Row className="mt-3">
         {items === undefined
           ? ''
-          : items.map((item) => {
+          : items.data.map((item) => {
               return (
                 <Col key={item.id} sm="6" md="3" xs="6">
                   <Card body className=" p-0 p-2 pl-3 shadow mb-2">
@@ -235,6 +250,27 @@ const CardList = () => {
             </Form>
           </ModalBody>
         </Modal>
+      </Row>
+      <Row md="12" className="mt-5 mb-5 text-right">
+        <div>
+          <ButtonGroup>
+            {items.pageInfo.prevLink === null ? (
+              <Button onClick={handleUrlPrev} disabled>
+                Prev
+              </Button>
+            ) : (
+              <Button onClick={handleUrlPrev}>Prev</Button>
+            )}
+            {console.log(items.pageInfo.nextLink)}
+            {items.pageInfo.nextLink === null ? (
+              <Button color="primary" onClick={handleUrlNext} disabled>
+                Next
+              </Button>
+            ) : (
+              <Button onClick={handleUrlNext}>Next</Button>
+            )}
+          </ButtonGroup>
+        </div>
       </Row>
     </>
   );
