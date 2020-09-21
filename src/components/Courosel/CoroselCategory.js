@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, Card, CardMedia, IconButton } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import image from '../../assets/img/tsirt.png';
@@ -55,27 +55,27 @@ const CorouserCategory = () => {
           <Carousel breakPoints={breakPoints}>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
             <div className="coroselCard">
               <div className="text-category">T-Shirt</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img src={image} className={corosel.imageWidit} alt="Category" />
             </div>
           </Carousel>
         </Grid>

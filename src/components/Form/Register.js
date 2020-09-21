@@ -1,27 +1,16 @@
 import React from 'react';
-// import {
-//   Col,
-//   Row,
-//   Form,
-//   FormGroup,
-//   Label,
-//   Input,
-//   Button,
-//   ButtonGroup,
-// } from 'reactstrap';
+
 import Logo from '../../assets/img/Logo.svg';
-import style from './Form.module.css';
 import {
   Grid,
   FormControl,
   Input,
   InputLabel,
-  FormHelperText,
   ButtonGroup,
   Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
   textCenter: {
     textAlign: 'center',
@@ -55,6 +44,17 @@ const useStyles = makeStyles({
     marginTop: '40px',
     textAlign: 'center',
   },
+  ltext: {
+    fontWeight: '600',
+  },
+  forgotPass: {
+    fontSize: '15px',
+    color: '#3285A8',
+  },
+  textLink: {
+    textDecoration: 'none',
+    color: '#3285A8',
+  },
 });
 
 const ButtonStyle = makeStyles({
@@ -67,6 +67,45 @@ const ButtonStyle = makeStyles({
     borderRadius: '20px',
     '&:focus': {
       outline: 'none',
+    },
+  },
+  Color: {
+    background: '#ffff',
+    color: '#9b9b9',
+    fontSize: '15px',
+    textTransform: 'lowercase',
+    '&:hover': {
+      background: '#326da8',
+      color: '#FFFF',
+    },
+    '&:focus': {
+      background: '#326da8',
+      outline: 'none',
+      color: '#FFFF',
+    },
+    '&:active': {
+      background: '#326da8',
+      outline: 'nonde',
+      color: '#FFFF',
+    },
+  },
+  Login: {
+    borderRadius: '20px',
+    background: '#3285A8',
+    color: '#FFF',
+    '&:hover': {
+      background: '#326da8',
+      color: '#FFFF',
+    },
+    '&:focus': {
+      background: '#3285A8',
+      outline: 'none',
+      color: '#FFFF',
+    },
+    '&:active': {
+      background: '#3285A8',
+      outline: 'nonde',
+      color: '#FFFF',
     },
   },
 });
@@ -92,15 +131,17 @@ const Register = () => {
               <img src={Logo} className={classes.image} alt="Logo" />
             </div>
             <div>
-              <span>Please sign up with your account</span>
+              <span className={classes.ltext}>
+                Please sign up with your account
+              </span>
             </div>
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
-            <ButtonGroup variant="contained" size="large" fullWidth="true">
-              <Button color="secondary" className={button.root}>
-                One
+            <ButtonGroup variant="outlined" size="large" fullWidth="true">
+              <Button className={button.Color}>Custommer</Button>
+              <Button variant="outlined" className={button.Color}>
+                Seller
               </Button>
-              <Button className={button.root}>Two</Button>
             </ButtonGroup>
           </Grid>
           <Grid item md={12} xs={12} className={classes.textCenter}>
@@ -127,9 +168,8 @@ const Register = () => {
                 <Grid md={12} className={classes.marginbtnLogin}>
                   <Button
                     variant="contained"
-                    color="secondary"
                     fullWidth={true}
-                    className={button.login}
+                    className={button.Login}
                     size="medium"
                   >
                     Register
@@ -140,7 +180,11 @@ const Register = () => {
           </Grid>
           <Grid item md={12} className={classes.marginbtnLogin}>
             <span>
-              Already have a warung account? <span>Register</span>
+              Already have a warung account?{' '}
+              <Link to="/Login">
+                {' '}
+                <span>Loginr</span>
+              </Link>
             </span>
           </Grid>
         </Grid>

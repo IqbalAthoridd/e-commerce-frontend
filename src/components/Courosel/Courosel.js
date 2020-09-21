@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, Card, CardMedia, IconButton } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import image from '../../assets/img/benjamin.jpg';
@@ -38,19 +38,35 @@ const Corouser = () => {
           <Carousel breakPoints={breakPoints}>
             <div className="corosel">
               <div className="text-image">Trend In 2020</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img
+                src={image}
+                className={corosel.imageWidit}
+                alt="Product Items"
+              />
             </div>
             <div className="corosel">
               <div className="text-image">Trend In 2020</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img
+                src={image}
+                className={corosel.imageWidit}
+                alt="Product Items"
+              />
             </div>
             <div className="corosel">
               <div className="text-image">Trend In 2020</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img
+                src={image}
+                className={corosel.imageWidit}
+                alt="Product Items"
+              />
             </div>
             <div className="corosel">
               <div className="text-image">Trend In 2020</div>
-              <img src={image} className={corosel.imageWidit} />
+              <img
+                src={image}
+                className={corosel.imageWidit}
+                alt="Product Items"
+              />
             </div>
           </Carousel>
         </Grid>

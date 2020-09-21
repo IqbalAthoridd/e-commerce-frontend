@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchItem, deleteItems } from '../components/api/items';
 import axios from 'axios';
 import qs from 'querystring';
+import { NativeSelect, FormControl } from '@material-ui/core';
 import {
   Card,
   CardTitle,
@@ -37,19 +38,20 @@ const CardList = () => {
     nextLink: '',
     prevLink: '',
   });
-  let [input, setInput] = useState({ search: '' });
+  let [input, setInput] = useState({ search: '', sortTo: '' });
 
   useEffect(() => {
     const fetchData = async () => {
       const { data, pageInfo } = await fetchItem(
         updated.nextLink,
         updated.prevLink,
-        [input.search],
+        [input.search, input.sortTo],
+        input.sortTo,
       );
       setItems({ data, pageInfo });
     };
     fetchData();
-  }, [updated.success]);
+  }, [updated.success, input.sortTo]);
 
   const deleteItem = async (id) => {
     const { data } = await deleteItems(id);
@@ -135,6 +137,10 @@ const CardList = () => {
     });
   };
 
+  const handleSort = async (value) => {
+    setInput({ sortTo: value });
+  };
+
   return (
     <>
       {input.search.length > 0
@@ -171,6 +177,15 @@ const CardList = () => {
               placeholder="Search"
               onChange={changeSearch}
             ></Input>
+            <FormControl>
+              <NativeSelect
+                defaultValue=""
+                onChange={(e) => handleSort(e.target.value)}
+              >
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+              </NativeSelect>
+            </FormControl>
           </Form>
         </Col>
       </Row>
@@ -184,7 +199,7 @@ const CardList = () => {
                   <Card body className=" p-0 p-2 pl-3 shadow mb-2">
                     <CardTitle>{item.name}</CardTitle>
                     <CardText>{item.price}</CardText>
-                    <CardText>{item.description}</CardText>
+
                     <ButtonGroup>
                       <Button color="primary" onClick={() => editItem(item.id)}>
                         Edit
@@ -221,6 +236,7 @@ const CardList = () => {
                   onChange={changeInput}
                 />
               </FormGroup>
+
               <FormGroup>
                 <Label for="price">Price</Label>
                 <Input

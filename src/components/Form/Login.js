@@ -1,6 +1,5 @@
 import React from 'react';
 import Logo from '../../assets/img/Logo.svg';
-import style from './Form.module.css';
 import {
   Grid,
   FormControl,
@@ -10,6 +9,8 @@ import {
   Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import './Form.module.css';
 
 const useStyles = makeStyles({
   textCenter: {
@@ -44,6 +45,17 @@ const useStyles = makeStyles({
     marginTop: '40px',
     textAlign: 'center',
   },
+  ltext: {
+    fontWeight: '600',
+  },
+  forgotPass: {
+    fontSize: '15px',
+    color: '#3285A8',
+  },
+  textLink: {
+    textDecoration: 'none',
+    color: '#3285A8',
+  },
 });
 
 const ButtonStyle = makeStyles({
@@ -52,10 +64,44 @@ const ButtonStyle = makeStyles({
       outline: 'none',
     },
   },
-  login: {
-    borderRadius: '20px',
+
+  Color: {
+    background: '#ffff',
+    color: '#9b9b9',
+    fontSize: '15px',
+    textTransform: 'lowercase',
+    '&:hover': {
+      background: '#326da8',
+      color: '#FFFF',
+    },
     '&:focus': {
+      background: '#326da8',
       outline: 'none',
+      color: '#FFFF',
+    },
+    '&:active': {
+      background: '#326da8',
+      outline: 'nonde',
+      color: '#FFFF',
+    },
+  },
+  Login: {
+    borderRadius: '20px',
+    background: '#3285A8',
+    color: '#FFF',
+    '&:hover': {
+      background: '#326da8',
+      color: '#FFFF',
+    },
+    '&:focus': {
+      background: '#3285A8',
+      outline: 'none',
+      color: '#FFFF',
+    },
+    '&:active': {
+      background: '#3285A8',
+      outline: 'nonde',
+      color: '#FFFF',
     },
   },
 });
@@ -81,15 +127,19 @@ const Login = () => {
               <img src={Logo} className={classes.image} alt="Logo" />
             </div>
             <div>
-              <span>Please login with your account</span>
+              <span className={classes.ltext}>
+                Please login with your account
+              </span>
             </div>
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
             <ButtonGroup variant="contained" size="large" fullWidth="true">
-              <Button color="secondary" className={button.root}>
-                One
+              <Button variant="outlined" className={button.Color}>
+                Custommer
               </Button>
-              <Button className={button.root}>Two</Button>
+              <Button variant="outlined" className={button.Color}>
+                Seller
+              </Button>
             </ButtonGroup>
           </Grid>
           <Grid item md={12} xs={12} className={classes.textCenter}>
@@ -114,14 +164,13 @@ const Login = () => {
                   />
                 </FormControl>
                 <Grid md={12} className={classes.textRight}>
-                  <span>Forgot password?</span>
+                  <span className={classes.forgotPass}>Forgot password?</span>
                 </Grid>
                 <Grid md={12}>
                   <Button
                     variant="contained"
-                    color="secondary"
                     fullWidth={true}
-                    className={button.login}
+                    className={button.Login}
                     size="medium"
                   >
                     Login
@@ -131,8 +180,11 @@ const Login = () => {
             </Grid>
           </Grid>
           <Grid item md={12} className={classes.marginTextRegister}>
-            <span>
-              Don't have a warung account? <span>Register</span>
+            <span className={classes.registerText}>
+              Don't have a warung account?{' '}
+              <Link to="/Register" className={classes.textLink}>
+                <span>Register</span>
+              </Link>
             </span>
           </Grid>
         </Grid>

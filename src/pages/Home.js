@@ -4,8 +4,6 @@ import Courouser from '../components/Courosel/Courosel';
 import CourouserCategory from '../components/Courosel/CoroselCategory';
 import ItemList from '../components/ItemList/ItemList';
 
-import { Grid } from '@material-ui/core';
-
 class Home extends Component {
   render() {
     return (
