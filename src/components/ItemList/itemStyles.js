@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const CardStyles = makeStyles({
+    root: {
+    maxWidth: 200,
+  },
     containerCard: {
       padding: '0 8%',
       marginTop: '20px',
@@ -27,8 +30,9 @@ export const CardStyles = makeStyles({
       marginBottom: '20px',
     },
     Spacing: {
-      marginRight: '20px',
-      marginBottom: '20px',
+      marginRight: '25px',
+      marginBottom: '25px',
       display: 'inline-block',
+      maxWidth:200
     },
   });

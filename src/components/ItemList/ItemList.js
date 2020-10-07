@@ -10,6 +10,8 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import {CardStyles} from './itemStyles'
 import {useSelector} from 'react-redux'
+import Paper from '@material-ui/core/Paper'
+import styles from './item.module.css'
 
 
 
@@ -37,8 +39,10 @@ const ItemList = ({data}) => {
         </Grid>
         <Grid item lg={12}>
           {data.map(data=>(
-            <Grid key={data.id} item lg={2} xs={12} className={card.Spacing}>
-            <Card className={card.Size}>
+            // <Grid key={data.id} item lg={2} xs={12} className={card.Spacing} >
+            <div className={styles.Spacing}>
+              <Paper elevation={5}>
+            <Card >
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -71,7 +75,9 @@ const ItemList = ({data}) => {
                 </CardContent>
               </CardActionArea>
             </Card>
-          </Grid>
+            </Paper>
+            </div>
+          // </Grid>
           ))}
         </Grid>
       </Grid>
