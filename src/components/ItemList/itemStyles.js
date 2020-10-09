@@ -10,15 +10,6 @@ export const CardStyles = makeStyles({
     },
     Size: {
       width: '100%',
-  
-      '&:focus': {
-        outline: 'none',
-        border: 'none',
-      },
-      '&:active': {
-        outline: 'none',
-        border: 'none',
-      },
     },
     cardContent: {
       padding: '10px 10px',
@@ -34,5 +25,15 @@ export const CardStyles = makeStyles({
       marginBottom: '25px',
       display: 'inline-block',
       maxWidth:200
+    },
+    actionArea:{
+      '&:focus': {
+        outline: 'none',
+        border: 'none',
+      },
+      '&:active': {
+        outline: 'none',
+        border: 'none',
+      },
     },
   });

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   NavigationBar: {
     background: '#FFFF',
     color: 'black',
-    padding: '20px 20px 20px 8%',
+    padding: '20px 20px 20px 7.5%',
   },
   Logo: {
     width: '70%',

@@ -1,0 +1,153 @@
+.display {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 22px;
+    justify-items: center;
+    justify-content: space-between;
+}
+.display2 {
+    display: flex;
+    flex-direction: row;
+    padding: 5% 22px;
+
+}
+
+
+.product {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    
+}
+
+/* .productName{
+   width: 35%;
+} */
+
+.productBrand span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.productCategory span {
+    font-weight: 500;
+font-size: 12px;
+line-height: 12px;
+}
+
+.productCategory{}
+
+.cartButton {
+    display: flex;
+    justify-items: center;
+    flex-direction: row;
+    margin-left: 10%;
+}
+
+/* .buttonPlus{
+    width: 30%;
+} */
+
+
+
+
+/* .productTotal{
+    margin-top: 3%;
+    margin-left: 15%;
+ } */
+
+.btnDelete{
+    margin-top: 5px;
+}
+.cartSpacing{
+    margin-bottom: 20px;
+}
+.cartSpacing2{
+    margin-bottom: 10px;
+}
+.cartSpacing3{
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+}
+
+.totalDisplay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cartImage{
+    width: 103px;
+    height: 69px;
+
+}
+
+.imageSize{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.checkboxPos {
+    margin-top: 25%;
+}
+
+.productText{
+    display: flex;
+    flex-direction: row;
+}
+
+.productQuantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 100px;
+}
+.myBag{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.btnMin {
+    margin-right: 17px;
+}
+
+.btnGroup{
+    display: flex;
+    flex-direction: row;
+}
+
+.numPadding {
+    padding-top: 5px;
+}
+
+.sumSpaccing {
+    margin-bottom: 30px;
+}
+
+  @media only screen and (max-width: 593px) {
+    .product {
+        flex-direction: column;
+        justify-items: center;
+    }
+    .cartImage{
+        width: 70%;
+        height: 50%;
+        text-align: center;
+        margin-left: 5%;
+    }
+    .productQuantity{
+        margin-top: 10px;
+    }
+    .cartSpacing3{
+        margin: 0;
+    }
+    
+   }

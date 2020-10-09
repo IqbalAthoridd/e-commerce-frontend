@@ -43,7 +43,7 @@ const ItemList = ({data}) => {
             <div className={styles.Spacing}>
               <Paper elevation={5}>
             <Card >
-              <CardActionArea>
+              <CardActionArea className={card.actionArea}>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
