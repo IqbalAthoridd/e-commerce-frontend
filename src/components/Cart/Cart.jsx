@@ -62,9 +62,9 @@ function Cart() {
 
             <div className={`${styles.product}`}>
               <div className={`${styles.cartImage}`}>
-               
+                <div className={`${styles.cartImage}`}>
                   <img className={`${styles.imageSize}`} src={baju}></img>
-                
+                </div>
               </div>
               <div className={styles.productName}>
                 <div className={`${styles.productBrand}`}>

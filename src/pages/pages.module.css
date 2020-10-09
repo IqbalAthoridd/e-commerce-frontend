@@ -1,3 +1,5 @@
 .container{
     padding: 0 7.5%;
 }
+
+@media only screen and (max-width: 593px) {}

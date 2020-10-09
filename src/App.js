@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Cart from './pages/Cart'
 import { Provider } from 'react-redux'
 import store from './redux/strore'
+import Profile from './pages/Profile'
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/cart" render={()=><Cart/>} />
+          <Route path="/profile" render={()=><Profile/>}></Route>
         </Switch>
       </BrowserRouter>
       </Provider>
