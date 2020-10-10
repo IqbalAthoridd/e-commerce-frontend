@@ -68,7 +68,10 @@ const ItemList = ({data}) => {
                     className={card.marginBox}
                   >
                     <Rating
-                      name="simple-controlled"
+                      name="rating"
+                      value={5}
+                      size="small"
+                      readOnly
                       
                     />
                   </Box>
