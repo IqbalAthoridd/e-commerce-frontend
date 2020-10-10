@@ -77,3 +77,37 @@
 .conSize{
     margin-right: 80px;
 }
+
+.lContainer{
+    margin: 40px 0;
+}
+
+.conSpacing {
+    margin-bottom: 10px;
+}
+
+.desSpacing{
+    margin-bottom: 10px;
+}
+.rContainer{
+    display: flex;
+    flex-direction: column;
+}
+.rating {
+    display: flex;
+    flex-direction: column;
+}
+.cRating {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    padding-right: 10px;
+}
+.progres{
+    flex-grow: 1;
+    padding-top: 10px;
+}
+
+.hrStyles hr{
+    border: 1px solid #D4D4D4;
+}

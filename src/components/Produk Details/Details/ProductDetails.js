@@ -13,6 +13,7 @@ import Radio from '@material-ui/core/Radio';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
+import LinearProgress from '@material-ui/core/LinearProgress';
 const images = [
   {
     original: gambar,
@@ -51,7 +52,7 @@ function ProductDetails() {
           showNav={false}
         />
       </Grid>
-      <Grid item lg={4} >
+      <Grid item lg={4}>
         <div className={styles.detailsCon}></div>
         <div className={styles.bContainer}>
           <div className={styles.pName}>
@@ -127,10 +128,140 @@ function ProductDetails() {
         </div>
         <div>
           <div className={styles.btnAdd}>
-              <Button>Chat</Button>
-              <Button>Add bag</Button>
-              <Button block >Buy Now</Button>
+            <Button>Chat</Button>
+            <Button>Add bag</Button>
+            <Button block>Buy Now</Button>
           </div>
+        </div>
+      </Grid>
+      <Grid item lg={12} xs={12} className={detail.lContainer}>
+        <div>
+          <span>Informasi Produk</span>
+        </div>
+      </Grid>
+      <Grid item lg={12} xs={12} className={detail.cContainer}>
+        <div className={styles.conSpacing}>
+          <span>Condition</span>
+        </div>
+        <div>
+          <span>New</span>
+        </div>
+      </Grid>
+      <Grid item lg={12}>
+        <div className={styles.desSpacing}>
+          <span>Description</span>
+        </div>
+        <div>
+          <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
+            eveniet nemo deleniti sed facilis voluptate, ex saepe voluptatibus
+            labore id minus, sequi quas. Inventore quidem fuga repudiandae
+            officia culpa iure.
+          </span>
+        </div>
+      </Grid>
+      <Grid item lg={12} className={detail.pReview}>
+        <div>Produk review</div>
+      </Grid>
+      <Grid item lg={1} xs={12} className={detail.gridRat}>
+        <div className={styles.rContainer}>
+          <div>
+            <span>
+              5.0<span>/10</span>{' '}
+            </span>
+          </div>
+          <div>
+            <Rating name="disabled" value={5} readOnly />
+          </div>
+        </div>
+      </Grid>
+      <Grid item lg={2} xs={12}>
+        <div className={styles.rating}>
+          <div>
+            <div className={styles.cRating}>
+                <div>
+                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
+                </div>
+                <div>
+                  <span>5</span>
+                </div>
+                <div className={styles.progres}>
+                  <LinearProgress variant="determinate" color="primary" value={50}/>
+                </div>
+                <div>
+                  <span>4</span>
+                  </div>
+            </div>
+          </div>
+          <div>
+            <div className={styles.cRating}>
+                <div>
+                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
+                </div>
+                <div>
+                  <span>5</span>
+                </div>
+                <div className={styles.progres}>
+                  <LinearProgress variant="determinate" color="primary" value={50}/>
+                </div>
+                <div>
+                  <span>4</span>
+                  </div>
+            </div>
+          </div>
+          <div>
+            <div className={styles.cRating}>
+                <div>
+                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
+                </div>
+                <div>
+                  <span>5</span>
+                </div>
+                <div className={styles.progres}>
+                  <LinearProgress variant="determinate" color="primary" value={50}/>
+                </div>
+                <div>
+                  <span>4</span>
+                  </div>
+            </div>
+          </div>
+          <div>
+            <div className={styles.cRating}>
+                <div>
+                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
+                </div>
+                <div>
+                  <span>5</span>
+                </div>
+                <div className={styles.progres}>
+                  <LinearProgress variant="determinate" color="primary" value={50}/>
+                </div>
+                <div>
+                  <span>4</span>
+                  </div>
+            </div>
+          </div>
+          <div>
+            <div className={styles.cRating}>
+                <div>
+                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
+                </div>
+                <div>
+                  <span>5</span>
+                </div>
+                <div className={styles.progres}>
+                  <LinearProgress variant="determinate" color="primary" value={50}/>
+                </div>
+                <div>
+                  <span>4</span>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </Grid>
+      <Grid item lg={12} md={12} className={detail.hrSpacing}>
+        <div className={styles.hrStyles}>
+        <hr></hr>
         </div>
       </Grid>
     </>
