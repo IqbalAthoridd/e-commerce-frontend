@@ -34,14 +34,14 @@ const CoroselStyles = makeStyles({
   },
 });
 
-const CorouserCategory = (props) => {
+const CorouserCategory = ({data}) => {
   const corosel = CoroselStyles();
-  const category = useSelector(state=>state.listCategory.data)
-  const dispatch = useDispatch()
+  // const category = useSelector(state=>state.listCategory.data)
+  // const dispatch = useDispatch()
 
-  useEffect(()=>{
-    dispatch(categoryAction.getData())
-  },[dispatch])
+  // useEffect(()=>{
+  //   dispatch(categoryAction.getCategory())
+  // },[dispatch])
 
   const breakPoints = [
     { width: 400, itemsToShow: 1 },
@@ -53,7 +53,6 @@ const CorouserCategory = (props) => {
   return (
    
     <>
-     {console.log(category)}
       <Grid container className={corosel.containerGrid}>
         <Grid item md={12} className={corosel.textContainer}>
           <div className="text-Category">
@@ -65,7 +64,7 @@ const CorouserCategory = (props) => {
         </Grid>
         <Grid item lg={12} xs={12} md={12} sm={12}>
         <Carousel breakPoints={breakPoints}>
-          {category.length ? category.map(categry=>(
+          {data.length ? data.map(categry=>(
             <div className="coroselCard">
           <div className="text-category">{categry.name}</div>
               <img src={`http://localhost:8080/${categry.picture}`} className={corosel.imageWidit} alt="Category" />
