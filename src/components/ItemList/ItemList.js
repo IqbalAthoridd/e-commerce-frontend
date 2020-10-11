@@ -69,7 +69,8 @@ const ItemList = ({data}) => {
                   >
                     <Rating
                       name="rating"
-                      value={5}
+                      value={data.ratings}
+                      precision={0.5}
                       size="small"
                       readOnly
                       

@@ -4,6 +4,8 @@ import Courouser from '../components/Courosel/Courosel';
 import CourouserCategory from '../components/Courosel/CoroselCategory';
 import ItemList from '../components/ItemList/ItemList';
 import {connect} from 'react-redux'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Container,Grid } from '@material-ui/core'
 
 import newItemsAction from '../redux/action/newItems'
 
@@ -14,13 +16,25 @@ class Home extends Component {
   }
   
   render() {
-    const {data} = this.props.item
+    const {data,isError,isLoading} = this.props.item
+    console.log(isError)
     return (
       <>
+      {isLoading=== true ? (
+       <>
+       <Container style={{display:"flex",justifyContent:"center",position:"relative"}}>
+       <CircularProgress style={{marginTop:"25%"}} />
+       </Container>
+       </>
+      ):(
+        <>
         <NavigationBar />
         <Courouser />
         <CourouserCategory />
         <ItemList data={data}/>
+        </>
+      )}
+       
       </>
     );
   }

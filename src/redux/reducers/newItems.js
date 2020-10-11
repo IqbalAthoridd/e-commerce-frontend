@@ -16,7 +16,7 @@ const initialState = {
       case 'GET_DATA_REJECTED': {
         return {
           ...state,
-          isLoading: false,
+          isLoading: true,
           isError: true,
           alertMsg: 'There is an error at request data'
         }
