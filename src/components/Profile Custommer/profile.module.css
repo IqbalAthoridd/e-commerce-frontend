@@ -1,0 +1,12 @@
+.sideContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 48px;
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
