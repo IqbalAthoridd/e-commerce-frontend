@@ -23,7 +23,7 @@ const CoroselStyles = makeStyles({
   },
 });
 
-const Corouser = () => {
+const Corouser = ({data}) => {
   const corosel = CoroselStyles();
   const breakPoints = [
     { width: 500, itemsToShow: 1 },

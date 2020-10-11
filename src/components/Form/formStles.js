@@ -52,7 +52,47 @@ export const useStyles = makeStyles({
       },
     },
   
-    Color: {
+    Custommer: {
+      background: '#326da8',
+      color: '#ffff',
+      fontSize: '15px',
+      textTransform: 'lowercase',
+      '&:hover': {
+        background: '#326da8',
+        color: '#FFFF',
+      },
+      '&:focus': {
+        background: '#326da8',
+        outline: 'none',
+        color: '#FFFF',
+      },
+      '&:active': {
+        background: '#326da8',
+        outline: 'nonde',
+        color: '#FFFF',
+      },
+    },
+    Custommer2: {
+      background: '#ffff',
+      color: '#9b9b9',
+      fontSize: '15px',
+      textTransform: 'lowercase',
+      '&:hover': {
+        background: '#326da8',
+        color: '#FFFF',
+      },
+      '&:focus': {
+        background: '#326da8',
+        outline: 'none',
+        color: '#FFFF',
+      },
+      '&:active': {
+        background: '#326da8',
+        outline: 'nonde',
+        color: '#FFFF',
+      },
+    },
+    Seller: {
       background: '#ffff',
       color: '#9b9b9',
       fontSize: '15px',

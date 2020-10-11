@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container,Grid } from '@material-ui/core'
 
 import newItemsAction from '../redux/action/newItems'
+import listCategoryAction from '../redux/action/listCategory'
 
 
 class Home extends Component {
@@ -16,8 +17,7 @@ class Home extends Component {
   }
   
   render() {
-    const {data,isError,isLoading} = this.props.item
-    console.log(isError)
+    const {data,isLoading} = this.props.item
     return (
       <>
       {isLoading=== true ? (
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getItems: newItemsAction.getData
+  getItems: newItemsAction.getData,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

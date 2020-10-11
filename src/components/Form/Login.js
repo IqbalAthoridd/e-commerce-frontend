@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Logo from '../../assets/img/Logo.svg';
 import {
   Grid,
@@ -14,6 +14,11 @@ import { useStyles, ButtonStyle } from './formStles';
 const Login = () => {
   const classes = useStyles();
   const button = ButtonStyle();
+  const [form,setform] = useState(true)
+
+  const changeForm =()=>{
+    setform(!form)
+  }
   return (
     <>
       <Grid container justify="center">
@@ -39,17 +44,25 @@ const Login = () => {
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
             <ButtonGroup variant="contained" size="large" fullWidth="true">
-              <Button variant="outlined" className={button.Color}>
-                Custommer
-              </Button>
-              <Button variant="outlined" className={button.Color}>
+              {form===true?(
+                 <Button variant="outlined"  className={button.Custommer}>
+                 Custommer
+               </Button>
+              ):(
+                <Button variant="outlined" onClick={changeForm} className={button.Custommer2} active>
+                 Custommer
+               </Button>
+              )}
+             
+              <Button variant="outlined" onClick={form===true&&changeForm} className={button.Seller}>
                 Seller
               </Button>
             </ButtonGroup>
           </Grid>
           <Grid item md={12} xs={12} className={classes.textCenter}>
             <Grid item md={12} xs={12} sm={12}>
-              <from>
+              
+                <from>
                 <FormControl fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
                   <Input
