@@ -8,6 +8,7 @@ import './corosel.css';
 import Carousel from 'react-elastic-carousel';
 import categoryAction from '../../redux/action/listCategory'
 import listCategory from '../../redux/action/listCategory';
+import { useHistory } from 'react-router-dom'
 
 const CoroselStyles = makeStyles({
   alignItems: {
@@ -36,12 +37,17 @@ const CoroselStyles = makeStyles({
 
 const CorouserCategory = ({data}) => {
   const corosel = CoroselStyles();
+  const history = useHistory()
   // const category = useSelector(state=>state.listCategory.data)
   // const dispatch = useDispatch()
 
   // useEffect(()=>{
   //   dispatch(categoryAction.getCategory())
   // },[dispatch])
+
+  const category=(name)=> {
+    history.push('/category',name)
+  }
 
   const breakPoints = [
     { width: 400, itemsToShow: 1 },
@@ -65,7 +71,7 @@ const CorouserCategory = ({data}) => {
         <Grid item lg={12} xs={12} md={12} sm={12}>
         <Carousel breakPoints={breakPoints}>
           {data.length ? data.map(categry=>(
-            <div className="coroselCard">
+            <div className="coroselCard" onClick={()=>category(categry.name)}>
           <div className="text-category">{categry.name}</div>
               <img src={`http://localhost:8080/${categry.picture}`} className={corosel.imageWidit} alt="Category" />
             </div>
