@@ -1,9 +1,11 @@
 import axios from 'axios'
 
+const {REACT_APP_BACKEND_URL} = process.env
 
 const http =(token=false)=>{
+    console.log("ok",REACT_APP_BACKEND_URL)
     return axios.create({
-        baseURL:'https://localhost:8080',
+        baseURL:REACT_APP_BACKEND_URL,
         headers: {
             'Authorization': token? `Bearer ${token}` : undefined
         }
