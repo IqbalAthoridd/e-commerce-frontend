@@ -99,8 +99,11 @@ const NavigationBar = () => {
           alignContent="center"
           alignItems="center"
         >
+          
           <Grid item md={2} lg={2} xs={4}>
+            <Link to="/">
             <img src={Logo} alt="Logo" className={classes.Logo} />
+            </Link>
           </Grid>
           <Grid item md={3} xs={5} lg={4} className={classes.searchBorder}>
             <Grid item lg={12} className={classes.containerSearch}>
