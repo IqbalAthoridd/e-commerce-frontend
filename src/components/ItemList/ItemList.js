@@ -14,12 +14,14 @@ import styles from './item.module.css'
 import {useSelector, useDispatch} from 'react-redux'
 import popularAction from '../../redux/action/popularProduct'
 import newItemsAction from '../../redux/action/newItems'
+import {useHistory} from 'react-router-dom'
 
 
 
 
 const ItemList = ({data,popular}) => {
   const card = CardStyles();
+  const history = useHistory()
   // const popular = useSelector(state=>state.popularProduct.data)
   // const newProduct = useSelector(state=>state.newItems.data)
   // const dispatch = useDispatch()
@@ -29,7 +31,9 @@ const ItemList = ({data,popular}) => {
   //   dispatch(newItemsAction.getData())
   // },[dispatch])
   
-
+  const detail =(id)=> {
+    history.push('/details',id)
+  }
 
   return (
     <>
@@ -55,7 +59,7 @@ const ItemList = ({data,popular}) => {
             <div className={styles.Spacing}>
               <Paper elevation={5}>
             <Card >
-              <CardActionArea className={card.actionArea} onClick>
+              <CardActionArea className={card.actionArea} onClick={()=>detail(data.id)}>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -118,7 +122,7 @@ const ItemList = ({data,popular}) => {
             <div className={styles.Spacing}>
               <Paper elevation={5}>
             <Card >
-              <CardActionArea className={card.actionArea}>
+              <CardActionArea className={card.actionArea} onClick={detail}>
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
