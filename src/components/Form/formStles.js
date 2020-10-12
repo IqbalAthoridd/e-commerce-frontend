@@ -17,7 +17,7 @@ export const useStyles = makeStyles({
       marginBottom: '20px',
     },
     marginLogin: {
-      marginBottom: '12',
+      marginBottom: '12px',
     },
     marginImage: {
       marginBottom: '40px',
@@ -43,6 +43,9 @@ export const useStyles = makeStyles({
       textDecoration: 'none',
       color: '#3285A8',
     },
+    marginbtnLogin:{
+      marginTop:"50px"
+    }
   });
   
   export const ButtonStyle = makeStyles({
