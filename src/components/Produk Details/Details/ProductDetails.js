@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Button, Grid } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import ImageGallery from 'react-image-gallery';
@@ -14,34 +14,39 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
-const images = [
-  {
-    original: gambar,
-    thumbnail: gambar,
-  },
-  {
-    original: gambar,
-    thumbnail: gambar,
-  },
-  {
-    original: gambar,
-    thumbnail: gambar,
-  },
-];
+import {useLocation} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import detailsAction from '../../../redux/action/details'
 
 function ProductDetails() {
   const detail = detailStyle();
+  const location = useLocation()
+  const dispatch = useDispatch();
+
+  const details = useSelector(state=>state.details)
+
+  useEffect(()=> {
+    dispatch(detailsAction.getDetails(location.state))
+  },[])
+
+  const {category,url,price,condition,description,name,ratings} = details.data
+  const images = [
+    {
+      original: `http://localhost:8080/${url}`,
+      thumbnail: `http://localhost:8080/${url}`,
+    },
+  ];
   return (
     <>
       <Grid item lg={12} xs={12} className={detail.link}>
         <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/">
-            Material-UI
+            Home
           </Link>
           <Link color="inherit" href="/getting-started/installation/">
-            Core
+            Product
           </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
+  <Typography color="textPrimary">{name}</Typography>
         </Breadcrumbs>
       </Grid>
       <Grid item lg={4} xs={12} md={6} sm={6} className={detail.image}>
@@ -56,13 +61,13 @@ function ProductDetails() {
         <div className={styles.detailsCon}></div>
         <div className={styles.bContainer}>
           <div className={styles.pName}>
-            <span>Baju muslim pria</span>
+  <span>{name}</span>
           </div>
           <div className={styles.pCategory}>
-            <span>Zalora cloth</span>
+  <span>{category}</span>
           </div>
           <div>
-            <Rating name="disabled" value={5} size="small" readOnly />
+            <Rating name="rating" value={ratings} size="small" precision={0.5} readOnly />
           </div>
         </div>
         <div className={styles.conPrice}>
@@ -70,7 +75,7 @@ function ProductDetails() {
             <span>price</span>
           </div>
           <div className={styles.price}>
-            <span>$20.0</span>
+  <span>$ {price}</span>
           </div>
         </div>
         <div className={styles.conColor}>
@@ -144,7 +149,7 @@ function ProductDetails() {
           <span>Condition</span>
         </div>
         <div>
-          <span>New</span>
+  <span>{condition}</span>
         </div>
       </Grid>
       <Grid item lg={12}>
@@ -153,10 +158,7 @@ function ProductDetails() {
         </div>
         <div>
           <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-            eveniet nemo deleniti sed facilis voluptate, ex saepe voluptatibus
-            labore id minus, sequi quas. Inventore quidem fuga repudiandae
-            officia culpa iure.
+           {description}
           </span>
         </div>
       </Grid>
@@ -167,11 +169,11 @@ function ProductDetails() {
         <div className={styles.rContainer}>
           <div>
             <span>
-              5.0<span>/10</span>{' '}
+        {ratings || 0}<span>/10</span>{' '}
             </span>
           </div>
           <div>
-            <Rating name="disabled" value={5} readOnly />
+            <Rating name="ratings" value={ratings} precision={0.5} readOnly />
           </div>
         </div>
       </Grid>
