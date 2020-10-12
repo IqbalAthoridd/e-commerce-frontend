@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Logo from '../../assets/img/Logo.svg';
 import {
   Grid,
@@ -8,19 +8,70 @@ import {
   ButtonGroup,
   Button,
 } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
 import './Form.module.css';
 import { useStyles, ButtonStyle } from './formStles';
-const Login = () => {
+import {useSelector, useDispatch} from 'react-redux'
+import authAction from '../../redux/action/auth'
+import {useHistory} from 'react-router-dom'
+
+
+const Login = (props) => {
   const classes = useStyles();
+  const history = useHistory()
   const button = ButtonStyle();
+  const dispatch = useDispatch()
+
   const [form,setform] = useState(true)
+  const auth = useSelector(state=> state.auth)
+  const [input, setInput] = useState({email:"",password:""})
+  const [open, setOpen] = React.useState(false);
+
+  useEffect(()=> {
+    if(auth.isLogin){
+    history.push('/cart')
+    }
+  },[auth.isLogin])
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const changeForm =()=>{
     setform(!form)
   }
+
+
+  const loginUser =(e)=> {
+    e.preventDefault();
+    const {email,password} = input
+    let data = {
+      email,
+      password
+    }
+    dispatch(authAction.login(data))
+  }
+
+  const onChangeText = (e)=>{
+    setInput({...input ,[e.target.name]:e.target.value})
+  }
+
   return (
     <>
+      <div>
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          {auth.alertMsg}
+        </Alert>
+      </Snackbar>
+      </div>
       <Grid container justify="center">
         <Grid
           item
@@ -62,14 +113,16 @@ const Login = () => {
           <Grid item md={12} xs={12} className={classes.textCenter}>
             <Grid item md={12} xs={12} sm={12}>
               
-                <from>
+                <form onSubmit={loginUser}>
                 <FormControl fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
                   <Input
                     id="email"
+                    name="email"
                     aria-describedby="my-helper-text"
                     fullWidth="true"
                     type="email"
+                    onChange={onChangeText}
                   />
                 </FormControl>
                 <FormControl fullWidth="true">
@@ -77,8 +130,10 @@ const Login = () => {
                   <Input
                     id="password"
                     type="password"
+                    name="password"
                     aria-describedby="my-helper-text"
                     fullWidth="true"
+                    onChange={onChangeText}
                   />
                 </FormControl>
                 <Grid md={12} className={classes.textRight}>
@@ -90,11 +145,12 @@ const Login = () => {
                     fullWidth={true}
                     className={button.Login}
                     size="medium"
+                    type="submit"
                   >
                     Login
                   </Button>
                 </Grid>
-              </from>
+              </form>
             </Grid>
           </Grid>
           <Grid item md={12} className={classes.marginTextRegister}>
