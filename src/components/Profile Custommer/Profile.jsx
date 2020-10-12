@@ -8,15 +8,12 @@ function Profile() {
         <>
         <Grid item lg={3} alignItems="stretch"  style={{border:"1px solid black"}}>
             <div className={styles.sideContainer}>
-                <div>
                     <div className={styles.userInfo}>
                         <div>
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                         </div>
                     </div>
-                </div>
             </div>
-          
        </Grid>
         </>
     )
