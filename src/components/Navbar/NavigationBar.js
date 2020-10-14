@@ -10,15 +10,21 @@ import IconButton from '@material-ui/core/IconButton';
 import SortIcon from '@material-ui/icons/Sort';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
-
+import styles from './Navbar.module.css';
+import { useSelector,useDispatch } from 'react-redux';
+import { TextField, Avatar } from '@material-ui/core';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import AuthAction from '../../redux/action/auth'
 const useStyles = makeStyles((theme) => ({
   NavigationBar: {
     background: '#FFFF',
     color: 'black',
-    padding: '20px 20px 20px 7.5%',
+    padding: '20px 7.5% 20px 7.5%',
   },
   Logo: {
-    width: '70%',
+    width: '90%',
+    height: 'auto',
   },
   root: {
     padding: '2px 4px',
@@ -63,21 +69,23 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'right',
   },
   buttonRegister: {
+    textTransform: 'none',
     border: '1px solid #9b9b9b',
-    marginLeft: '30px',
+    marginLeft: '20px',
     borderRadius: '20px',
+    padding: '8px 26px',
     color: '#9b9b9b',
     '&:focus': {
       outline: 'none',
     },
   },
   buttonLogin: {
+    textTransform: 'none',
     border: '1px solid #3285A8',
     marginLeft: '30px',
     borderRadius: '20px',
     color: '#FFFF',
-    paddingLeft: ' 8%',
-    paddingRight: '8%',
+    padding: '8px 30px',
     backgroundColor: '#3285A8',
     '&:focus': {
       outline: 'none',
@@ -86,10 +94,23 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#266985',
     },
   },
+  small: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+  },
 }));
 
 const NavigationBar = () => {
   const classes = useStyles();
+  const isLogin = useSelector(state=>state.auth.isLogin)
+  const token = localStorage.getItem("token") || ""
+  const dispatch = useDispatch()
+
+  const logout = () => {
+    localStorage.clear()
+    dispatch(AuthAction.logout())
+  }
+
   return (
     <>
       <AppBar position="static" className={classes.NavigationBar}>
@@ -98,48 +119,73 @@ const NavigationBar = () => {
           direction="row"
           alignContent="center"
           alignItems="center"
+          justify="space-between"
         >
-          
-          <Grid item md={2} lg={2} xs={4}>
-            <Link to="/">
-            <img src={Logo} alt="Logo" className={classes.Logo} />
-            </Link>
+          <Grid item lg={6}>
+            <div className={styles.searchContainer}>
+              <div>
+                <Link to="/">
+                  <img src={Logo} alt="Logo" className={classes.Logo} />
+                </Link>
+              </div>
+              <div style={{ paddingTop: '10px' }}>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  style={{ width: '300px' }}
+                />
+              </div>
+            </div>
           </Grid>
-          <Grid item md={3} xs={5} lg={4} className={classes.searchBorder}>
-            <Grid item lg={12} className={classes.containerSearch}>
-              <InputBase
-                className={classes.input}
-                placeholder="Search.."
-                inputProps={{ 'aria-label': 'Search...' }}
-                fullWidth="true"
-              />
-              <IconButton
-                type="submit"
-                className={classes.iconButton}
-                aria-label="search"
-              >
-                <SearchIcon />
-              </IconButton>
+          {token.length ? (
+            <Grid item lg={3}>
+              <div className={styles.containerAvatar}>
+                <div className={styles.iconSpacing}>
+                  <Link to="/cart">
+                  <ShoppingCartOutlinedIcon color="action" />
+                  </Link>
+                </div>
+                <div className={styles.iconSpacing}>
+                  <NotificationsNoneIcon />
+                </div>
+                <div className={styles.iconSpacing}>
+                  <MailOutlineIcon />
+                </div>
+                <div className={styles.avatarSpacing} onClick={logout}>
+                  <Avatar
+                    alt="Cindy Baker"
+                    src="/static/images/avatar/3.jpg"
+                    className={classes.small}
+                  />
+                </div>
+              </div>
             </Grid>
-          </Grid>
-          <Grid item lg={1}>
-            <IconButton className={classes.buttonSort}>
-              <SortIcon fontSize="large" />
-            </IconButton>
-          </Grid>
-          <Grid item lg={4} xs={12} className={classes.linkContaier}>
-            <ShoppingCartOutlinedIcon color="action" />
-            <Link to="/Login">
-              <Button variant="contained" className={classes.buttonLogin}>
-                Login
-              </Button>
-            </Link>
-            <Link to="/Register">
-              <Button variant="outline" className={classes.buttonRegister}>
-                Register
-              </Button>
-            </Link>
-          </Grid>
+          ) : (
+            <Grid lg={4}>
+              <div className={styles.containerAvatar}>
+                <div className={styles.cartSpacing}>
+                  <ShoppingCartOutlinedIcon color="action" fontSize="medium" />
+                </div>
+                <div>
+                  <Link to="/Login">
+                    <Button variant="contained" className={classes.buttonLogin}>
+                      Login
+                    </Button>
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/Register">
+                    <Button
+                      variant="outline"
+                      className={classes.buttonRegister}
+                    >
+                      Signup
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Grid>
+          )}
         </Grid>
       </AppBar>
     </>

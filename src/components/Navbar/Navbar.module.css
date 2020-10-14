@@ -9,3 +9,27 @@
 .containerLeft {
   margin: 20px;
 }
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.containerAvatar{
+  display: flex;
+  flex-direction: row;
+}
+
+.iconSpacing {
+  padding-top: 12px;
+  margin-right: 43px;
+}
+.avatarSpacing {
+  padding-top: 9px;
+}
+
+.cartSpacing{
+  padding-top: 10px;
+  margin-right: 40px;
+}
