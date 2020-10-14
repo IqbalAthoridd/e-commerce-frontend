@@ -7,6 +7,7 @@ import {
   InputLabel,
   ButtonGroup,
   Button,
+  OutlinedInput
 } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -114,9 +115,9 @@ const Login = (props) => {
             <Grid item md={12} xs={12} sm={12}>
               
                 <form onSubmit={loginUser}>
-                <FormControl fullWidth="true" className={classes.marginInput}>
+                <FormControl variant="outlined" fullWidth="true" className={classes.marginInput}>
                   <InputLabel htmlFor="email">Email address</InputLabel>
-                  <Input
+                  <OutlinedInput
                     id="email"
                     name="email"
                     aria-describedby="my-helper-text"
