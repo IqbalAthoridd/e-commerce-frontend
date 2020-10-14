@@ -7,6 +7,8 @@ import auth from './auth'
 import register from './register'
 import details from './details'
 import listProduct from './listProduct'
+import cart from './cart'
+import getCart from './getCart'
 
 export default combineReducers({
     newItems,
@@ -15,5 +17,7 @@ export default combineReducers({
     auth,
     register,
     details,
-    listProduct
+    listProduct,
+    cart,
+    getCart
   })
