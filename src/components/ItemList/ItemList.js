@@ -32,7 +32,7 @@ const ItemList = ({data,popular}) => {
   // },[dispatch])
   
   const detail =(id)=> {
-    history.push('/details',id)
+    history.push(`/details/${id}`)
   }
 
   return (
