@@ -1,4 +1,4 @@
-import {colors, makeStyles} from '@material-ui/core'
+import { makeStyles} from '@material-ui/core'
 
 export const cartStyle = makeStyles({
     diplay:{
@@ -25,7 +25,7 @@ export const cartStyle = makeStyles({
           '&:focus': {
             outline:"none"
           },
-          boxShadow:"0px 0px 4px rgba(142, 142, 142, 0.25)"
+          boxShadow:"0px 0px 4px rgba(142, 142, 142, 0.5)"
     },
     btnDel:{
         textTransform:"none",
@@ -51,6 +51,19 @@ export const cartStyle = makeStyles({
           '&:focus': {
             outline:"none",
           }
+    },
+    iconMin: {
+      color:"white"
+    },
+    iconPlus:{
+      color:"black"
+    },
+    checkBox:{
+      color:"black",
+      '&$checked': {
+        color: "black",
+      },
     }
+    
     
 })

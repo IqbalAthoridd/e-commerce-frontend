@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Button, Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -14,9 +14,36 @@ import { cartStyle } from './cartStyles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
+import { withStyles } from '@material-ui/core/styles';
+import getCartAction from '../../redux/action/getCart'
+import { useDispatch, useSelector } from 'react-redux'
 
+const CustomCheckBox = withStyles({
+  root: {
+    color:"#3285A8",
+    '&$checked': {
+      color: "#3285A8",
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 function Cart() {
   const cart = cartStyle();
+  const dispatch = useDispatch()
+  const token = localStorage.getItem("token") || ""
+  const data = useSelector(state=>state.getCart)
+
+  const [state, setState] = React.useState({
+    checked: false});
+
+    useEffect(()=>{
+      dispatch(getCartAction.getCart(token))
+    },[])
+
+  const handleChange = (event) => {
+      setState({ ...state, [event.target.name]: event.target.checked });
+    };
+
   return (
     <>
       <Grid item lg={12} xs={12} md={12} ms={12}>
@@ -34,7 +61,7 @@ function Cart() {
               <FormControl component="fieldset">
                 <FormGroup>
                   <FormControlLabel
-                    control={<Checkbox name="gilad" />}
+                    control={<CustomCheckBox name="gilad" />}
                     label="Select all Items (2 items selected)"
                   />
                 </FormGroup>
@@ -46,62 +73,71 @@ function Cart() {
               </FormControl>
             </Paper>
           </Grid>
-          <Grid item lg={12}>
-          <Paper
-            elevation={3}
-            className={`${styles.display2} ${styles.cartSpacing2}`}
-          >
-            <FormControl component="fieldset">
-              <FormGroup className={cart.diplay}>
-                <FormControlLabel
-                  control={<Checkbox name="gilad" />}
-                  className={`${styles.checkboxPos}`}
-                />
-              </FormGroup>
-            </FormControl>
-
-            <div className={`${styles.product}`}>
-              <div className={`${styles.cartImage}`}>
-                <div className={`${styles.cartImage}`}>
-                  <img className={`${styles.imageSize}`} src={baju}></img>
-                </div>
-              </div>
-              <div className={styles.productName}>
-                <div className={`${styles.productBrand}`}>
-                  <span>Men's formal suith black</span>
-                </div>
-                <div className={`${styles.productCategory}`}>
-                  <span>Zalora cloth</span>
-                </div>
-              </div>
-
-              <div>
-                <div className={styles.productQuantity}>
-                  <div className={styles.btnGroup}>
-                  <div className={styles.btnMin}>
-                    <IconButton className={cart.btnMin}>
-                      <RemoveIcon />
-                    </IconButton>
+          
+            {data.data.length? data.data.map(data=>(
+              <>
+              <Grid item lg={12}>
+              <Paper
+                elevation={3}
+                className={`${styles.display2} ${styles.cartSpacing2}`}
+              >
+                <FormControl component="fieldset">
+                  <FormGroup className={cart.diplay}>
+                    <FormControlLabel
+                      control={<CustomCheckBox name="checked" checked={state.checked} onChange={handleChange}  />}
+                      className={`${styles.checkboxPos}`}
+                    />
+                  </FormGroup>
+                </FormControl>
+    
+                <div className={`${styles.product}`}>
+                  <div className={`${styles.cartImage}`}>
+                    <div className={`${styles.cartImage2}`}>
+                      <img className={`${styles.imageSize}`} src={`http://localhost:8080/${data.url}`}></img>
                     </div>
-                    <div className={`${styles.btnMin} ${styles.numPadding}`}>
-                    <span>1</span>
-                    </div>
-                    <div>
-                    <IconButton className={cart.btnPlus}>
-                      <AddIcon />
-                    </IconButton>
-                    </div>
-                    </div>
-                 
-                  <div>
-                    <span>$20.0</span>
                   </div>
-                </div>
-              </div>
-            </div>
-          </Paper>
-          </Grid>
-        </form>
+                  
+                    <div className={styles.brandName}>
+                      <div>
+                      <span>
+                        {data.name}
+                      </span>
+                      </div>
+                      <div>
+                        <span>
+                          {data.category}
+                        </span>
+                      </div>
+                    </div>
+    
+                    <div className={styles.Quantity}>
+                      <div className={styles.btnQuantity}>
+                      <div className={styles.btnMin}>
+                      <IconButton className={cart.btnMin}>
+                          <RemoveIcon  className={cart.iconMin}/>
+                        </IconButton>
+                      </div>
+                      <div className={styles.btnMin}>
+            <span>{data.total}</span>
+                      </div>
+                      <div>
+                      <IconButton className={cart.btnPlus}>
+                          <AddIcon className={cart.iconPlus}/>
+                        </IconButton>
+                      </div>
+                      </div>
+                    </div>
+                    <div >
+            <span>Rp {data.subTotal}</span>
+                    </div>
+                    </div>
+                    <div className={styles.container2}>
+                    </div>
+              </Paper>
+              </Grid>  
+            </>
+            )):""}
+          </form>   
       </Grid>
       <Grid item lg={4} xs={12} md={4}>
         <Paper elevation={3} className={styles.cartSpacing3}>
