@@ -17,6 +17,11 @@
     max-height: 100vh !important;
 } */
 
+@font-face {
+    font-family: Rubik;
+    src: url('../../../assets/font/Rubik-Var.ttf');
+  }
+
 .link {
     margin: 50px 0;
     color: aqua;
@@ -44,14 +49,14 @@
 }
 
 .pName {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .pCategory {
     margin-bottom: 15px;
 }
 
 .bContainer {
-    margin-bottom: 31px;
+    margin-bottom: 20px;
 }
 
 .conPrice {
@@ -110,4 +115,57 @@
 
 .hrStyles hr{
     border: 1px solid #D4D4D4;
+}
+
+.fontStyle{
+    font-family: Rubik;
+    margin: 0px 17px;
+       
+}
+
+.font1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 28px;
+}
+
+.categoryName{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #9b9b9b;
+}
+.ratingTotal{
+   margin-bottom: 100px;
+}
+.RatingCon {
+    display: flex;
+    flex-direction: row;
+}
+
+.fontPrice {
+    ont-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 33px;
+    color: #222222;
+}
+.font2 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.font4{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: #222222;
+}
+.btnBuyWidth {
+    flex-grow: 1;
 }

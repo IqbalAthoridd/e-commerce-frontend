@@ -14,20 +14,35 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {useLocation} from 'react-router-dom'
+import {useLocation, useParams} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import detailsAction from '../../../redux/action/details'
+import qs from 'querystring'
+import cartAction from '../../../redux/action/cart'
+
 
 function ProductDetails() {
   const detail = detailStyle();
   const location = useLocation()
   const dispatch = useDispatch();
+  const {id} = useParams()
+  const token = localStorage.getItem("token") || ""
 
   const details = useSelector(state=>state.details)
 
+  const [jumlah,setJumlah] = React.useState(0)
+
   useEffect(()=> {
-    dispatch(detailsAction.getDetails(location.state))
+    dispatch(detailsAction.getDetails(id))
   },[])
+
+  const addtoCart = (productId,jumlah) => {
+    let data = {
+      productId,
+      total:jumlah
+    }
+    dispatch(cartAction.addCart(data,token))
+  }
 
   const {category,url,price,condition,description,name,ratings} = details.data
   const images = [
@@ -36,17 +51,18 @@ function ProductDetails() {
       thumbnail: `http://localhost:8080/${url}`,
     },
   ];
+
   return (
     <>
       <Grid item lg={12} xs={12} className={detail.link}>
         <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/">
-            Home
+            <span className={`${styles.fontStyle}`}>Home</span>
           </Link>
           <Link color="inherit" href="/getting-started/installation/">
-            Product
+            <span className={`${styles.fontStyle}`}>Product</span>
           </Link>
-  <Typography color="textPrimary">{name}</Typography>
+  <Typography color="textPrimary"><span className={`${styles.fontStyle}`}>{name}</span></Typography>
         </Breadcrumbs>
       </Grid>
       <Grid item lg={4} xs={12} md={6} sm={6} className={detail.image}>
@@ -57,30 +73,30 @@ function ProductDetails() {
           showNav={false}
         />
       </Grid>
-      <Grid item lg={4}>
+      <Grid item lg={7}>
         <div className={styles.detailsCon}></div>
         <div className={styles.bContainer}>
           <div className={styles.pName}>
-  <span>{name}</span>
+  <span className={`${styles.fontStyle} ${styles.font1}`}>{name}</span>
           </div>
           <div className={styles.pCategory}>
-  <span>{category}</span>
+  <span className={`${styles.fontStyle} ${styles.categoryName}`}>{category}</span>
           </div>
           <div>
-            <Rating name="rating" value={ratings} size="small" precision={0.5} readOnly />
+            <Rating name="rating" value={ratings}  precision={0.5} readOnly />
           </div>
         </div>
         <div className={styles.conPrice}>
           <div className={styles.tPrice}>
-            <span>price</span>
+            <span className={`${styles.fontStyle} ${styles.categoryName}`}>Price</span>
           </div>
           <div className={styles.price}>
-  <span>$ {price}</span>
+  <span className={`${styles.fontStyle} ${styles.fontPrice}` }>$ {price}</span>
           </div>
         </div>
         <div className={styles.conColor}>
           <div>
-            <span>Color</span>
+            <span className={`${styles.fontStyle} ${styles.font2}`}>Color</span>
           </div>
           <div className={styles.radioBtn}>
             <div>
@@ -103,13 +119,13 @@ function ProductDetails() {
           <div className={styles.size}>
             <div className={styles.conSize}>
               <div>
-                <span>Size</span>
+                <span className={`${styles.fontStyle} ${styles.font2}`}>Size</span>
               </div>
               <div>
                 <IconButton>
                   <RemoveIcon />
                 </IconButton>
-                <span>1</span>
+                <span className={`${styles.fontStyle} ${styles.font2}`}>1</span>
                 <IconButton>
                   <AddIcon />
                 </IconButton>
@@ -117,15 +133,15 @@ function ProductDetails() {
             </div>
             <div>
               <div>
-                <span>Jumlah</span>
+                <span className={`${styles.fontStyle} ${styles.font2}`}>Jumlah</span>
               </div>
               <div>
-                <IconButton>
-                  <RemoveIcon />
+                <IconButton className={detail.btnMin} onClick={()=>setJumlah(jumlah-1)}>
+                  <RemoveIcon className={detail.iconMin} />
                 </IconButton>
-                <span>1</span>
-                <IconButton>
-                  <AddIcon />
+  <span className={`${styles.fontStyle} ${styles.font2}`}>{jumlah}</span>
+                <IconButton className={detail.btnPlus} onClick={()=>setJumlah(jumlah+1)} >
+                  <AddIcon className={detail.iconPlus}/>
                 </IconButton>
               </div>
             </div>
@@ -133,31 +149,37 @@ function ProductDetails() {
         </div>
         <div>
           <div className={styles.btnAdd}>
-            <Button>Chat</Button>
-            <Button>Add bag</Button>
-            <Button block>Buy Now</Button>
+            <div>
+            <Button className={detail.btnChat}>Chat</Button>
+            </div>
+            <div>
+            <Button onClick={()=>addtoCart(id,jumlah)} className={detail.addBag}>Add bag</Button>
+            </div>
+            <div className={styles.btnBuyWidth}>
+            <Button variant="contained" fullWidth="true" className={detail.btnBuy}>Buy Now</Button>
+            </div>
           </div>
         </div>
       </Grid>
       <Grid item lg={12} xs={12} className={detail.lContainer}>
         <div>
-          <span>Informasi Produk</span>
+          <span className={`${styles.fontStyle} ${styles.font1}`}>Informasi Produk</span>
         </div>
       </Grid>
       <Grid item lg={12} xs={12} className={detail.cContainer}>
         <div className={styles.conSpacing}>
-          <span>Condition</span>
+          <span className={`${styles.fontStyle} ${styles.font4}`}>Condition</span>
         </div>
         <div>
-  <span>{condition}</span>
+  <span className={`${styles.fontStyle}`}>{condition}</span>
         </div>
       </Grid>
       <Grid item lg={12}>
         <div className={styles.desSpacing}>
-          <span>Description</span>
+          <span className={`${styles.fontStyle} ${styles.font4}`}>Description</span>
         </div>
         <div>
-          <span>
+          <span className={`${styles.fontStyle}`}>
            {description}
           </span>
         </div>
@@ -168,8 +190,8 @@ function ProductDetails() {
       <Grid item lg={1} xs={12} className={detail.gridRat}>
         <div className={styles.rContainer}>
           <div>
-            <span>
-        {ratings || 0}<span>/10</span>{' '}
+            <span className={`${styles.fontStyle}`}>
+        {ratings || 0}<span className={`${styles.fontStyle}`}>/10</span>{' '}
             </span>
           </div>
           <div>
@@ -185,13 +207,13 @@ function ProductDetails() {
                   <Rating name="disabled" size="small" value={5} max={1} readOnly />
                 </div>
                 <div>
-                  <span>5</span>
+                  <span className={`${styles.fontStyle}`}>5</span>
                 </div>
                 <div className={styles.progres}>
                   <LinearProgress variant="determinate" color="primary" value={50}/>
                 </div>
                 <div>
-                  <span>4</span>
+                  <span className={`${styles.fontStyle}`}>4</span>
                   </div>
             </div>
           </div>
