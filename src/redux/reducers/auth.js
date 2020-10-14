@@ -22,6 +22,7 @@ const initialState = {
         }
       }
       case 'AUTH_USER_FULFILLED':{
+        localStorage.setItem('token',action.payload.data.token)
         return {
           ...state,
           token: action.payload.data.token,
