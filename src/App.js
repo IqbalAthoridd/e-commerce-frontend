@@ -30,7 +30,7 @@ class App extends Component {
           <Cart/>
           </PrivateRoute>
           <Route path="/profile" render={()=><Profile/>}></Route>
-          <Route path="/details" render={()=><Details/>}/>
+          <Route path="/details/:id" render={()=><Details/>}/>
         </Switch>
       </BrowserRouter>
       </Provider>
