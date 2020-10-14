@@ -9,7 +9,7 @@ class Profile extends Component {
         return (
            <>
            <NavigationBar/>
-           <Grid container style={{height:"100%"}} >
+           <Grid container style={{position:"relative",height:"100%"}} >
                <Profiles/>
            </Grid>
            </>
