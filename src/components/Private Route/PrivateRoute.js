@@ -3,7 +3,9 @@ import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class PrivateRoute extends Component {
+  
   render() {
+    const token = localStorage.getItem('token') || ""
     return (
       <Route render={
         (props) => {
@@ -13,7 +15,7 @@ class PrivateRoute extends Component {
             }
             return child
           })
-          if(this.props.auth.isLogin){
+          if(token.length){
             return childWithProps
           }else{
             return <Redirect to={{pathname: '/login', state: {alert: 'Login first!', color: 'danger'}}} />
