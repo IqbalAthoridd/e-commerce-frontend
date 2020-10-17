@@ -128,7 +128,7 @@ const ItemList = ({data,popular}) => {
                   component="img"
                   alt="Contemplative Reptile"
                   height="140"
-                  image={`${REACT_APP_BACKENLD_UR}${data.picture}`}
+                  image={`${REACT_APP_BACKENLD_URL}${data.picture}`}
                   title="Contemplative Reptile"
                 />
                 <CardContent className={card.cardContent}>
