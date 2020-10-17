@@ -15,7 +15,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import popularAction from '../../redux/action/popularProduct'
 import newItemsAction from '../../redux/action/newItems'
 import {useHistory} from 'react-router-dom'
-const {REACT_APP_BACKENLD_UR} = process.env
+const {REACT_APP_BACKEND_URL} = process.env
 
 
 
@@ -128,7 +128,7 @@ const ItemList = ({data,popular}) => {
                   component="img"
                   alt="Contemplative Reptile"
                   height="140"
-                  image={`${REACT_APP_BACKENLD_URL}${data.picture}`}
+                  image={`${REACT_APP_BACKEND_URL}${data.picture}`}
                   title="Contemplative Reptile"
                 />
                 <CardContent className={card.cardContent}>
