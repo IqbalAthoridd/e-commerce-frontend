@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import getCartAction from '../../redux/action/getCart'
 import { useDispatch, useSelector } from 'react-redux'
+const {REACT_APP_BACKEND_URL} = process.env
 
 const CustomCheckBox = withStyles({
   root: {
@@ -98,7 +99,7 @@ function Cart() {
                 <div className={`${styles.product}`}>
                   <div className={`${styles.cartImage}`}>
                     <div className={`${styles.cartImage2}`}>
-                      <img className={`${styles.imageSize}`} src={`http://localhost:8080/${data.url}`}></img>
+                      <img className={`${styles.imageSize}`} src={`${REACT_APP_BACKEND_URL}${data.url}`}></img>
                     </div>
                   </div>
                   

@@ -19,6 +19,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import detailsAction from '../../../redux/action/details'
 import qs from 'querystring'
 import cartAction from '../../../redux/action/cart'
+const {REACT_APP_BACKEND_URL} = process.env
 
 
 function ProductDetails() {
@@ -47,8 +48,8 @@ function ProductDetails() {
   const {category,url,price,condition,description,name,ratings} = details.data
   const images = [
     {
-      original: `http://localhost:8080/${url}`,
-      thumbnail: `http://localhost:8080/${url}`,
+      original: `${REACT_APP_BACKEND_URL}${url}`,
+      thumbnail: `${REACT_APP_BACKEND_URL}${url}`,
     },
   ];
 

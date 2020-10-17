@@ -9,6 +9,7 @@ import Carousel from 'react-elastic-carousel';
 import categoryAction from '../../redux/action/listCategory'
 import listCategory from '../../redux/action/listCategory';
 import { useHistory } from 'react-router-dom'
+const {REACT_APP_BACKEND_URL} = process.env
 
 const CoroselStyles = makeStyles({
   alignItems: {
@@ -73,7 +74,7 @@ const CorouserCategory = ({data}) => {
           {data.length ? data.map(categry=>(
             <div className="coroselCard" onClick={()=>category(categry.name)}>
           <div className="text-category">{categry.name}</div>
-              <img src={`http://localhost:8080/${categry.picture}`} className={corosel.imageWidit} alt="Category" />
+              <img src={`${REACT_APP_BACKEND_URL}${categry.picture}`} className={corosel.imageWidit} alt="Category" />
             </div>
           
           )):""}
