@@ -44,6 +44,10 @@ function Cart() {
       setState({ ...state, [event.target.name]: event.target.checked });
     };
 
+    const handleSubmit = (e) =>{
+      e.preventDefault();
+    }
+
   return (
     <>
       <Grid item lg={12} xs={12} md={12} ms={12}>
@@ -52,7 +56,7 @@ function Cart() {
         </div>
       </Grid>
       <Grid item lg={7} xs={12} md={8} ms={4}>
-        <form onSubmit>
+        <form onSubmit={handleSubmit}>
           <Grid item lg={12}>
             <Paper
               elevation={3}
@@ -68,7 +72,7 @@ function Cart() {
               </FormControl>
               <FormControl component="fieldset">
                 <FormGroup className={styles.btnDelete}>
-                  <Button className={cart.btnDel}>Delete</Button>
+                  <Button className={cart.btnDel} type="submit" >Delete</Button>
                 </FormGroup>
               </FormControl>
             </Paper>
@@ -84,8 +88,9 @@ function Cart() {
                 <FormControl component="fieldset">
                   <FormGroup className={cart.diplay}>
                     <FormControlLabel
-                      control={<CustomCheckBox name="checked" checked={state.checked} onChange={handleChange}  />}
+                      control={<CustomCheckBox name={data.id}/>}
                       className={`${styles.checkboxPos}`}
+                      value={data.id}
                     />
                   </FormGroup>
                 </FormControl>

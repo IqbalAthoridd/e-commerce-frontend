@@ -3,6 +3,6 @@ import http from '../../helpers/http'
 export default {
   getPopular: ()=>({
     type: 'GET_POPULAR',
-    payload: http().get('http://localhost:8080/public/popular')
+    payload: http().get('public/popular')
   })
 }

@@ -4,7 +4,7 @@ import qs from 'querystring'
 export default {
   addCart: (data,token)=>({
     type: 'ADD_CART',
-    payload: http(token).post('http://localhost:8080/customer/carts',qs.stringify(data))
+    payload: http(token).post('customer/carts',qs.stringify(data))
   }),
   
 }

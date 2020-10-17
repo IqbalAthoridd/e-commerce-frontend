@@ -4,6 +4,6 @@ import qs from 'querystring'
 export default {
   register: (data)=>({
     type: 'REGISTER',
-    payload: http().post('http://localhost:8080/auth/customer/register',qs.stringify(data))
+    payload: http().post('auth/customer/register',qs.stringify(data))
   }),
 }

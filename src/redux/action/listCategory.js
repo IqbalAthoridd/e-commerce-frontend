@@ -1,8 +1,9 @@
 import {default as axios} from 'axios'
+import http from '../../helpers/http'
 
 export default {
   getCategory: ()=>({
     type: 'GET_CATEGORY',
-    payload: axios.get('http://localhost:8080/public/category')
+    payload: http().get('public/category')
   })
 }

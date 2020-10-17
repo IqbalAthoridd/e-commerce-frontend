@@ -4,7 +4,7 @@ import qs from 'querystring'
 export default {
   login: (data)=>({
     type: 'AUTH_USER',
-    payload: http().post('http://localhost:8080/auth/login',qs.stringify(data))
+    payload: http().post('auth/login',qs.stringify(data))
   }),
   logout: ()=>({
     type: 'LOGOUT_USER'

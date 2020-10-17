@@ -1,8 +1,9 @@
 import {default as axios} from 'axios'
+import http from '../../helpers/http'
 
 export default {
   getDetails: (id)=>({
     type: 'GET_DETAILS',
-    payload: axios.get(`http://localhost:8080/public/details/${id}`)
+    payload: http().get(`public/details/${id}`)
   })
 }
