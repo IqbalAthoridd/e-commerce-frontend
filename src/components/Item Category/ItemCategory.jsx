@@ -16,7 +16,7 @@ import {useHistory, useLocation} from 'react-router-dom'
 import listProductAction from '../../redux/action/listProduct'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
-const {REACT_APP_BACKEND_URL} = process.envgit 
+const {REACT_APP_BACKEND_URL} = process.env
 
 
 
