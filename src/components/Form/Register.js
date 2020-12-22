@@ -19,6 +19,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import InputTextNew from './InputTextNew'
 
 const Register = () => {
   const classes = useStyles();
@@ -129,27 +130,34 @@ const Register = () => {
             <Grid item md={12} xs={12} sm={12}>
               {form?(
                 <form onSubmit={registerCustommer}>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="name">Name</InputLabel>
-                  <Input id="name" name="name" onChange={onChangeText} fullWidth="true" type="text" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Name"
+                    className={classes.margin}
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="email">Email address</InputLabel>
-                  <Input id="email" name="email" onChange={onChangeText} fullWidth="true" type="email" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Email"
+                    className={classes.margin}
+                    type="email"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true">
-                  <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input
-                    id="password"
+                <FormControl fullWidth>
+                  <InputTextNew
+                    label="Password"
+                    className={classes.margin}
                     type="password"
-                    name="password"
-                    onChange={onChangeText}
-                    aria-describedby="my-helper-text"
-                    fullWidth="true"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
                   />
                 </FormControl>
 
-                <Grid md={12} className={classes.marginbtnLogin}>
+                <Grid item md={12} className={classes.marginbtnLogin}>
                   <Button
                     variant="contained"
                     type="submit"
@@ -163,36 +171,56 @@ const Register = () => {
               </form>
               ):(
                 <form>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="name">Name</InputLabel>
-                  <Input id="name" fullWidth="true" type="text" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Name"
+                    className={classes.margin}
+                    type="text"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="email">Email address</InputLabel>
-                  <Input id="email" fullWidth="true" type="email" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Email"
+                    className={classes.margin}
+                    type="email"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="phonenumber">Phone Number</InputLabel>
-                  <Input id="phonenumber" fullWidth="true" type="text" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Phone number"
+                    className={classes.margin}
+                    type="text"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true" className={classes.marginInput}>
-                  <InputLabel htmlFor="storename">Store Name</InputLabel>
-                  <Input id="storename" fullWidth="true" type="text" />
+                <FormControl className={classes.input} fullWidth>
+                  <InputTextNew
+                    label="Store name"
+                    className={classes.margin}
+                    type="text"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                  />
                 </FormControl>
-                <FormControl fullWidth="true">
-                  <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input
-                    id="password"
+                <FormControl fullWidth>
+                  <InputTextNew
+                    label="Password"
+                    className={classes.margin}
                     type="password"
-                    aria-describedby="my-helper-text"
-                    fullWidth="true"
+                    variant="filled"
+                    InputLabelProps={{ style: { color: '#9b9b9b' } }}
                   />
                 </FormControl>
 
                 <Grid md={12} className={classes.marginbtnLogin}>
                   <Button
                     variant="contained"
-                    fullWidth={true}
+                    fullWidth
                     className={button.Login}
                     size="medium"
                   >
@@ -204,11 +232,10 @@ const Register = () => {
               
             </Grid>
           </Grid>
-          <Grid item md={12} style={{textAlign:"center"}}>
+          <Grid item md={12} style={{textAlign:"center",marginBottom:'40px'}}>
             <span>
-              Already have a warung account?{' '}
-              <Link to="/Login">
-                {' '}
+              Already have a warung account?
+              <Link to="/Login" className={classes.textLink} >
                 <span>Login</span>
               </Link>
             </span>
