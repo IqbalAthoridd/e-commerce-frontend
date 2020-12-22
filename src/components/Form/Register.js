@@ -4,12 +4,9 @@ import Logo from '../../assets/img/Logo.svg';
 import {
   Grid,
   FormControl,
-  Input,
-  InputLabel,
   ButtonGroup,
   Button,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { useStyles, ButtonStyle } from './formStles';
 import {useHistory} from 'react-router-dom'
@@ -97,7 +94,6 @@ const Register = () => {
           sm={5}
           lg={3}
           xl={5}
-          alignContent="center"
           className={classes.marginContainer}
         >
           <Grid item md={12} className={classes.textCenter}>
@@ -111,7 +107,7 @@ const Register = () => {
             </div>
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
-            <ButtonGroup variant="outlined" size="large" fullWidth="true">
+            <ButtonGroup variant="outlined" size="large" fullWidth>
             {form===true?(
                  <Button variant="outlined"  className={button.Custommer}>
                  Custommer
@@ -161,7 +157,7 @@ const Register = () => {
                   <Button
                     variant="contained"
                     type="submit"
-                    fullWidth={true}
+                    fullWidth
                     className={button.Login}
                     size="medium"
                   >
@@ -217,7 +213,7 @@ const Register = () => {
                   />
                 </FormControl>
 
-                <Grid md={12} className={classes.marginbtnLogin}>
+                <Grid item md={12} className={classes.marginbtnLogin}>
                   <Button
                     variant="contained"
                     fullWidth
