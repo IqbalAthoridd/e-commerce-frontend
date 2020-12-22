@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/img/Logo.svg';
-import {
-  Grid,
-  FormControl,
-  ButtonGroup,
-  Button,
-} from '@material-ui/core';
+import { Grid, FormControl, ButtonGroup, Button } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
@@ -14,7 +9,7 @@ import { useStyles, ButtonStyle } from './formStles';
 import { useSelector, useDispatch } from 'react-redux';
 import authAction from '../../redux/action/auth';
 import { useHistory } from 'react-router-dom';
-import InputTextNew from './InputTextNew'
+import InputTextNew from './InputTextNew';
 
 const Login = (props) => {
   const classes = useStyles();
@@ -62,6 +57,7 @@ const Login = (props) => {
   return (
     <>
       <div>
+        {console.log(form)}
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="error">
             {auth.alertMsg}
@@ -90,25 +86,19 @@ const Login = (props) => {
           </Grid>
           <Grid item md={8} xs={7} className={classes.buttonCon}>
             <ButtonGroup variant="contained" size="large" fullWidth>
-              {form === true ? (
-                <Button variant="outlined" className={button.Custommer}>
-                  Custommer
-                </Button>
-              ) : (
-                <Button
-                  variant="outlined"
-                  onClick={changeForm}
-                  className={button.Custommer2}
-                  active
-                >
-                  Custommer
-                </Button>
-              )}
+              <Button
+                variant="outlined"
+                onClick={!form ? changeForm : undefined}
+                className={form ? button.Custommer : button.Custommer2}
+                active
+              >
+                Custommer
+              </Button>
 
               <Button
                 variant="outlined"
                 onClick={form === true ? changeForm : undefined}
-                className={button.Seller}
+                className={form === true ? button.Seller : button.Custommer}
               >
                 Seller
               </Button>
