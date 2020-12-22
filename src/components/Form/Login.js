@@ -3,11 +3,8 @@ import Logo from '../../assets/img/Logo.svg';
 import {
   Grid,
   FormControl,
-  Input,
-  InputLabel,
   ButtonGroup,
   Button,
-  FilledInput,
   makeStyles,
   TextField,
   fade,
@@ -20,6 +17,7 @@ import { useStyles, ButtonStyle } from './formStles';
 import { useSelector, useDispatch } from 'react-redux';
 import authAction from '../../redux/action/auth';
 import { useHistory } from 'react-router-dom';
+import InputTextNew from './InputTextNew'
 
 const Login = (props) => {
   const classes = useStyles();
@@ -60,38 +58,10 @@ const Login = (props) => {
     dispatch(authAction.login(data));
   };
 
-  const useStylesReddit = makeStyles((theme) => ({
-    root: {
-      border: '1px solid #9B9B9B',
-      overflow: 'hidden',
-      borderRadius: 4,
-      backgroundColor: '#fcfcfb',
-      borderRadius: '4px',
-      filter: 'drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05))',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      '&:hover': {
-        backgroundColor: '#fff',
-      },
-      '&$focused': {
-        backgroundColor: '#fff',
-        boxShadow: `${fade(theme.palette.text.secondary, 0.25)} 0 0 0 2px`,
-        borderColor: '#9B9B9B',
-      },
-    },
-    focused: {},
-  }));
-
   const onChangeText = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  function RedditTextField(props) {
-    const classes = useStylesReddit();
-
-    return (
-      <TextField InputProps={{ classes, disableUnderline: true }} {...props} />
-    );
-  }
   return (
     <>
       <div>
@@ -152,7 +122,7 @@ const Login = (props) => {
             <Grid item md={12} xs={12} sm={12}>
               <form onSubmit={loginUser}>
                 <FormControl className={classes.input} fullWidth>
-                  <RedditTextField
+                  <InputTextNew
                     label="Email"
                     className={classes.margin}
                     variant="filled"
@@ -161,7 +131,7 @@ const Login = (props) => {
                   />
                 </FormControl>
                 <FormControl fullWidth>
-                  <RedditTextField
+                  <InputTextNew
                     label="Password"
                     className={classes.margin}
                     variant="filled"
