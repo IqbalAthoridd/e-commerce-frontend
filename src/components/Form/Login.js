@@ -5,9 +5,6 @@ import {
   FormControl,
   ButtonGroup,
   Button,
-  makeStyles,
-  TextField,
-  fade,
 } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
@@ -79,7 +76,6 @@ const Login = (props) => {
           sm={5}
           lg={3}
           xl={5}
-          alignContent="center"
           className={classes.marginContainer}
         >
           <Grid item md={12} className={classes.textCenter}>
@@ -139,10 +135,10 @@ const Login = (props) => {
                     InputLabelProps={{ style: { color: '#9b9b9b' } }}
                   />
                 </FormControl>
-                <Grid md={12} className={classes.textRight}>
+                <Grid item md={12} className={classes.textRight}>
                   <span className={classes.forgotPass}>Forgot password?</span>
                 </Grid>
-                <Grid md={12}>
+                <Grid item md={12}>
                   <Button
                     variant="contained"
                     fullWidth={true}
