@@ -14,7 +14,7 @@ const useStylesReddit = makeStyles((theme) => ({
     },
     '&$focused': {
       backgroundColor: '#fff',
-      boxShadow: `${fade(theme.palette.text.secondary, 0.25)} 0 0 0 2px`,
+      boxShadow: `${fade(theme.palette.text.secondary, 0.25)} 0 0 0 1px`,
       borderColor: '#9B9B9B',
     },
   },

@@ -15,6 +15,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import popularAction from '../../redux/action/popularProduct'
 import newItemsAction from '../../redux/action/newItems'
 import {useHistory} from 'react-router-dom'
+import NumberFormat from 'react-number-format';
 const {REACT_APP_BACKEND_URL} = process.env
 
 
@@ -72,9 +73,7 @@ const ItemList = ({data,popular}) => {
                   <Typography gutterBottom className="text-title">
           <span>{data.name}</span>
                   </Typography>
-                  <Typography gutterBottom className="text-price">
-          <span>$ {data.price}</span>
-                  </Typography>
+                  <NumberFormat value={data.price} displayType={'text'} thousandSeparator={true} prefix={'Rp.'} renderText={value => <div>{value}</div>} />
                   <Typography gutterBottom className="text-small">
           <span>{data.category}</span>
                   </Typography>
