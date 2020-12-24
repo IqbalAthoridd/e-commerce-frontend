@@ -4,19 +4,26 @@ export const useStyles = makeStyles((theme) => ({
       background: '#FFFF',
       color: 'black',
       padding: '20px 7.5% 20px 7.5%',
+      [theme.breakpoints.down('xs')]:{
+        padding: '10px 16px 10px 16px',
+      }
     },
     search:{
       borderRadius:40,
-      paddingLeft:20
+      paddingLeft:20,
     },
     formControl:{
       position:'relative'
     },
     searchIcon:{
       position:'absolute',
-      right:15,
-      top:9,
-      color:"#9B9B9B"
+      right:12,
+      top:8,
+      color:"#9B9B9B",
+      [theme.breakpoints.down('xs')]:{
+        top:5,
+        fontSize:20
+      }
     },
     btnFilter:{
       borderRadius:'15px',
@@ -29,6 +36,11 @@ export const useStyles = makeStyles((theme) => ({
       '&:focus': {
         outline: 'none',
       },
+      [theme.breakpoints.down('xs')]:{
+        padding:'6px 5px',
+        borderRadius:'10px',
+        marginLeft:'5px'
+      }
     },
     btnMargin:{
       marginRight:'20px'
@@ -70,6 +82,41 @@ export const useStyles = makeStyles((theme) => ({
       lineHeight:'20px',
       '&:hover':{
       },
+      '&:active':{
+        outline:'none',
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      [theme.breakpoints.down('xs')]:{
+       border:'1px solid #9b9b9b'
+      }
+    },
+    logo:{
+      width:'119px',
+      height:'44px',
+      marginRight:'50px',
+      [theme.breakpoints.down('xs')]:{
+        width:'80px',
+        marginRight:'20px'
+      },
+      // [theme.breakpoints.down('xs')]:{
+      //   width:'80px',
+
+      //   marginRight:'20px'
+      // }
+    },
+    filterLogo:{
+      [theme.breakpoints.down('xs')]:{
+        width:'15px',
+        height:'15px'
+      }
+    },
+    iconReorder:{
+      color:'#9b9b9b'
+    },
+    btnMenu:{
+      border:'none',
       '&:active':{
         outline:'none',
       },
