@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Logo from '../../assets/img/Logo.svg';
-import { FormControl, Grid, Menu,MenuItem } from '@material-ui/core';
+import { FormControl, Grid, Menu, MenuItem } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
@@ -70,6 +70,7 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const login = true;
 
   const logout = () => {
     localStorage.clear();
@@ -124,11 +125,82 @@ const NavigationBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                {login?(
+                    <>
+                     <MenuItem  onClick={handleClose}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}
+                  >
+                     <Avatar className={classes.avatar} alt="Iqbal Athorid" />
+                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                     Iqbal Athorid
+                    </span>
+                  </div>
+                </MenuItem>
+                    <MenuItem  onClick={handleClose}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                      Cart
+                    </span>
+                  </div>
+                </MenuItem>
                 <MenuItem  onClick={handleClose}>
-                  <div style={{display:"flex", flexDirection:"row", alignItems:'center'}}>
-                <ShoppingCartOutlinedIcon className={classes.iconCart} />
-                <span style={{marginLeft:"10px", color:'#9b9b9b'}}>Cart</span>
-                </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}
+                  >
+                     <NotificationsNoneIcon className={classes.iconCart} />
+                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                     Notifications
+                    </span>
+                  </div>
+                </MenuItem>
+                <MenuItem  onClick={handleClose}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}
+                  >
+                     <MailOutlineIcon className={classes.iconCart} />
+                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                     Message
+                    </span>
+                  </div>
+                </MenuItem>
+               
+                    </>
+                ):(
+                  <>
+                  <MenuItem onClick={handleClose}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      paddingLeft: '15%',
+                    }}
+                  >
+                    <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                      Cart
+                    </span>
+                  </div>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <Button className={classes.btnLogin} varian="contained">
@@ -136,37 +208,62 @@ const NavigationBar = () => {
                   </Button>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <Button className={classes.btnSignup}>
-                    Signup
-                  </Button>
+                  <Button className={classes.btnSignup}>Signup</Button>
                 </MenuItem>
+                </>
+                )}
               </Menu>
             </div>
           ) : (
             <>
-              <Grid item style={{ paddingLeft: '15%' }}>
-                <div
-                  style={{
-                    flexDirection: 'row',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  <div className={classes.btnMargin2}>
-                    <ShoppingCartOutlinedIcon className={classes.iconCart} />
+              {login ? (
+                <Grid item style={{ paddingLeft: '15%' }}>
+                  <div
+                    style={{
+                      flexDirection: 'row',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <div className={classes.btnMargin2}>
+                      <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                    </div>
+                    <div className={classes.btnMargin2}>
+                      <NotificationsNoneIcon className={classes.iconCart} />
+                    </div>
+                    <div className={classes.btnMargin2}>
+                      <MailOutlineIcon className={classes.iconCart} />
+                    </div>
+                    <div>
+                      <Avatar className={classes.avatar} alt="Iqbal Athorid" />
+                    </div>
                   </div>
-                  <div className={classes.btnMargin}>
-                    <Button className={classes.btnLogin} variant="contained">
-                      Login
-                    </Button>
+                </Grid>
+              ) : (
+                <Grid item style={{ paddingLeft: '15%' }}>
+                  <div
+                    style={{
+                      flexDirection: 'row',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <div className={classes.btnMargin2}>
+                      <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                    </div>
+                    <div className={classes.btnMargin}>
+                      <Button className={classes.btnLogin} variant="contained">
+                        Login
+                      </Button>
+                    </div>
+                    <div>
+                      <Button className={classes.btnSignup} variant="outlined">
+                        Signup
+                      </Button>
+                    </div>
                   </div>
-                  <div>
-                    <Button className={classes.btnSignup} variant="outlined">
-                      Signup
-                    </Button>
-                  </div>
-                </div>
-              </Grid>
+                </Grid>
+              )}
             </>
           )}
         </Grid>

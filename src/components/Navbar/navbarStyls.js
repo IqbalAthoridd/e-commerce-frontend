@@ -80,6 +80,7 @@ export const useStyles = makeStyles((theme) => ({
       fontWeight:'500',
       fontSize:'14px',
       lineHeight:'20px',
+      border:'1px solid #9b9b9b',
       '&:hover':{
       },
       '&:active':{
@@ -123,5 +124,9 @@ export const useStyles = makeStyles((theme) => ({
       '&:focus': {
         outline: 'none',
       },
+    },
+    avatar:{
+      width:'32px',
+      height:'32px'
     }
   }));
