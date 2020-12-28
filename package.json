@@ -15,6 +15,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "date-fns": "^2.16.1",
+    "formik": "^2.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-elastic-carousel": "^0.7.5",
@@ -28,7 +29,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.2",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",

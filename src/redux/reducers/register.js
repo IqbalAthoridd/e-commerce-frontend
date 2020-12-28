@@ -1,7 +1,8 @@
 const initialState = {
     isLoading: false,
     isError: false,
-    alertMsg: ''
+    alertMsg: '',
+    isSuccess:false
   }
   
   export default (state=initialState, action) => {
@@ -9,13 +10,15 @@ const initialState = {
       case 'REGISTER_PENDING':{
         return {
           ...state,
-          isLoading: true
+          isLoading: true,
+          isSuccess:false,
         }
       }
       case 'REGISTER_REJECTED': {
         return {
           ...state,
           isLoading: false,
+          isSuccess:false,
           isError: true,
           alertMsg: "email already exist"
         }
@@ -24,7 +27,14 @@ const initialState = {
         return {
           ...state,
           isLoading: false,
+          isSuccess:true,
           alertMsg: 'Successfully'
+        }
+      }
+      case 'CLEAR_MESSAGE':{
+        return {
+          ...state,
+          isSuccess:false,
         }
       }
       default : {

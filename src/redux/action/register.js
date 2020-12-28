@@ -6,4 +6,7 @@ export default {
     type: 'REGISTER',
     payload: http().post('auth/customer/register',qs.stringify(data))
   }),
+  clearModal:()=>({
+    type:'CLEAR_MESSAGE'
+  })
 }

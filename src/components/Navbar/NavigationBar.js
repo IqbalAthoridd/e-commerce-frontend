@@ -70,7 +70,7 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const login = true;
+  const login = false;
 
   const logout = () => {
     localStorage.clear();
@@ -126,7 +126,7 @@ const NavigationBar = () => {
                 onClose={handleClose}
               >
                 {login?(
-                    <>
+                    <div>
                      <MenuItem  onClick={handleClose}>
                   <div
                     style={{
@@ -184,9 +184,9 @@ const NavigationBar = () => {
                   </div>
                 </MenuItem>
                
-                    </>
+                    </div>
                 ):(
-                  <>
+                  <div>
                   <MenuItem onClick={handleClose}>
                   <div
                     style={{
@@ -210,7 +210,7 @@ const NavigationBar = () => {
                 <MenuItem onClick={handleClose}>
                   <Button className={classes.btnSignup}>Signup</Button>
                 </MenuItem>
-                </>
+                </div>
                 )}
               </Menu>
             </div>
