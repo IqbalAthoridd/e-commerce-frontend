@@ -36,11 +36,10 @@ const Register = () => {
   const register = useSelector((state) => state.register);
 
   useEffect(() => {
-    if (register.isSuccess) {
-      setInputCustommer({ name: '', email: '', password: '' });
+    if (register.isSuccess || register.isError) {
       setTimeout(() => {
         dispatch(registerAction.clearModal());
-      }, 2000);
+      }, 4000);
     }
   }, [register.isError, register.isSuccess]);
 
@@ -48,14 +47,8 @@ const Register = () => {
     setform(!form);
   };
 
-  const registerCustommer = (e) => {
-    e.preventDefault();
-    const { name, email, password } = inputCustommer;
-    let data = {
-      name,
-      email,
-      password,
-    };
+  const registerCustommer = (data, { resetForm }) => {
+    resetForm({});
     dispatch(registerAction.register(data));
   };
 
@@ -77,10 +70,9 @@ const Register = () => {
     setOpen(false);
   };
 
-  const cobaSubmit=(values)=>{
-    console.log(values)
-
-  }
+  const cobaSubmit = (values) => {
+    console.log(values);
+  };
 
   return (
     <>
@@ -138,95 +130,114 @@ const Register = () => {
               </Button>
             </ButtonGroup>
           </Grid>
-          <div>
-            {register.isSuccess && (
-              <Alert severity="success">Register Succesfully</Alert>
-            )}
-          </div>
-
           <Grid item md={12} xs={12} className={classes.textCenter}>
+            <div style={{ marginBottom: 20 }}>
+              {register.isSuccess && (
+                <Alert severity="success">Register Succesfully</Alert>
+              )}
+              {register.isError && (
+                <Alert severity="Error">{register.alertMsg}</Alert>
+              )}
+            </div>
             <Grid item md={12} xs={12} sm={12}>
               {form ? (
                 <Formik
-                // enableReinitialize
-                validationSchema={SignupSchema}
+                  // enableReinitialize
+                  validationSchema={SignupSchema}
                   initialValues={{
                     name: '',
                     email: '',
                     password: '',
                   }}
-                  onSubmit={values=>{console.log(values)}}
+                  onSubmit={(values, { resetForm }) => {
+                    registerCustommer(values, { resetForm });
+                  }}
                 >
-                   {({ errors, touched,values,handleChange,handleSubmit,handleBlur,isSubmitting }) => (
-                     <form onSubmit={handleSubmit}>
-                     {console.log(values.name,values.email)}
-                     <FormControl className={classes.input} fullWidth>
-                    <InputTextNew
-                    error
-                      label="Name"
-                      className={classes.margin}
-                      variant="filled"
-                      name="name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                      value={values.name}
-                      helperText={errors.name&&touched.name?errors.name:''}
-                    />
-                  </FormControl>
-                  <FormControl className={classes.input} fullWidth>
-                    <InputTextNew
-                      label="Email"
-                      error
-                      className={classes.margin}
-                      type="email"
-                      name="email"
-                      variant="filled"
-                      onBlur={handleBlur}
-                      InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                      onChange={handleChange}
-                      value={values.email}
-                      helperText={errors.email&&touched.email?errors.email:''}
-                    />
-                  </FormControl>
-                  <FormControl fullWidth>
-                    <InputTextNew
-                      label="Password"
-                      error
-                      className={classes.margin}
-                      type="password"
-                      name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      variant="filled"
-                      InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                      value={values.password}
-                      helperText={errors.password&&touched.password?errors.password:''}
-                    />
-                  </FormControl>
-
-                  <Grid item md={12} className={classes.marginbtnLogin}>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      fullWidth
-                      disabled={register.isLoading ? true : false}
-                      className={button.Login}
-                      size="medium"
-                      disabled={isSubmitting}
-                    >
-                      {register.isLoading ? (
-                        <CircularProgress
-                          size={23}
-                          style={{ color: '#9b9b9b' }}
+                  {({
+                    errors,
+                    touched,
+                    values,
+                    handleChange,
+                    handleSubmit,
+                    handleBlur,
+                    isSubmitting,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <FormControl className={classes.input} fullWidth>
+                        <InputTextNew
+                          error
+                          label="Name"
+                          className={classes.margin}
+                          variant="filled"
+                          name="name"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                          value={values.name}
+                          helperText={
+                            errors.name && touched.name ? errors.name : ''
+                          }
                         />
-                      ) : (
-                        <span>Register</span>
-                      )}
-                    </Button>
-                  </Grid>
-                  </form>
-                   )}
+                      </FormControl>
+                      <FormControl className={classes.input} fullWidth>
+                        <InputTextNew
+                          label="Email"
+                          error
+                          className={classes.margin}
+                          type="email"
+                          name="email"
+                          variant="filled"
+                          onBlur={handleBlur}
+                          InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                          onChange={handleChange}
+                          value={values.email}
+                          helperText={
+                            errors.email && touched.email ? errors.email : ''
+                          }
+                        />
+                      </FormControl>
+                      <FormControl fullWidth>
+                        <InputTextNew
+                          label="Password"
+                          error
+                          className={classes.margin}
+                          type="password"
+                          name="password"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          variant="filled"
+                          InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                          value={values.password}
+                          helperText={
+                            errors.password && touched.password
+                              ? errors.password
+                              : ''
+                          }
+                        />
+                      </FormControl>
+
+                      <Grid item md={12} className={classes.marginbtnLogin}>
+                        <Button
+                          variant="contained"
+                          type="submit"
+                          fullWidth
+                          disabled={register.isLoading ? true : false}
+                          className={button.Login}
+                          size="medium"
+                          // disabled={isSubmitting}
+                        >
+                          {register.isLoading ? (
+                            <CircularProgress
+                              size={23}
+                              style={{ color: '#9b9b9b' }}
+                            />
+                          ) : (
+                            <span>Register</span>
+                          )}
+                        </Button>
+                      </Grid>
+                    </form>
+                  )}
                 </Formik>
               ) : (
                 <form>
