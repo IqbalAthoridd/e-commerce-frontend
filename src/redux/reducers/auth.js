@@ -1,6 +1,7 @@
 const initialState = {
     isLogin: false,
     isError: false,
+    isSuccess:false,
     token: '',
     alertMsg: ''
   }
@@ -10,7 +11,8 @@ const initialState = {
       case 'AUTH_USER_PENDING':{
         return {
           ...state,
-          isLoading: true
+          isLoading: true,
+          isSuccess:false
         }
       }
       case 'AUTH_USER_REJECTED': {
@@ -18,7 +20,8 @@ const initialState = {
           ...state,
           isLoading: false,
           isError: true,
-          alertMsg: "Wrong email or password"
+          isSuccess:false,
+          alertMsg:action.payload.response.data.message
         }
       }
       case 'AUTH_USER_FULFILLED':{
@@ -28,6 +31,7 @@ const initialState = {
           token: action.payload.data.token,
           isLoading: false,
           isLogin: true,
+          isSuccess:true,
           alertMsg: 'Successfully login'
         }
       }
@@ -42,7 +46,9 @@ const initialState = {
       case 'CLEAR_MESSAGE': {
         return {
           ...state,
-          alertMsg: ''
+          alertMsg: '',
+         isError:false
+
         }
       }
       default : {

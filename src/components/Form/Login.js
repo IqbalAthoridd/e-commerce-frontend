@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/img/Logo.svg';
-import { Grid, FormControl, ButtonGroup, Button } from '@material-ui/core';
+import {
+  Grid,
+  FormControl,
+  ButtonGroup,
+  Button,
+  CircularProgress,
+} from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
@@ -24,9 +30,13 @@ const Login = (props) => {
 
   useEffect(() => {
     if (auth.isLogin) {
-      history.push('/cart');
+      history.push('/');
+    } else if (auth.isError) {
+      setTimeout(() => {
+        dispatch(authAction.clearMessage());
+      }, 4000);
     }
-  }, [auth.isLogin]);
+  }, [auth.isLogin, auth.isError]);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -105,6 +115,9 @@ const Login = (props) => {
             </ButtonGroup>
           </Grid>
           <Grid item md={12} xs={12} className={classes.textCenter}>
+            <div style={{ marginBottom: 20 }}>
+              {auth.isError && <Alert severity="Error">{auth.alertMsg}</Alert>}
+            </div>
             <Grid item md={12} xs={12} sm={12}>
               <form onSubmit={loginUser}>
                 <FormControl className={classes.input} fullWidth>
@@ -113,6 +126,9 @@ const Login = (props) => {
                     className={classes.margin}
                     variant="filled"
                     id="email"
+                    name="email"
+                    onChange={onChangeText}
+                    vaue={input.email}
                     InputLabelProps={{ style: { color: '#9b9b9b' } }}
                   />
                 </FormControl>
@@ -122,6 +138,10 @@ const Login = (props) => {
                     className={classes.margin}
                     variant="filled"
                     id="password"
+                    name="password"
+                    onChange={onChangeText}
+                    value={input.password}
+                    type="password"
                     InputLabelProps={{ style: { color: '#9b9b9b' } }}
                   />
                 </FormControl>
@@ -131,12 +151,20 @@ const Login = (props) => {
                 <Grid item md={12}>
                   <Button
                     variant="contained"
-                    fullWidth={true}
+                    fullWidth
                     className={button.Login}
                     size="medium"
+                    disabled={auth.isLoading ? true : false}
                     type="submit"
                   >
-                    Login
+                    {auth.isLoading ? (
+                      <CircularProgress
+                        size={23}
+                        style={{ color: '#9b9b9b' }}
+                      />
+                    ) : (
+                      <span>Login</span>
+                    )}
                   </Button>
                 </Grid>
               </form>

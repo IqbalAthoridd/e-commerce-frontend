@@ -125,7 +125,7 @@ const NavigationBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {login?(
+                {token.length?(
                     <div>
                      <MenuItem  onClick={handleClose}>
                   <div
@@ -216,7 +216,7 @@ const NavigationBar = () => {
             </div>
           ) : (
             <>
-              {login ? (
+              {token.length ? (
                 <Grid item style={{ paddingLeft: '15%' }}>
                   <div
                     style={{
