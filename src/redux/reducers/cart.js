@@ -13,6 +13,7 @@ const initialState = {
         }
       }
       case 'ADD_CART_REJECTED': {
+        console.log(action)
         return {
           ...state,
           isLoading: false,
@@ -21,6 +22,7 @@ const initialState = {
         }
       }
       case 'ADD_CART_FULFILLED':{
+        
         return {
           ...state,
           isLoading: false,

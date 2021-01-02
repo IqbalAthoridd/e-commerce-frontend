@@ -90,7 +90,9 @@ const NavigationBar = () => {
       <AppBar elevation={2} position="static" className={classes.NavigationBar}>
         <Grid container alignItems="center" direction="row">
           <Grid item>
+            <Link to="/">
             <img src={Logo} className={classes.logo} alt="Logo" />
+            </Link>
           </Grid>
           <Grid item style={{ flex: 1 }}>
             <div
@@ -125,92 +127,102 @@ const NavigationBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {token.length?(
-                    <div>
-                     <MenuItem  onClick={handleClose}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                     <Avatar className={classes.avatar} alt="Iqbal Athorid" />
-                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
-                     Iqbal Athorid
-                    </span>
-                  </div>
-                </MenuItem>
-                    <MenuItem  onClick={handleClose}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <ShoppingCartOutlinedIcon className={classes.iconCart} />
-                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
-                      Cart
-                    </span>
-                  </div>
-                </MenuItem>
-                <MenuItem  onClick={handleClose}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                     <NotificationsNoneIcon className={classes.iconCart} />
-                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
-                     Notifications
-                    </span>
-                  </div>
-                </MenuItem>
-                <MenuItem  onClick={handleClose}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                     <MailOutlineIcon className={classes.iconCart} />
-                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
-                     Message
-                    </span>
-                  </div>
-                </MenuItem>
-               
-                    </div>
-                ):(
+                {token.length ? (
                   <div>
-                  <MenuItem onClick={handleClose}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      paddingLeft: '15%',
-                    }}
-                  >
-                    <ShoppingCartOutlinedIcon className={classes.iconCart} />
-                    <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
-                      Cart
-                    </span>
+                    <Link to="/profile">
+                      <MenuItem onClick={handleClose}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Avatar
+                            className={classes.avatar}
+                            alt="Iqbal Athorid"
+                          />
+                          <span
+                            style={{ marginLeft: '10px', color: '#9b9b9b' }}
+                          >
+                            Iqbal Athorid
+                          </span>
+                        </div>
+                      </MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleClose}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <ShoppingCartOutlinedIcon
+                          className={classes.iconCart}
+                        />
+                        <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                          Cart
+                        </span>
+                      </div>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <NotificationsNoneIcon className={classes.iconCart} />
+                        <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                          Notifications
+                        </span>
+                      </div>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <MailOutlineIcon className={classes.iconCart} />
+                        <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                          Message
+                        </span>
+                      </div>
+                    </MenuItem>
                   </div>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Button className={classes.btnLogin} varian="contained">
-                    Login
-                  </Button>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Button className={classes.btnSignup}>Signup</Button>
-                </MenuItem>
-                </div>
+                ) : (
+                  <div>
+                    <MenuItem onClick={handleClose}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          paddingLeft: '15%',
+                        }}
+                      >
+                        <ShoppingCartOutlinedIcon
+                          className={classes.iconCart}
+                        />
+                        <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
+                          Cart
+                        </span>
+                      </div>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Button className={classes.btnLogin} varian="contained">
+                        Login
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Button className={classes.btnSignup}>Signup</Button>
+                    </MenuItem>
+                  </div>
                 )}
               </Menu>
             </div>
@@ -226,7 +238,9 @@ const NavigationBar = () => {
                     }}
                   >
                     <div className={classes.btnMargin2}>
+                      <Link to="/cart">
                       <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                      </Link>
                     </div>
                     <div className={classes.btnMargin2}>
                       <NotificationsNoneIcon className={classes.iconCart} />
@@ -235,7 +249,9 @@ const NavigationBar = () => {
                       <MailOutlineIcon className={classes.iconCart} />
                     </div>
                     <div>
+                    <Link to="/profile">
                       <Avatar className={classes.avatar} alt="Iqbal Athorid" />
+                      </Link>
                     </div>
                   </div>
                 </Grid>
@@ -252,14 +268,24 @@ const NavigationBar = () => {
                       <ShoppingCartOutlinedIcon className={classes.iconCart} />
                     </div>
                     <div className={classes.btnMargin}>
-                      <Button className={classes.btnLogin} variant="contained">
-                        Login
-                      </Button>
+                      <Link to="/Login">
+                        <Button
+                          className={classes.btnLogin}
+                          variant="contained"
+                        >
+                          Login
+                        </Button>
+                      </Link>
                     </div>
                     <div>
-                      <Button className={classes.btnSignup} variant="outlined">
-                        Signup
-                      </Button>
+                      <Link to="/register">
+                        <Button
+                          className={classes.btnSignup}
+                          variant="outlined"
+                        >
+                          Signup
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Grid>

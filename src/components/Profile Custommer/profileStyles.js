@@ -117,7 +117,8 @@ export const profileStyle = makeStyles((theme) => ({
     padding:"50px 0 0 45px"
   },
   paperContent:{
-    padding:"30px 22px 0 30px"
+    padding:"30px 22px 0 30px",
+    height:'95%'
   },
   contentLabel:{
     fontStyle:'normal',
@@ -191,5 +192,153 @@ export const profileStyle = makeStyles((theme) => ({
     color:'#9B9B9B',
     textTransform:'none',
     marginTop:20
-  }
+  },
+  btnAddAdress: {
+    borderRadius: '8px',
+    border: '2px dashed #9B9B9B',
+    paddingTop: '34px',
+    paddingBottom: '34px',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 18,
+    color: '#9B9B9B',
+    '&:active': {
+      outline: 'none',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  adressWrapper: {
+    border: '1px solid #DB3022',
+    padding: '30px 30px 30px 25px',
+    borderRadius: '4px',
+  },
+  priceText: {
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 16,
+    color: '#222222',
+  },
+  changeAdressText: {
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 16,
+    color: '#DB3022',
+  },
+  adressText: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 14,
+    color: '#222222',
+  },
+  btnAdressWrapper:{
+    marginBottom:34
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    width: '60%',
+    height: '90%',
+    borderRadius: '8px',
+  },
+  btnCloseWrapper: {
+    textAlign: 'right',
+  },
+  btnClose: {
+    '&:active': {
+      outline: 'none',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  modalContent: {
+    padding: '0 50px 0 50px',
+  },
+  modalContentForm: {
+    padding: '0 40px 0 40px',
+    marginTop: '40px',
+  },
+  labelAdress: {
+    textAlign: 'center',
+  },
+  chooseText: {
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: '28px',
+    lineHeight: '28px',
+    color: '#222222',
+  },
+  inputWrapper: {
+    marginBottom: '16px',
+  },
+  inputWrapper2: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: '20px',
+  },
+  inputDisplay: {
+    flex: 1,
+  },
+  inputDisplay2: {
+    flex: 1,
+    marginLeft: '32px',
+  },
+  checkBoxLabel: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    color: '#9B9B9B',
+  },
+  btnSaveWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 25,
+  },
+  btnCancelWrapper: {
+    marginRight: '20px',
+  },
+  btnCancel: {
+    border: '1px solid #9B9B9B',
+    borderRadius: '24px',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '14px',
+    lineHeight: '20px',
+    color: '#9B9B9B',
+    textTransform: 'none',
+    padding: '8px 57px',
+    '&:active': {
+      outline: 'none',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  btnSave: {
+    backgroundColor: '#DB3022',
+    borderRadius: '24px',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '14px',
+    lineHeight: '20px',
+    color: '#FFFFFF',
+    textTransform: 'none',
+    padding: '8px 57px',
+    '&:active': {
+      outline: 'none',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+    '&:hover': {
+      background: '#c7291c',
+    },
+  },
 }));
