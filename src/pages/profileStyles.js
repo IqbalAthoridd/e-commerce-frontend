@@ -6,6 +6,12 @@ export const profileStyle = makeStyles((theme) => ({
       padding: '50px 16px 0 16px',
     },
   },
+  container2: {
+    padding: '0 7.5% 0 7.5%',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0 16px 0 16px',
+    },
+  },
   paperProfileInfo: {
     backgroundColor: 'rgba(245,245,245,0.5)',
     height: '100vh',

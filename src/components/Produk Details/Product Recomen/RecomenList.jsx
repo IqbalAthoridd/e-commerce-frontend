@@ -19,7 +19,7 @@ function RecomenList() {
     const recomen = recomenStyle()
     return (
         <>
-        <Grid item lg={12} className={recomen.labelSpacing}>
+        <Grid item lg={12} md={12} sm={12} xs={12} className={recomen.labelSpacing}>
             <div>
                 <span><h2>You can also like this</h2></span>
             </div>

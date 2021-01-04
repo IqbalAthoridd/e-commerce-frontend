@@ -8,8 +8,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container'
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom'
+import {profileStyle} from './profileStyles'
 
 function Details() {
+  const classes = profileStyle()
 
     const isLoading = useSelector(state=>state.details.isLoading)
     const location = useLocation()
@@ -21,7 +23,7 @@ function Details() {
   return (
     <>
         <NavigationBar />
-        <Grid container className={styles.container}>
+        <Grid container className={classes.container2}>
           <ProductDetails />
           <RecomenList />
         </Grid>

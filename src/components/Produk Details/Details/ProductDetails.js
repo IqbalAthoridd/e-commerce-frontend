@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react';
-import { Button, Grid } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Button, Grid, withStyles } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import ImageGallery from 'react-image-gallery';
 import gambar from '../../../assets/img/bajuko.jpg';
@@ -14,39 +14,66 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {useLocation, useParams} from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
-import detailsAction from '../../../redux/action/details'
-import qs from 'querystring'
-import cartAction from '../../../redux/action/cart'
-const {REACT_APP_BACKEND_URL} = process.env
+import { useLocation, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import detailsAction from '../../../redux/action/details';
+import qs from 'querystring';
+import cartAction from '../../../redux/action/cart';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+const { REACT_APP_BACKEND_URL } = process.env;
 
+const BorderLinearProgress = withStyles((theme) => ({
+  root: {
+    height: 8,
+    borderRadius: 5,
+  },
+  colorPrimary: {
+    backgroundColor:
+      theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+  },
+  bar: {
+    borderRadius: 5,
+    backgroundColor: '#DB3022',
+  },
+}))(LinearProgress);
 
 function ProductDetails() {
   const detail = detailStyle();
-  const location = useLocation()
+  const location = useLocation();
   const dispatch = useDispatch();
-  const {id} = useParams()
-  const token = localStorage.getItem("token") || ""
+  const { id } = useParams();
+  const token = localStorage.getItem('token') || '';
 
-  const details = useSelector(state=>state.details)
+  const details = useSelector((state) => state.details);
 
-  const [jumlah,setJumlah] = React.useState(0)
+  const [jumlah, setJumlah] = React.useState(0);
 
-  useEffect(()=> {
-    dispatch(detailsAction.getDetails(id))
-  },[])
+  useEffect(() => {
+    dispatch(detailsAction.getDetails(id));
+  }, []);
 
-  const addtoCart = (productId,jumlah) => {
+  const addtoCart = (productId, jumlah) => {
     let data = {
       productId,
-      total:jumlah
-    }
-    dispatch(cartAction.addCart(data,token))
-  }
+      total: jumlah,
+    };
+    dispatch(cartAction.addCart(data, token));
+  };
 
-  const {category,url,price,condition,description,name,ratings} = details.data
+  const {
+    category,
+    url,
+    price,
+    condition,
+    description,
+    name,
+    ratings,
+  } = details.data;
   const images = [
+    {
+      original: `${REACT_APP_BACKEND_URL}${url}`,
+      thumbnail: `${REACT_APP_BACKEND_URL}${url}`,
+    },
     {
       original: `${REACT_APP_BACKEND_URL}${url}`,
       thumbnail: `${REACT_APP_BACKEND_URL}${url}`,
@@ -56,14 +83,19 @@ function ProductDetails() {
   return (
     <>
       <Grid item lg={12} xs={12} className={detail.link}>
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
           <Link color="inherit" href="/">
-            <span className={`${styles.fontStyle}`}>Home</span>
+            <span className={detail.fontBc}>Home</span>
           </Link>
           <Link color="inherit" href="/getting-started/installation/">
-            <span className={`${styles.fontStyle}`}>Product</span>
+            <span className={detail.fontBc}>Product</span>
           </Link>
-  <Typography color="textPrimary"><span className={`${styles.fontStyle}`}>{name}</span></Typography>
+          <Typography color="textPrimary">
+            <span className={detail.fontBc}>{name}</span>
+          </Typography>
         </Breadcrumbs>
       </Grid>
       <Grid item lg={4} xs={12} md={6} sm={6} className={detail.image}>
@@ -72,221 +104,247 @@ function ProductDetails() {
           showFullscreenButton={false}
           showPlayButton={false}
           showNav={false}
+          infinite={true}
         />
       </Grid>
-      <Grid item lg={7}>
-        <div className={styles.detailsCon}></div>
-        <div className={styles.bContainer}>
-          <div className={styles.pName}>
-  <span className={`${styles.fontStyle} ${styles.font1}`}>{name}</span>
-          </div>
-          <div className={styles.pCategory}>
-  <span className={`${styles.fontStyle} ${styles.categoryName}`}>{category}</span>
+      <Grid item lg={8} xs={12} sm={6} className={detail.productWrapper}>
+        <div className={detail.contentWrapper}>
+          <div>
+            <span className={detail.productTitle}>Baju muslim pira</span>
           </div>
           <div>
-            <Rating name="rating" value={ratings}  precision={0.5} readOnly />
+            <span className={detail.brandTitle}>Zalora Cloth</span>
+          </div>
+          <div className={detail.ratingWrapper}>
+            <div>
+              <Rating name="read-only" size="small" value={4} readOnly />
+            </div>
+            <div style={{ paddingBottom: 7 }}>
+              <span className={detail.ratingAvg}>(10)</span>
+            </div>
           </div>
         </div>
-        <div className={styles.conPrice}>
-          <div className={styles.tPrice}>
-            <span className={`${styles.fontStyle} ${styles.categoryName}`}>Price</span>
-          </div>
-          <div className={styles.price}>
-  <span className={`${styles.fontStyle} ${styles.fontPrice}` }>$ {price}</span>
-          </div>
-        </div>
-        <div className={styles.conColor}>
+        <div className={detail.contentWrapper2}>
           <div>
-            <span className={`${styles.fontStyle} ${styles.font2}`}>Color</span>
+            <span className={detail.brandTitle}>Price</span>
           </div>
-          <div className={styles.radioBtn}>
+          <div>
+            <span className={detail.priceTitle}>Rp.2,000,000</span>
+          </div>
+        </div>
+        <div className={detail.contentWrapper2}>
+          <div>
+            <span className={detail.labelTitle}>color</span>
             <div>
-              <Radio
-                value="a"
-                name="radio-button-demo"
-                inputProps={{ 'aria-label': 'A' }}
-              />
-            </div>
-            <div>
-              <Radio
-                value="a"
-                name="radio-button-demo"
-                inputProps={{ 'aria-label': 'A' }}
-              />
+              <div>
+                <Radio />
+                ssss
+              </div>
             </div>
           </div>
         </div>
-        <div className={styles.conCounter}>
-          <div className={styles.size}>
-            <div className={styles.conSize}>
-              <div>
-                <span className={`${styles.fontStyle} ${styles.font2}`}>Size</span>
-              </div>
-              <div>
-                <IconButton>
-                  <RemoveIcon />
-                </IconButton>
-                <span className={`${styles.fontStyle} ${styles.font2}`}>1</span>
-                <IconButton>
-                  <AddIcon />
-                </IconButton>
-              </div>
-            </div>
+        <div className={detail.sizeWrapper}>
+          <div style={{ marginRight: '13%' }}>
             <div>
+              <span className={detail.labelTitle}>Size</span>
+            </div>
+            <div className={detail.countWrapper}>
               <div>
-                <span className={`${styles.fontStyle} ${styles.font2}`}>Jumlah</span>
-              </div>
-              <div>
-                <IconButton className={detail.btnMin} onClick={()=>setJumlah(jumlah-1)}>
+                <IconButton className={detail.btnMin}>
                   <RemoveIcon className={detail.iconMin} />
                 </IconButton>
-  <span className={`${styles.fontStyle} ${styles.font2}`}>{jumlah}</span>
-                <IconButton className={detail.btnPlus} onClick={()=>setJumlah(jumlah+1)} >
-                  <AddIcon className={detail.iconPlus}/>
+              </div>
+              <div className={detail.numberWrapper}>
+                <span className={detail.labelTitle}>1</span>
+              </div>
+              <div>
+                <IconButton className={detail.btnPlus}>
+                  <AddIcon className={detail.iconPlus} />
+                </IconButton>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <span className={detail.labelTitle}>Jumlah</span>
+            </div>
+            <div className={detail.countWrapper}>
+              <div>
+                <IconButton className={detail.btnMin}>
+                  <RemoveIcon className={detail.iconMin} />
+                </IconButton>
+              </div>
+              <div className={detail.numberWrapper}>
+                <span className={detail.labelTitle}>1</span>
+              </div>
+              <div>
+                <IconButton className={detail.btnPlus}>
+                  <AddIcon className={detail.iconPlus} />
                 </IconButton>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <div className={styles.btnAdd}>
+        <div className={detail.btnWrapper}>
+          <div className={detail.btnBagWrapper}>
+            <Button className={detail.btnChat} variant="outlined" fullWidth>
+              Chat
+            </Button>
+          </div>
+          <div className={detail.btnBagWrapper}>
+            <Button className={detail.addBag} variant="outlined" fullWidth>
+              Add bag
+            </Button>
+          </div>
+          <div className={detail.btnBuyWrapper}>
+            <Button className={detail.btnBuy} variant="contained" fullWidth>
+              Buy now
+            </Button>
+          </div>
+        </div>
+      </Grid>
+      <Grid item lg={12} md={12} sm={12} xs={12} className={detail.infoWrapper}>
+        <Grid item lg={12} md={12} sm={12} xs={12}>
+          <div className={detail.contentInfoWrapper}>
+            <span className={detail.productTitle}>Informasi Produk</span>
+          </div>
+          <div className={detail.contentInfoWrapper}>
             <div>
-            <Button className={detail.btnChat}>Chat</Button>
+              <span className={detail.labelInfo}>Condition</span>
             </div>
             <div>
-            <Button onClick={()=>addtoCart(id,jumlah)} className={detail.addBag}>Add bag</Button>
+              <span className={detail.newText}>New</span>
             </div>
-            <div className={styles.btnBuyWidth}>
-            <Button variant="contained" fullWidth="true" className={detail.btnBuy}>Buy Now</Button>
+          </div>
+          <div>
+            <div>
+              <span className={detail.labelInfo}>Description</span>
             </div>
+            <div>
+              <p className={detail.descriptionInfo}>
+                Donec non magna rutrum, pellentesque augue eu, sagittis velit.
+                Phasellus quis laoreet dolor. Fusce nec pharetra quam. Interdum
+                et malesuada fames ac ante ipsum primis in faucibus. Praesent
+                sed enim vel turpis blandit imperdiet ac ac felis. Etiam
+                tincidunt tristique placerat. Pellentesque a consequat mauris,
+                vel suscipit ipsum. Donec ac mauris vitae diam commodo vehicula.
+                Donec quam elit, sollicitudin eu nisl at, ornare suscipit magna.
+              </p>
+            </div>
+          </div>
+        </Grid>
+      </Grid>
+      <Grid item lg={12} md={12} sm={12} xs={12}>
+        <div className={detail.contentInfoWrapper}>
+          <span className={detail.productTitle}>Product Review</span>
+        </div>
+      </Grid>
+      <Grid item lg={2} xs={12} >
+        <div className={detail.ratingAvgWrapper}>
+          <div>
+          <div className={detail.ratingWrapper}>
+            <div>
+              <span className={detail.ratingNumber}>5.0</span>
+            </div>
+            <div style={{ marginBottom: 15 }}>
+              <span className={detail.ratingTotal}>/10</span>
+            </div>
+          </div>
+          <div>
+            <Rating value={5} readOnly />
+          </div>
+        </div>
+        </div>
+      </Grid>
+      <Grid item lg={3} xs={12} className={detail.allRating}>
+        <div className={detail.ratingTotalWrapper}>
+          <div className={detail.ratingValue}>
+            <div>
+              <Rating max={1} defaultValue={1} size="small" readOnly />
+            </div>
+            <div className={detail.ratingInfoWrapper}>
+              <span className={detail.ratingInfo}>5</span>
+            </div>
+          </div>
+          <div className={detail.lineProgresWrapper}>
+            <BorderLinearProgress variant="determinate" value={20} />
+          </div>
+          <div>
+            <span className={detail.ratingInfo}>4</span>
+          </div>
+        </div>
+
+        <div className={detail.ratingTotalWrapper}>
+          <div className={detail.ratingValue}>
+            <div>
+              <Rating max={1} defaultValue={1} size="small" readOnly />
+            </div>
+            <div className={detail.ratingInfoWrapper}>
+              <span className={detail.ratingInfo}>4</span>
+            </div>
+          </div>
+          <div className={detail.lineProgresWrapper}>
+            <BorderLinearProgress variant="determinate" value={20} />
+          </div>
+          <div>
+            <span className={detail.ratingInfo}>0</span>
+          </div>
+        </div>
+
+        <div className={detail.ratingTotalWrapper}>
+          <div className={detail.ratingValue}>
+            <div>
+              <Rating max={1} defaultValue={1} size="small" readOnly />
+            </div>
+            <div className={detail.ratingInfoWrapper}>
+              <span className={detail.ratingInfo}>3</span>
+            </div>
+          </div>
+          <div className={detail.lineProgresWrapper}>
+            <BorderLinearProgress variant="determinate" value={20} />
+          </div>
+          <div>
+            <span className={detail.ratingInfo}>0</span>
+          </div>
+        </div>
+
+        <div className={detail.ratingTotalWrapper}>
+          <div className={detail.ratingValue}>
+            <div>
+              <Rating max={1} defaultValue={1} size="small" readOnly />
+            </div>
+            <div className={detail.ratingInfoWrapper}>
+              <span className={detail.ratingInfo}>2</span>
+            </div>
+          </div>
+          <div className={detail.lineProgresWrapper}>
+            <BorderLinearProgress variant="determinate" value={20} />
+          </div>
+          <div>
+            <span className={detail.ratingInfo}>0</span>
+          </div>
+        </div>
+
+        <div className={detail.ratingTotalWrapper}>
+          <div className={detail.ratingValue}>
+            <div>
+              <Rating max={1} defaultValue={1} size="small" readOnly />
+            </div>
+            <div className={detail.ratingInfoWrapper}>
+              <span className={detail.ratingInfo}>1</span>
+            </div>
+          </div>
+          <div className={detail.lineProgresWrapper}>
+            <BorderLinearProgress variant="determinate" value={20} />
+          </div>
+          <div>
+            <span className={detail.ratingInfo}>0</span>
           </div>
         </div>
       </Grid>
-      <Grid item lg={12} xs={12} className={detail.lContainer}>
+      <Grid item lg={12} xs={12} sm={12} md={12} className={detail.hrSpacing} >
         <div>
-          <span className={`${styles.fontStyle} ${styles.font1}`}>Informasi Produk</span>
-        </div>
-      </Grid>
-      <Grid item lg={12} xs={12} className={detail.cContainer}>
-        <div className={styles.conSpacing}>
-          <span className={`${styles.fontStyle} ${styles.font4}`}>Condition</span>
-        </div>
-        <div>
-  <span className={`${styles.fontStyle}`}>{condition}</span>
-        </div>
-      </Grid>
-      <Grid item lg={12}>
-        <div className={styles.desSpacing}>
-          <span className={`${styles.fontStyle} ${styles.font4}`}>Description</span>
-        </div>
-        <div>
-          <span className={`${styles.fontStyle}`}>
-           {description}
-          </span>
-        </div>
-      </Grid>
-      <Grid item lg={12} className={detail.pReview}>
-        <div>Produk review</div>
-      </Grid>
-      <Grid item lg={1} xs={12} className={detail.gridRat}>
-        <div className={styles.rContainer}>
-          <div>
-            <span className={`${styles.fontStyle}`}>
-        {ratings || 0}<span className={`${styles.fontStyle}`}>/10</span>{' '}
-            </span>
-          </div>
-          <div>
-            <Rating name="ratings" value={ratings} precision={0.5} readOnly />
-          </div>
-        </div>
-      </Grid>
-      <Grid item lg={2} xs={12}>
-        <div className={styles.rating}>
-          <div>
-            <div className={styles.cRating}>
-                <div>
-                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
-                </div>
-                <div>
-                  <span className={`${styles.fontStyle}`}>5</span>
-                </div>
-                <div className={styles.progres}>
-                  <LinearProgress variant="determinate" color="primary" value={50}/>
-                </div>
-                <div>
-                  <span className={`${styles.fontStyle}`}>4</span>
-                  </div>
-            </div>
-          </div>
-          <div>
-            <div className={styles.cRating}>
-                <div>
-                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
-                </div>
-                <div>
-                  <span>5</span>
-                </div>
-                <div className={styles.progres}>
-                  <LinearProgress variant="determinate" color="primary" value={50}/>
-                </div>
-                <div>
-                  <span>4</span>
-                  </div>
-            </div>
-          </div>
-          <div>
-            <div className={styles.cRating}>
-                <div>
-                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
-                </div>
-                <div>
-                  <span>5</span>
-                </div>
-                <div className={styles.progres}>
-                  <LinearProgress variant="determinate" color="primary" value={50}/>
-                </div>
-                <div>
-                  <span>4</span>
-                  </div>
-            </div>
-          </div>
-          <div>
-            <div className={styles.cRating}>
-                <div>
-                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
-                </div>
-                <div>
-                  <span>5</span>
-                </div>
-                <div className={styles.progres}>
-                  <LinearProgress variant="determinate" color="primary" value={50}/>
-                </div>
-                <div>
-                  <span>4</span>
-                  </div>
-            </div>
-          </div>
-          <div>
-            <div className={styles.cRating}>
-                <div>
-                  <Rating name="disabled" size="small" value={5} max={1} readOnly />
-                </div>
-                <div>
-                  <span>5</span>
-                </div>
-                <div className={styles.progres}>
-                  <LinearProgress variant="determinate" color="primary" value={50}/>
-                </div>
-                <div>
-                  <span>4</span>
-                  </div>
-            </div>
-          </div>
-        </div>
-      </Grid>
-      <Grid item lg={12} md={12} className={detail.hrSpacing}>
-        <div className={styles.hrStyles}>
-        <hr></hr>
+          <hr className={detail.hr}/>
         </div>
       </Grid>
     </>

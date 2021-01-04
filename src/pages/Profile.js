@@ -25,8 +25,8 @@ function Profile() {
   const classes = profileStyle();
   const [page, setPage] = useState({
     profile: false,
-    adress: true,
-    order: false,
+    adress: false,
+    order: true,
   });
 
   useEffect(() => {
