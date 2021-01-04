@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom'
 import {profileStyle} from './profileStyles'
 
+
 function Details() {
   const classes = profileStyle()
 

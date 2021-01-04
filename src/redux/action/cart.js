@@ -6,7 +6,7 @@ export default {
     type: 'ADD_CART',
     payload: http(token).post('customer/carts',qs.stringify(data))
   }),
-  add:()=>({
-    
+  clearMessage:()=>({
+    type:'CLEAR_MESSAGE'
   })
 }

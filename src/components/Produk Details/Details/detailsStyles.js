@@ -256,18 +256,24 @@ export const detailStyle = makeStyles((theme) => ({
     marginBottom: 5,
     marginLeft: 5,
   },
-  hr:{
-      border:'1px solid #D4D4D4'
+  hr: {
+    border: '1px solid #D4D4D4',
   },
-  allRating:{
-      [theme.breakpoints.down('xs')]:{
-          marginTop:10
-      }
+  allRating: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: 10,
+    },
   },
-  ratingAvgWrapper:{
-      [theme.breakpoints.down('xs')]:{
-       display:'flex',
-       justifyContent:'center'
-      }
-  }
+  ratingAvgWrapper: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  },
+  alert: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
 }));

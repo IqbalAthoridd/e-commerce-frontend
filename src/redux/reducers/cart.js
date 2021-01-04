@@ -1,7 +1,8 @@
 const initialState = {
     isError: false,
     alertMsg: '',
-    isLoading:false
+    isLoading:false,
+    isSuccess:false,
   }
   
   export default (state=initialState, action) => {
@@ -9,7 +10,8 @@ const initialState = {
       case 'ADD_CART_PENDING':{
         return {
           ...state,
-          isLoading: true
+          isLoading: true,
+          isSuccess:false
         }
       }
       case 'ADD_CART_REJECTED': {
@@ -18,6 +20,7 @@ const initialState = {
           ...state,
           isLoading: false,
           isError: true,
+          isSuccess:false,
           alertMsg: "Failed added "
         }
       }
@@ -26,7 +29,16 @@ const initialState = {
         return {
           ...state,
           isLoading: false,
-          alertMsg: 'Added to cart'
+          alertMsg: 'Added to cart',
+          isSuccess:true,
+        }
+      }
+      case 'CLEAR_MESSAGE':{
+        
+        return {
+          ...state,
+          isError:false,
+          isSuccess:false,
         }
       }
       default : {
