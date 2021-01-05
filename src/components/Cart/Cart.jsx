@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import { Button, Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -33,12 +33,18 @@ function Cart() {
   const dispatch = useDispatch()
   const token = localStorage.getItem("token") || ""
   const data = useSelector(state=>state.getCart)
+  let [list,setList] = useState([])
 
   const [state, setState] = React.useState({
     checked: false});
 
     useEffect(()=>{
-      dispatch(getCartAction.getCart(token))
+      const getCart = async() => {
+        const {action} = await dispatch(getCartAction.getCart(token))
+     
+        setList(action.payload.data.data)
+      }
+     getCart()
     },[])
 
   const handleChange = (event) => {
@@ -49,9 +55,29 @@ function Cart() {
       e.preventDefault();
     }
 
+    const countIncrement = (i) => {
+      list[i]={
+        ...list[i],
+        total: list[i].total + 1,
+        subTotal:list[i].price+list[i].subTotal
+      }
+      setList([...list])
+    }
+
+    const countDecrement = (i) => {
+      list[i]={
+        ...list[i],
+        total: list[i].total - 1,
+        subTotal:list[i].subTotal-list[i].price
+      }
+      setList([...list])
+    }
+
   return (
     <>
+    {console.log(list)}
       <Grid item lg={12} xs={12} md={12} ms={12}>
+        {console.log(list)}
         <div className={styles.myBag}>
           <span><h2>My Bag</h2></span>
         </div>
@@ -79,7 +105,7 @@ function Cart() {
             </Paper>
           </Grid>
           
-            {data.data.length? data.data.map(data=>(
+            {list.length? list.map((data,index)=>(
               <>
               <Grid item lg={12}>
               <Paper
@@ -120,14 +146,14 @@ function Cart() {
                       <div className={styles.btnQuantity}>
                       <div className={styles.btnMin}>
                       <IconButton className={cart.btnMin}>
-                          <RemoveIcon  className={cart.iconMin}/>
+                          <RemoveIcon  onClick={()=>countDecrement(index)} className={cart.iconMin}/>
                         </IconButton>
                       </div>
                       <div className={styles.btnMin}>
             <span>{data.total}</span>
                       </div>
                       <div>
-                      <IconButton className={cart.btnPlus}>
+                      <IconButton onClick={()=>countIncrement(index)} className={cart.btnPlus}>
                           <AddIcon className={cart.iconPlus}/>
                         </IconButton>
                       </div>

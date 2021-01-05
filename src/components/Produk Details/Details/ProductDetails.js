@@ -160,7 +160,6 @@ function ProductDetails() {
             <div>
               <div>
                 <Radio />
-                ssss
               </div>
             </div>
           </div>
@@ -233,14 +232,14 @@ function ProductDetails() {
           </div>
         </div>
         {cart.isSuccess&&(
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleAlert}>
+          <Snackbar open={true} autoHideDuration={3000} onClose={handleAlert}>
           <Alert severity="success" onClose={handleAlert}>
             Added to cart!
           </Alert>
         </Snackbar>
          )}
           {cart.isError&&(
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleAlert}>
+          <Snackbar open={true} autoHideDuration={3000} onClose={handleAlert}>
           <Alert severity="error" onClose={handleAlert}>
             Already added to cart!
           </Alert>

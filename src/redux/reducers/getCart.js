@@ -28,6 +28,11 @@ const initialState = {
           data: action.payload.data.data
         }
       }
+      case 'COUNT_PLUS': {
+        return {
+          ...state,
+        }
+      }
       default : {
         return state
       }
