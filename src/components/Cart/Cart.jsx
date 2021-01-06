@@ -38,6 +38,7 @@ function Cart() {
   const [all,setAll] = useState(false)
   const [item,setItem]= useState([])
   const [itemList,setItemList] = useState([])
+  const [summary,setSummary] = useState(0)
   const arr = [1,2,3,4,5]
 
 
@@ -84,11 +85,13 @@ function Cart() {
     setItem({...item, [event.target.name]: event.target.checked} );
     if(event.target.checked){
       setItemList([...itemList,list[i]])
+      setSummary(summary+list[i].subTotal)
     } else {
       const newArray = itemList.filter(item=>{
         return item.name !== event.target.name
       })
       setItemList(newArray)
+      setSummary(summary-list[i].subTotal)
     }
   }
 
@@ -142,7 +145,7 @@ function Cart() {
           <Grid item lg={12}>
           {data.isLoading&& arr.map(item=>(
             <div style={{marginBottom:20}}>
-             <Skeleton variant="rect" animation='wave' height={140} />
+             <Skeleton variant="rect" style={{borderRadius:5}} animation='wave' height={140} />
              </div>
           )) }
           
@@ -228,7 +231,7 @@ function Cart() {
                 <span>Total Price</span>
               </div>
               <div>
-                <span>$40.0</span>
+                <span>Rp.{summary}</span>
               </div>
             </div>
           </div>
