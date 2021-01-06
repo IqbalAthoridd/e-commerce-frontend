@@ -14,11 +14,13 @@ import {
   withStyles,
 } from '@material-ui/core';
 import { checkOutStyle } from './checkOutStyle';
+import {useHistory,useLocation} from 'react-router-dom'
 import NavigationBar from '../components/Navbar/NavigationBar';
 import image from '../assets/img/produk.jpg';
 import CloseIcon from '@material-ui/icons/Close';
 import InputTextNew from '../components/Form/InputTextNew';
 import gopay from '../assets/img/gopay.png';
+const { REACT_APP_BACKEND_URL } = process.env;
 
 const CheckboxNew = withStyles({
   root: {
@@ -32,6 +34,8 @@ const CheckboxNew = withStyles({
 
 export default function CheckOut() {
   const classes = checkOutStyle();
+  const history = useHistory()
+  const location = useLocation()
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [openPayment, setOpenPayment] = React.useState(false);
@@ -60,6 +64,7 @@ export default function CheckOut() {
 
   return (
     <>
+    {console.log(location)}
       <NavigationBar />
       <Grid container className={classes.container}>
         <Grid
@@ -99,28 +104,31 @@ export default function CheckOut() {
               </Button>
             </div>
           </Paper>
-          <Paper className={classes.paperItem} elevation={3}>
+          {location.state.itemList.map(item =>(
+            <Paper className={classes.paperItem} elevation={3}>
             <div className={classes.itemWrapper}>
               <div className={classes.imageWrapper}>
-                <img className={classes.image} src={image} />
+                <img className={classes.image} src={`${REACT_APP_BACKEND_URL}${item.url}`} />
               </div>
               <div className={classes.productInfo}>
                 <div>
                   <span className={classes.productText}>
-                    Men's formal suit - Black
+                    {item.name} x{item.total}
                   </span>
                 </div>
                 <div>
-                  <span className={classes.brandText}>Zalora Cloth</span>
+                  <span className={classes.brandText}>{item.category}</span>
                 </div>
               </div>
               <div>
                 <div>
-                  <span className={classes.priceText}>Rp.20,000</span>
+                  <span className={classes.priceText}>Rp.{item.subTotal}</span>
                 </div>
               </div>
             </div>
           </Paper>
+          ))}
+          
         </Grid>
         <Grid className={classes.payWrapper} item md={5} sm={5} xs={12}>
           <Paper className={classes.paperSummary} elevation={3}>
@@ -134,7 +142,7 @@ export default function CheckOut() {
                     <span className={classes.totalLabel}>Order</span>
                   </div>
                   <div>
-                    <span className={classes.priceText}>Rp.20,0000</span>
+                    <span className={classes.priceText}>Rp.{location.state.summary}</span>
                   </div>
                 </div>
                 <div className={classes.totalWrapper2}>

@@ -60,6 +60,7 @@ export const checkOutStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '32px 25px 25px 20px',
     },
+    marginBottom:15
   },
   itemWrapper: {
     display: 'flex',

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom'
 import { Button, Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -20,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
 const { REACT_APP_BACKEND_URL } = process.env;
 
+
 const CustomCheckBox = withStyles({
   root: {
     color: '#3285A8',
@@ -30,6 +32,7 @@ const CustomCheckBox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 function Cart() {
+  const history = useHistory()
   const cart = cartStyle();
   const dispatch = useDispatch();
   const token = localStorage.getItem('token') || '';
@@ -103,6 +106,10 @@ function Cart() {
       setItemList(list)
     }
     
+  }
+
+  const checkOut = () => {
+    history.push('/checkout',{itemList,summary})
   }
 
   return (
@@ -236,7 +243,7 @@ function Cart() {
             </div>
           </div>
           <div>
-            <Button className={cart.btnBuy} fullWidth="true">
+            <Button onClick={checkOut} className={cart.btnBuy} fullWidth="true">
               Buy
             </Button>
           </div>
