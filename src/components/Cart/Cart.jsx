@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import getCartAction from '../../redux/action/getCart';
 import { useDispatch, useSelector } from 'react-redux';
+import Skeleton from '@material-ui/lab/Skeleton';
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const CustomCheckBox = withStyles({
@@ -37,6 +38,7 @@ function Cart() {
   const [all,setAll] = useState(false)
   const [item,setItem]= useState([])
   const [itemList,setItemList] = useState([])
+  const arr = [1,2,3,4,5]
 
 
   const [state, setState] = React.useState({
@@ -114,6 +116,7 @@ function Cart() {
       <Grid item lg={7} xs={12} md={8} ms={4}>
         <form onSubmit={handleSubmit}>
           <Grid item lg={12}>
+            
             <Paper
               elevation={3}
               className={`${styles.display} ${styles.cartSpacing}`}
@@ -136,10 +139,16 @@ function Cart() {
             </Paper>
           </Grid>
 
+          <Grid item lg={12}>
+          {data.isLoading&& arr.map(item=>(
+            <div style={{marginBottom:20}}>
+             <Skeleton variant="rect" animation='wave' height={140} />
+             </div>
+          )) }
+          
           {list.length
             ? list.map((data, index) => (
                 <>
-                  <Grid item lg={12}>
                     <Paper
                       elevation={3}
                       className={`${styles.display2} ${styles.cartSpacing2}`}
@@ -147,7 +156,7 @@ function Cart() {
                       <FormControl component="fieldset">
                         <FormGroup className={cart.diplay}>
                           <FormControlLabel
-                            control={<CustomCheckBox onChange={(e)=>handleCheckBox(e,index)} name={`${data.name}`} checked={all?all:false}/>}
+                            control={<CustomCheckBox onChange={(e)=>handleCheckBox(e,index)} name={`${data.name}`} value={false}/>}
                             className={`${styles.checkboxPos}`}
                           />
                         </FormGroup>
@@ -202,10 +211,10 @@ function Cart() {
                       </div>
                       <div className={styles.container2}></div>
                     </Paper>
-                  </Grid>
                 </>
               ))
-            : ''}
+            : ""}
+            </Grid>
         </form>
       </Grid>
       <Grid item lg={4} xs={12} md={4}>
