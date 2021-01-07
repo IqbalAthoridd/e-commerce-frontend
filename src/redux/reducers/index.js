@@ -9,6 +9,7 @@ import details from './details'
 import listProduct from './listProduct'
 import cart from './cart'
 import getCart from './getCart'
+import adress from './adress'
 
 export default combineReducers({
     newItems,
@@ -19,5 +20,6 @@ export default combineReducers({
     details,
     listProduct,
     cart,
-    getCart
+    getCart,
+    adress
   })

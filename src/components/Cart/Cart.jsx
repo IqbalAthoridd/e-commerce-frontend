@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { Button, Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -19,8 +19,8 @@ import { withStyles } from '@material-ui/core/styles';
 import getCartAction from '../../redux/action/getCart';
 import { useDispatch, useSelector } from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
+import adressAction from '../../redux/action/adress';
 const { REACT_APP_BACKEND_URL } = process.env;
-
 
 const CustomCheckBox = withStyles({
   root: {
@@ -32,24 +32,24 @@ const CustomCheckBox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 function Cart() {
-  const history = useHistory()
+  const history = useHistory();
   const cart = cartStyle();
   const dispatch = useDispatch();
   const token = localStorage.getItem('token') || '';
   const data = useSelector((state) => state.getCart);
   const [list, setList] = useState([]);
-  const [all,setAll] = useState(false)
-  const [item,setItem]= useState([])
-  const [itemList,setItemList] = useState([])
-  const [summary,setSummary] = useState(0)
-  const arr = [1,2,3,4,5]
-
+  const [all, setAll] = useState(false);
+  const [item, setItem] = useState([]);
+  const [itemList, setItemList] = useState([]);
+  const [summary, setSummary] = useState(0);
+  const arr = [1, 2, 3, 4, 5];
 
   const [state, setState] = React.useState({
     checked: false,
   });
 
   useEffect(() => {
+    dispatch(adressAction.getAdress(token));
     const getCart = async () => {
       const { action } = await dispatch(getCartAction.getCart(token));
 
@@ -84,37 +84,36 @@ function Cart() {
     setList([...list]);
   };
 
-  const handleCheckBox = (event,i) => {
-    setItem({...item, [event.target.name]: event.target.checked} );
-    if(event.target.checked){
-      setItemList([...itemList,list[i]])
-      setSummary(summary+list[i].subTotal)
+  const handleCheckBox = (event, i) => {
+    setItem({ ...item, [event.target.name]: event.target.checked });
+    if (event.target.checked) {
+      setItemList([...itemList, list[i]]);
+      setSummary(summary + list[i].subTotal);
     } else {
-      const newArray = itemList.filter(item=>{
-        return item.name !== event.target.name
-      })
-      setItemList(newArray)
-      setSummary(summary-list[i].subTotal)
+      const newArray = itemList.filter((item) => {
+        return item.name !== event.target.name;
+      });
+      setItemList(newArray);
+      setSummary(summary - list[i].subTotal);
     }
-  }
+  };
 
-  const allItems=(event)=>{
-    setAll(event.target.checked)
-    if(all){
-      setItemList([])
-    } else{
-      setItemList(list)
+  const allItems = (event) => {
+    setAll(event.target.checked);
+    if (all) {
+      setItemList([]);
+    } else {
+      setItemList(list);
     }
-    
-  }
+  };
 
   const checkOut = () => {
-    history.push('/checkout',{itemList,summary})
-  }
+    history.push('/checkout', { itemList, summary });
+  };
 
   return (
     <>
-      {console.log("askdasd",itemList)}
+      {console.log('askdasd', itemList)}
       <Grid item lg={12} xs={12} md={12} ms={12}>
         {console.log(list)}
         <div className={styles.myBag}>
@@ -126,7 +125,6 @@ function Cart() {
       <Grid item lg={7} xs={12} md={8} ms={4}>
         <form onSubmit={handleSubmit}>
           <Grid item lg={12}>
-            
             <Paper
               elevation={3}
               className={`${styles.display} ${styles.cartSpacing}`}
@@ -134,8 +132,19 @@ function Cart() {
               <FormControl component="fieldset">
                 <FormGroup>
                   <FormControlLabel
-                    control={<CustomCheckBox onChange={allItems} name={data.id} value={all} name="gilad" />}
-                    label={`Select all Items  ${itemList.length?`(${itemList.length} items selected)`:''}`}
+                    control={
+                      <CustomCheckBox
+                        onChange={allItems}
+                        name={data.id}
+                        value={all}
+                        name="gilad"
+                      />
+                    }
+                    label={`Select all Items  ${
+                      itemList.length
+                        ? `(${itemList.length} items selected)`
+                        : ''
+                    }`}
                   />
                 </FormGroup>
               </FormControl>
@@ -150,15 +159,21 @@ function Cart() {
           </Grid>
 
           <Grid item lg={12}>
-          {data.isLoading&& arr.map(item=>(
-            <div style={{marginBottom:20}}>
-             <Skeleton variant="rect" style={{borderRadius:5}} animation='wave' height={140} />
-             </div>
-          )) }
-          
-          {list.length
-            ? list.map((data, index) => (
-                <>
+            {data.isLoading &&
+              arr.map((item) => (
+                <div style={{ marginBottom: 20 }}>
+                  <Skeleton
+                    variant="rect"
+                    style={{ borderRadius: 5 }}
+                    animation="wave"
+                    height={140}
+                  />
+                </div>
+              ))}
+
+            {list.length
+              ? list.map((data, index) => (
+                  <>
                     <Paper
                       elevation={3}
                       className={`${styles.display2} ${styles.cartSpacing2}`}
@@ -166,7 +181,13 @@ function Cart() {
                       <FormControl component="fieldset">
                         <FormGroup className={cart.diplay}>
                           <FormControlLabel
-                            control={<CustomCheckBox onChange={(e)=>handleCheckBox(e,index)} name={`${data.name}`} value={false}/>}
+                            control={
+                              <CustomCheckBox
+                                onChange={(e) => handleCheckBox(e, index)}
+                                name={`${data.name}`}
+                                // value={false}
+                              />
+                            }
                             className={`${styles.checkboxPos}`}
                           />
                         </FormGroup>
@@ -221,10 +242,10 @@ function Cart() {
                       </div>
                       <div className={styles.container2}></div>
                     </Paper>
-                </>
-              ))
-            : ""}
-            </Grid>
+                  </>
+                ))
+              : ''}
+          </Grid>
         </form>
       </Grid>
       <Grid item lg={4} xs={12} md={4}>
@@ -243,7 +264,12 @@ function Cart() {
             </div>
           </div>
           <div>
-            <Button onClick={checkOut} className={cart.btnBuy} fullWidth="true">
+            <Button
+              disabled={itemList.length ? false : true}
+              onClick={checkOut}
+              className={cart.btnBuy}
+              fullWidth="true"
+            >
               Buy
             </Button>
           </div>
