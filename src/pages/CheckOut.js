@@ -21,6 +21,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import InputTextNew from '../components/Form/InputTextNew';
 import gopay from '../assets/img/gopay.png';
 import { useSelector } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
+import {adressSchema} from '../helpers/validationSchema'
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const CheckboxNew = withStyles({
@@ -282,7 +284,30 @@ export default function CheckOut() {
                   </div>
                 </div>
                 <div className={classes.modalContentForm}>
-                  <form>
+                  <Formik
+                  validationSchema={adressSchema}
+                  initialValues={{
+                    recipient:'',
+                    phone_number:'',
+                    adress:'',
+                    postal_code:'',
+                    city:''
+                  }}
+                  onSubmit={(values, { resetForm }) => {
+                    console.log(values)
+                  }}
+                  >
+                    
+                    {({
+                    errors,
+                    touched,
+                    values,
+                    handleChange,
+                    handleSubmit,
+                    handleBlur,
+                    isSubmitting,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
                     <div className={classes.inputWrapper}>
                       <FormControl fullWidth>
                         <InputTextNew
@@ -303,6 +328,14 @@ export default function CheckOut() {
                             className={classes.margin}
                             variant="filled"
                             id="Recipient’s name"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.recipient}
+                            name="recipient"
+                            error
+                            helperText={
+                              errors.recipient && touched.recipient ? errors.recipient : ''
+                            }
                             InputLabelProps={{ style: { color: '#9b9b9b' } }}
                           />
                         </FormControl>
@@ -314,6 +347,14 @@ export default function CheckOut() {
                             className={classes.margin}
                             variant="filled"
                             id="Recipient's telephone number"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.phone_number}
+                            name="phone_number"
+                            error
+                            helperText={
+                              errors.phone_number && touched.phone_number ? errors.phone_number : ''
+                            }
                             InputLabelProps={{ style: { color: '#9b9b9b' } }}
                           />
                         </FormControl>
@@ -327,6 +368,14 @@ export default function CheckOut() {
                             className={classes.margin}
                             variant="filled"
                             id="Address"
+                            name="adress"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.adress}
+                            error
+                            helperText={
+                              errors.adress && touched.adress ? errors.adress : ''
+                            }
                             InputLabelProps={{ style: { color: '#9b9b9b' } }}
                           />
                         </FormControl>
@@ -338,6 +387,14 @@ export default function CheckOut() {
                             className={classes.margin}
                             variant="filled"
                             id="Postal code"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            name="postal_code"
+                            value={values.postal_code}
+                            error
+                            helperText={
+                              errors.postal_code && touched.postal_code ? errors.postal_code : ''
+                            }
                             InputLabelProps={{ style: { color: '#9b9b9b' } }}
                           />
                         </FormControl>
@@ -351,6 +408,14 @@ export default function CheckOut() {
                             className={classes.margin}
                             variant="filled"
                             id="City or Subdistrict"
+                            onChange={handleChange}
+                            name="city"
+                            onBlur={handleBlur}
+                            value={values.city}
+                            error
+                            helperText={
+                              errors.city && touched.city ? errors.city : ''
+                            }
                             InputLabelProps={{ style: { color: '#9b9b9b' } }}
                           />
                         </FormControl>
@@ -384,12 +449,14 @@ export default function CheckOut() {
                         </Button>
                       </div>
                       <div>
-                        <Button className={classes.btnSave} variant="contained">
+                        <Button type="submit" className={classes.btnSave} variant="contained">
                           Save
                         </Button>
                       </div>
                     </div>
                   </form>
+                  )}
+                  </Formik>
                 </div>
               </div>
             </Fade>
