@@ -22,7 +22,7 @@ import InputTextNew from '../components/Form/InputTextNew';
 import gopay from '../assets/img/gopay.png';
 import { useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import {adressSchema} from '../helpers/validationSchema'
+import { adressSchema } from '../helpers/validationSchema';
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const CheckboxNew = withStyles({
@@ -285,177 +285,216 @@ export default function CheckOut() {
                 </div>
                 <div className={classes.modalContentForm}>
                   <Formik
-                  validationSchema={adressSchema}
-                  initialValues={{
-                    recipient:'',
-                    phone_number:'',
-                    adress:'',
-                    postal_code:'',
-                    city:''
-                  }}
-                  onSubmit={(values, { resetForm }) => {
-                    console.log(values)
-                  }}
+                    validationSchema={adressSchema}
+                    initialValues={{
+                      recipient: '',
+                      phone_number: '',
+                      adress: '',
+                      postal_code: '',
+                      city: '',
+                    }}
+                    onSubmit={(values, { resetForm }) => {
+                      console.log(values);
+                    }}
                   >
-                    
                     {({
-                    errors,
-                    touched,
-                    values,
-                    handleChange,
-                    handleSubmit,
-                    handleBlur,
-                    isSubmitting,
-                  }) => (
-                    <form onSubmit={handleSubmit}>
-                    <div className={classes.inputWrapper}>
-                      <FormControl fullWidth>
-                        <InputTextNew
-                          label="Rumah"
-                          className={classes.margin}
-                          variant="filled"
-                          id="rumah"
-                          InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          helperText="Save address as (ex : home address, office address)"
-                        />
-                      </FormControl>
-                    </div>
-                    <div className={classes.inputWrapper2}>
-                      <div className={classes.inputDisplay}>
-                        <FormControl fullWidth>
-                          <InputTextNew
-                            label="Recipient’s name"
-                            className={classes.margin}
-                            variant="filled"
-                            id="Recipient’s name"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.recipient}
-                            name="recipient"
-                            error
-                            helperText={
-                              errors.recipient && touched.recipient ? errors.recipient : ''
-                            }
-                            InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          />
-                        </FormControl>
-                      </div>
-                      <div className={classes.inputDisplay2}>
-                        <FormControl fullWidth>
-                          <InputTextNew
-                            label="Recipient's telephone number"
-                            className={classes.margin}
-                            variant="filled"
-                            id="Recipient's telephone number"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.phone_number}
-                            name="phone_number"
-                            error
-                            helperText={
-                              errors.phone_number && touched.phone_number ? errors.phone_number : ''
-                            }
-                            InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          />
-                        </FormControl>
-                      </div>
-                    </div>
-                    <div className={classes.inputWrapper2}>
-                      <div className={classes.inputDisplay}>
-                        <FormControl fullWidth>
-                          <InputTextNew
-                            label="Address"
-                            className={classes.margin}
-                            variant="filled"
-                            id="Address"
-                            name="adress"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.adress}
-                            error
-                            helperText={
-                              errors.adress && touched.adress ? errors.adress : ''
-                            }
-                            InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          />
-                        </FormControl>
-                      </div>
-                      <div className={classes.inputDisplay2}>
-                        <FormControl fullWidth>
-                          <InputTextNew
-                            label="Postal code"
-                            className={classes.margin}
-                            variant="filled"
-                            id="Postal code"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            name="postal_code"
-                            value={values.postal_code}
-                            error
-                            helperText={
-                              errors.postal_code && touched.postal_code ? errors.postal_code : ''
-                            }
-                            InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          />
-                        </FormControl>
-                      </div>
-                    </div>
-                    <div className={classes.inputWrapper2}>
-                      <div className={classes.inputDisplay}>
-                        <FormControl fullWidth>
-                          <InputTextNew
-                            label="City or Subdistrict"
-                            className={classes.margin}
-                            variant="filled"
-                            id="City or Subdistrict"
-                            onChange={handleChange}
-                            name="city"
-                            onBlur={handleBlur}
-                            value={values.city}
-                            error
-                            helperText={
-                              errors.city && touched.city ? errors.city : ''
-                            }
-                            InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                          />
-                        </FormControl>
-                      </div>
-                      <div className={classes.inputDisplay2}>
-                        <FormControl fullWidth></FormControl>
-                      </div>
-                    </div>
-                    <div>
-                      <FormControlLabel
-                        control={
-                          <CheckboxNew
-                            // checked={state.checkedG}
-                            // onChange={handleChange}
-                            name="checkedG"
-                          />
-                        }
-                        label="Make it the primary address"
-                        className={classes.checkBoxLabel}
-                      />
-                    </div>
-                    <div className={classes.btnSaveWrapper}>
-                      <div style={{ flex: 1 }}></div>
-                      <div className={classes.btnCancelWrapper}>
-                        <Button
-                          onClick={handleClose2}
-                          className={classes.btnCancel}
-                          variant="outlined"
+                      errors,
+                      touched,
+                      values,
+                      handleChange,
+                      handleSubmit,
+                      handleBlur,
+                      isSubmitting,
+                    }) => (
+                      <form onSubmit={handleSubmit}>
+                        <div className={classes.inputWrapper}>
+                          <FormControl fullWidth>
+                            <InputTextNew
+                              label="Rumah"
+                              className={classes.margin}
+                              variant="filled"
+                              id="rumah"
+                              InputLabelProps={{ style: { color: '#9b9b9b' } }}
+                              helperText="Save address as (ex : home address, office address)"
+                            />
+                          </FormControl>
+                        </div>
+                        <div
+                          className={
+                            errors.recipient || errors.phone_number
+                              ? classes.inputWrapper3
+                              : classes.inputWrapper2
+                          }
                         >
-                          Cancel
-                        </Button>
-                      </div>
-                      <div>
-                        <Button type="submit" className={classes.btnSave} variant="contained">
-                          Save
-                        </Button>
-                      </div>
-                    </div>
-                  </form>
-                  )}
+                          <div className={classes.inputDisplay}>
+                            <FormControl fullWidth>
+                              <InputTextNew
+                                label="Recipient’s name"
+                                className={classes.margin}
+                                variant="filled"
+                                id="Recipient’s name"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.recipient}
+                                name="recipient"
+                                error
+                                helperText={
+                                  errors.recipient && touched.recipient
+                                    ? errors.recipient
+                                    : ''
+                                }
+                                InputLabelProps={{
+                                  style: { color: '#9b9b9b' },
+                                }}
+                              />
+                            </FormControl>
+                          </div>
+                          <div className={classes.inputDisplay2}>
+                            <FormControl fullWidth>
+                              <InputTextNew
+                                label="Recipient's telephone number"
+                                className={classes.margin}
+                                variant="filled"
+                                id="Recipient's telephone number"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.phone_number}
+                                name="phone_number"
+                                error
+                                helperText={
+                                  errors.phone_number && touched.phone_number
+                                    ? errors.phone_number
+                                    : ''
+                                }
+                                InputLabelProps={{
+                                  style: { color: '#9b9b9b' },
+                                }}
+                              />
+                            </FormControl>
+                          </div>
+                        </div>
+                        <div
+                          className={
+                            errors.adress || errors.postal_code
+                              ? classes.inputWrapper3
+                              : classes.inputWrapper2
+                          }
+                        >
+                          <div className={classes.inputDisplay}>
+                            <FormControl fullWidth>
+                              <InputTextNew
+                                label="Address"
+                                className={classes.margin}
+                                variant="filled"
+                                id="Address"
+                                name="adress"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.adress}
+                                error
+                                helperText={
+                                  errors.adress && touched.adress
+                                    ? errors.adress
+                                    : ''
+                                }
+                                InputLabelProps={{
+                                  style: { color: '#9b9b9b' },
+                                }}
+                              />
+                            </FormControl>
+                          </div>
+                          <div className={classes.inputDisplay2}>
+                            <FormControl fullWidth>
+                              <InputTextNew
+                                label="Postal code"
+                                className={classes.margin}
+                                variant="filled"
+                                id="Postal code"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                name="postal_code"
+                                value={values.postal_code}
+                                error
+                                helperText={
+                                  errors.postal_code && touched.postal_code
+                                    ? errors.postal_code
+                                    : ''
+                                }
+                                InputLabelProps={{
+                                  style: { color: '#9b9b9b' },
+                                }}
+                              />
+                            </FormControl>
+                          </div>
+                        </div>
+                        <div
+                          className={
+                            errors.city
+                              ? classes.inputWrapper3
+                              : classes.inputWrapper2
+                          }
+                        >
+                          <div className={classes.inputDisplay}>
+                            <FormControl fullWidth>
+                              <InputTextNew
+                                label="City or Subdistrict"
+                                className={classes.margin}
+                                variant="filled"
+                                id="City or Subdistrict"
+                                onChange={handleChange}
+                                name="city"
+                                onBlur={handleBlur}
+                                value={values.city}
+                                error
+                                helperText={
+                                  errors.city && touched.city ? errors.city : ''
+                                }
+                                InputLabelProps={{
+                                  style: { color: '#9b9b9b' },
+                                }}
+                              />
+                            </FormControl>
+                          </div>
+                          <div className={classes.inputDisplay2}>
+                            <FormControl fullWidth></FormControl>
+                          </div>
+                        </div>
+                        <div>
+                          <FormControlLabel
+                            control={
+                              <CheckboxNew
+                                // checked={state.checkedG}
+                                // onChange={handleChange}
+                                name="checkedG"
+                              />
+                            }
+                            label="Make it the primary address"
+                            className={classes.checkBoxLabel}
+                          />
+                        </div>
+                        <div className={classes.btnSaveWrapper}>
+                          <div style={{ flex: 1 }}></div>
+                          <div className={classes.btnCancelWrapper}>
+                            <Button
+                              onClick={handleClose2}
+                              className={classes.btnCancel}
+                              variant="outlined"
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                          <div>
+                            <Button
+                              type="submit"
+                              className={classes.btnSave}
+                              variant="contained"
+                            >
+                              Save
+                            </Button>
+                          </div>
+                        </div>
+                      </form>
+                    )}
                   </Formik>
                 </div>
               </div>

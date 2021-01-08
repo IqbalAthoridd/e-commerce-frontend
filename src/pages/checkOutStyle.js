@@ -257,6 +257,11 @@ export const checkOutStyle = makeStyles((theme) => ({
     flexDirection: 'row',
     marginBottom: '20px',
   },
+  inputWrapper3: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom:5
+  },
   inputSpacing: {
     marginLeft: '32px',
   },
