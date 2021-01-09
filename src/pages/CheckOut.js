@@ -12,6 +12,7 @@ import {
   Checkbox,
   FormControlLabel,
   withStyles,
+  CircularProgress,
 } from '@material-ui/core';
 import { checkOutStyle } from './checkOutStyle';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -20,9 +21,10 @@ import image from '../assets/img/produk.jpg';
 import CloseIcon from '@material-ui/icons/Close';
 import InputTextNew from '../components/Form/InputTextNew';
 import gopay from '../assets/img/gopay.png';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { adressSchema } from '../helpers/validationSchema';
+import adressAction from '../redux/action/adress';
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const CheckboxNew = withStyles({
@@ -38,7 +40,9 @@ const CheckboxNew = withStyles({
 export default function CheckOut() {
   const classes = checkOutStyle();
   const history = useHistory();
+  const dispatch = useDispatch();
   const location = useLocation();
+  const token = localStorage.getItem('token');
   const adress = useSelector((state) => state.adress);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
@@ -66,9 +70,19 @@ export default function CheckOut() {
     setOpenPayment(false);
   };
 
+  const createAdress = async (data, { resetForm }) => {
+    await dispatch(adressAction.createAdress(token, data));
+    await dispatch(adressAction.getAdress(token))
+    if (adress.isSuccess) {
+      resetForm({});
+      setOpen2(false);
+      
+    }
+  };
+
   return (
     <>
-      {console.log(location)}
+      {console.log(adress.adress)}
       <NavigationBar />
       <Grid container className={classes.container}>
         <Grid
@@ -93,13 +107,14 @@ export default function CheckOut() {
             ) : (
               <>
                 <div>
-                  <span className={classes.textShipping}>Adreas Jane</span>
+                  <span className={classes.textShipping}>
+                    {adress.adress[0].recipient}
+                  </span>
                 </div>
                 <div>
                   <p className={classes.adressText}>
-                    Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja,
-                    Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok
-                    c 16] Sokaraja, Kab. Banyumas, 53181
+                    {adress.adress[0].adress}, {adress.adress[0].city},{' '}
+                    {adress.adress[0].postal_code}
                   </p>
                 </div>
               </>
@@ -233,23 +248,29 @@ export default function CheckOut() {
                     </Button>
                   </div>
                   {adress.alertMsg !== "You dont't have adress yet" && (
-                    <div className={classes.adressWrapper}>
-                      <div style={{ marginBottom: '5px' }}>
-                        <span className={classes.priceText}>Andreas Jane</span>
-                      </div>
-                      <div>
-                        <p className={classes.adressText}>
-                          Perumahan Sapphire Mediterania, Wiradadi, Kec.
-                          Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181
-                          [Tokopedia Note: blok c 16] Sokaraja, Kab. Banyumas,
-                          53181
-                        </p>
-                      </div>
-                      <div className={classes.btnChangeAdress}>
-                        <span className={classes.changeAdressText}>
-                          Change address
-                        </span>
-                      </div>
+                    <div>
+                      {adress.adress.map((adress) => (
+                        <div className={classes.adressWrapper}>
+                          <div style={{ marginBottom: '5px' }}>
+                            <span className={classes.priceText}>
+                              {adress.recipient}
+                            </span>
+                          </div>
+                          <div>
+                            <p className={classes.adressText}>
+                              Perumahan Sapphire Mediterania, Wiradadi, Kec.
+                              Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181
+                              [Tokopedia Note: blok c 16] Sokaraja, Kab.
+                              Banyumas, 53181
+                            </p>
+                          </div>
+                          <div className={classes.btnChangeAdress}>
+                            <span className={classes.changeAdressText}>
+                              Change address
+                            </span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -292,9 +313,11 @@ export default function CheckOut() {
                       adress: '',
                       postal_code: '',
                       city: '',
+                      saveAs: '',
+                      primary_adress: false,
                     }}
                     onSubmit={(values, { resetForm }) => {
-                      console.log(values);
+                      createAdress(values, { resetForm });
                     }}
                   >
                     {({
@@ -314,8 +337,16 @@ export default function CheckOut() {
                               className={classes.margin}
                               variant="filled"
                               id="rumah"
+                              name="saveAs"
+                              error={errors.saveAs ? true : false}
+                              value={values.saveAs}
+                              onChange={handleChange}
                               InputLabelProps={{ style: { color: '#9b9b9b' } }}
-                              helperText="Save address as (ex : home address, office address)"
+                              helperText={
+                                errors.saveAs && touched.saveAs
+                                  ? errors.saveAs
+                                  : 'Save address as (ex : home address, office address)'
+                              }
                             />
                           </FormControl>
                         </div>
@@ -463,9 +494,9 @@ export default function CheckOut() {
                           <FormControlLabel
                             control={
                               <CheckboxNew
-                                // checked={state.checkedG}
-                                // onChange={handleChange}
-                                name="checkedG"
+                                checked={values.primary_adress}
+                                onChange={handleChange}
+                                name="primary_adress"
                               />
                             }
                             label="Make it the primary address"
@@ -489,7 +520,14 @@ export default function CheckOut() {
                               className={classes.btnSave}
                               variant="contained"
                             >
-                              Save
+                              {adress.isLoading ? (
+                                <CircularProgress
+                                  size={23}
+                                  style={{ color: '#9b9b9b' }}
+                                />
+                              ) : (
+                                <span>Save</span>
+                              )}
                             </Button>
                           </div>
                         </div>

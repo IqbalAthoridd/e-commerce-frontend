@@ -33,4 +33,8 @@ export const adressSchema = Yup.object().shape({
   city:Yup.string()
   .min(3,'Invalid city!')
   .required('City is required!'),
+  saveAs:Yup.string()
+  .min(4,'Invalid input')
+  .required('Home is required!, Save address as (ex : home address, office address)'),
+  primary_adress:Yup.boolean()
 })

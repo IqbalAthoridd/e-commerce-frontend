@@ -178,6 +178,7 @@ export const checkOutStyle = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     width: '60%',
     height: '90%',
+    maxHeight:'90%',
     borderRadius: '8px',
   },
   paperPayment: {
@@ -241,6 +242,7 @@ export const checkOutStyle = makeStyles((theme) => ({
     border: '1px solid #DB3022',
     padding: '30px 30px 30px 25px',
     borderRadius: '4px',
+    marginBottom:10,
   },
   changeAdressText: {
     fontStyle: 'normal',
