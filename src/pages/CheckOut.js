@@ -47,6 +47,7 @@ export default function CheckOut() {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [openPayment, setOpenPayment] = React.useState(false);
+  const [primary,setPrimary] = React.useState(0)
 
   const handleOpen = () => {
     setOpen(true);
@@ -80,6 +81,11 @@ export default function CheckOut() {
     }
   };
 
+  const changeAdress = (i) => {
+    setPrimary(i)
+    setOpen(false);
+  }
+
   return (
     <>
       {console.log(adress.adress)}
@@ -108,13 +114,13 @@ export default function CheckOut() {
               <>
                 <div>
                   <span className={classes.textShipping}>
-                    {adress.adress[0].recipient}
+                    {adress.adress[primary].recipient}
                   </span>
                 </div>
                 <div>
                   <p className={classes.adressText}>
-                    {adress.adress[0].adress}, {adress.adress[0].city},{' '}
-                    {adress.adress[0].postal_code}
+                    {adress.adress[primary].adress}, {adress.adress[primary].city},{' '}
+                    {adress.adress[primary].postal_code}
                   </p>
                 </div>
               </>
@@ -249,7 +255,7 @@ export default function CheckOut() {
                   </div>
                   {adress.alertMsg !== "You dont't have adress yet" && (
                     <div>
-                      {adress.adress.map((adress) => (
+                      {adress.adress.map((adress,index) => (
                         <div className={classes.adressWrapper}>
                           <div style={{ marginBottom: '5px' }}>
                             <span className={classes.priceText}>
@@ -258,13 +264,10 @@ export default function CheckOut() {
                           </div>
                           <div>
                             <p className={classes.adressText}>
-                              Perumahan Sapphire Mediterania, Wiradadi, Kec.
-                              Sokaraja, Kabupaten Banyumas, Jawa Tengah, 53181
-                              [Tokopedia Note: blok c 16] Sokaraja, Kab.
-                              Banyumas, 53181
+                            {adress.adress}, {adress.city}, {adress.postal_code}
                             </p>
                           </div>
-                          <div className={classes.btnChangeAdress}>
+                          <div onClick={()=>changeAdress(index)} className={classes.btnChangeAdress}>
                             <span className={classes.changeAdressText}>
                               Change address
                             </span>

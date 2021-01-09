@@ -180,6 +180,8 @@ export const checkOutStyle = makeStyles((theme) => ({
     height: '90%',
     maxHeight:'90%',
     borderRadius: '8px',
+    overflow:'auto'
+    
   },
   paperPayment: {
     backgroundColor: theme.palette.background.paper,
