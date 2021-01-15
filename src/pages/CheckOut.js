@@ -42,12 +42,12 @@ export default function CheckOut() {
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
-  const token = localStorage.getItem('token');
+  const token = useSelector((state) => state.auth.token);
   const adress = useSelector((state) => state.adress);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   const [openPayment, setOpenPayment] = React.useState(false);
-  const [primary,setPrimary] = React.useState(0)
+  const [primary, setPrimary] = React.useState(0);
 
   const handleOpen = () => {
     setOpen(true);
@@ -73,22 +73,21 @@ export default function CheckOut() {
 
   const createAdress = async (data, { resetForm }) => {
     await dispatch(adressAction.createAdress(token, data));
-    await dispatch(adressAction.getAdress(token))
+    await dispatch(adressAction.getAdress(token));
     if (adress.isSuccess) {
       resetForm({});
       setOpen2(false);
-      
     }
   };
 
   const changeAdress = (i) => {
-    setPrimary(i)
-   setOpen(false);
-  }
+    setPrimary(i);
+    setOpen(false);
+  };
 
-  const handlePay = ()=> {
-    history.push('/')
-  }
+  const handlePay = () => {
+    history.push('/');
+  };
 
   return (
     <>
@@ -123,13 +122,14 @@ export default function CheckOut() {
                 </div>
                 <div>
                   <p className={classes.adressText}>
-                    {adress.adress[primary].adress}, {adress.adress[primary].city},{' '}
+                    {adress.adress[primary].adress},{' '}
+                    {adress.adress[primary].city},{' '}
                     {adress.adress[primary].postal_code}
                   </p>
                 </div>
               </>
             )}
-{console.log("PPPPP",location.state)}
+            {console.log('PPPPP', location.state)}
             <div>
               <Button
                 onClick={handleOpen}
@@ -204,7 +204,9 @@ export default function CheckOut() {
                   <span className={classes.priceText}>Shopping summary</span>
                 </div>
                 <div>
-                  <span className={classes.priceTotalText}>Rp.{location.state.summary+5000}</span>
+                  <span className={classes.priceTotalText}>
+                    Rp.{location.state.summary + 5000}
+                  </span>
                 </div>
               </div>
               <div>
@@ -259,7 +261,7 @@ export default function CheckOut() {
                   </div>
                   {adress.alertMsg !== "You dont't have adress yet" && (
                     <div>
-                      {adress.adress.map((adress,index) => (
+                      {adress.adress.map((adress, index) => (
                         <div className={classes.adressWrapper}>
                           <div style={{ marginBottom: '5px' }}>
                             <span className={classes.priceText}>
@@ -268,10 +270,14 @@ export default function CheckOut() {
                           </div>
                           <div>
                             <p className={classes.adressText}>
-                            {adress.adress}, {adress.city}, {adress.postal_code}
+                              {adress.adress}, {adress.city},{' '}
+                              {adress.postal_code}
                             </p>
                           </div>
-                          <div onClick={()=>changeAdress(index)} className={classes.btnChangeAdress}>
+                          <div
+                            onClick={() => changeAdress(index)}
+                            className={classes.btnChangeAdress}
+                          >
                             <span className={classes.changeAdressText}>
                               Change address
                             </span>
@@ -644,7 +650,9 @@ export default function CheckOut() {
                         <span className={classes.totalLabel}>Order</span>
                       </div>
                       <div>
-                        <span className={classes.priceText}>Rp.{location.state.summary}</span>
+                        <span className={classes.priceText}>
+                          Rp.{location.state.summary}
+                        </span>
                       </div>
                     </div>
                     <div className={classes.totalWrapper2}>
@@ -664,12 +672,16 @@ export default function CheckOut() {
                         </span>
                         <div>
                           <span className={classes.priceTotalText}>
-                            Rp.{location.state.summary+5000}
+                            Rp.{location.state.summary + 5000}
                           </span>
                         </div>
                       </div>
                       <div>
-                        <Button onClick={handlePay} className={classes.btnSave} variant="contained">
+                        <Button
+                          onClick={handlePay}
+                          className={classes.btnSave}
+                          variant="contained"
+                        >
                           Buy
                         </Button>
                       </div>

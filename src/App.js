@@ -14,6 +14,7 @@ import PrivateRoute from './components/Private Route/PrivateRoute';
 import ItemCategory from './pages/ItemCategory';
 import CheckOut from './pages/CheckOut';
 import EditProduct from './pages/EditProduct';
+import ItemSearch from './pages/ItemSearch';
 import { PersistGate } from 'redux-persist/integration/react';
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
               <Route path="/dasboard/:query" component={Dasboard} />
               <Route path="/login" render={() => <Login />} />
               <Route path="/register" render={() => <Register />} />
+              <Route path="/search" render={() => <ItemSearch />} />
               <Route path="/product" render={() => <EditProduct />} />
               <Route path="/category" render={() => <ItemCategory />} />
               <Route path="/checkout" render={() => <CheckOut />} />

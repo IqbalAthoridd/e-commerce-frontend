@@ -35,7 +35,7 @@ function Cart() {
   const history = useHistory();
   const cart = cartStyle();
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token') || '';
+  const token = useSelector((state) => state.auth.token);
   const data = useSelector((state) => state.getCart);
   const [list, setList] = useState([]);
   const [all, setAll] = useState(false);

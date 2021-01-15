@@ -71,6 +71,7 @@ const NavigationBar = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const theme = useTheme();
+  const [search, setSearch] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const login = false;
 
@@ -79,6 +80,11 @@ const NavigationBar = () => {
   //     dispatch(AuthAction.getProfile(token));
   //   }
   // }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(search);
+  };
 
   const logout = () => {
     localStorage.clear();
@@ -93,6 +99,10 @@ const NavigationBar = () => {
     setAnchorEl(null);
   };
 
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <>
       {console.log(user)}
@@ -103,27 +113,34 @@ const NavigationBar = () => {
               <img src={Logo} className={classes.logo} alt="Logo" />
             </Link>
           </Grid>
-          <Grid item style={{ flex: 1 }}>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <FormControl className={classes.formControl} fullWidth>
-                <InputTextNew placeholder="Search" />
-                <SearchIcon className={classes.searchIcon} />
-              </FormControl>
-              <IconButton className={classes.btnFilter} variant="outlined">
-                <img
-                  src={filter}
-                  className={classes.filterLogo}
-                  alt="iconFilter"
-                />
-              </IconButton>
-            </div>
-          </Grid>
+          <form onSubmit={handleSubmit} style={{ flex: 1 }}>
+            <Grid item>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <FormControl className={classes.formControl} fullWidth>
+                  <InputTextNew
+                    value={search}
+                    onChange={handleChange}
+                    placeholder="Search"
+                  />
+                  <SearchIcon className={classes.searchIcon} />
+                </FormControl>
+
+                <IconButton className={classes.btnFilter} variant="outlined">
+                  <img
+                    src={filter}
+                    className={classes.filterLogo}
+                    alt="iconFilter"
+                  />
+                </IconButton>
+              </div>
+            </Grid>
+          </form>
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
             <div>
               <IconButton onClick={handleClick} className={classes.btnMenu}>
@@ -273,6 +290,17 @@ const NavigationBar = () => {
                       </Link>
                     </div>
                   </div>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </Menu>
                 </Grid>
               ) : (
                 <Grid item style={{ paddingLeft: '15%' }}>
