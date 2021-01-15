@@ -12,7 +12,7 @@ import getCart from './getCart';
 import adress from './adress';
 import items from './items';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   newItems,
   listCategory,
   popularProduct,
@@ -25,3 +25,6 @@ export default combineReducers({
   adress,
   items,
 });
+
+export default (state, action) =>
+  rootReducer(action.type === 'USER_LOGOUT' ? undefined : state, action);

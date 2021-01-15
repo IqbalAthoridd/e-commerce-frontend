@@ -25,7 +25,7 @@ import AuthAction from '../../redux/action/auth';
 import { useStyles } from './navbarStyls';
 import filter from '../../assets/img/filter.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const useStylesReddit = makeStyles((theme) => ({
@@ -67,7 +67,7 @@ function InputTextNew(props) {
 
 const NavigationBar = () => {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
   const isLogin = useSelector((state) => state.auth.isLogin);
   const token = localStorage.getItem('token') || '';
   const user = useSelector((state) => state.auth.user);
@@ -90,9 +90,7 @@ const NavigationBar = () => {
   };
 
   const logout = () => {
-    setAnchorEl(null);
-    localStorage.clear();
-    dispatch(AuthAction.logout());
+    dispatch({type:'USER_LOGOUT'});
     history.push('/login')
   };
 
@@ -120,7 +118,7 @@ const NavigationBar = () => {
     <>
       <AppBar elevation={2} position="static" className={classes.NavigationBar}>
         <Grid container alignItems="center" direction="row">
-          {console.log("PPPPP")}
+          {console.log('PPPPP')}
           <Grid item>
             <Link to="/">
               <img src={Logo} className={classes.logo} alt="Logo" />
@@ -160,7 +158,7 @@ const NavigationBar = () => {
                 onClose={handleClose2}
               >
                 <Link to="/profile">
-                <MenuItem onClick={handleClose2}>MyProfile</MenuItem>
+                  <MenuItem onClick={handleClose2}>MyProfile</MenuItem>
                 </Link>
                 <MenuItem onClick={logout}>Logout</MenuItem>
               </Menu>
@@ -302,17 +300,16 @@ const NavigationBar = () => {
                     <div className={classes.btnMargin2}>
                       <MailOutlineIcon className={classes.iconCart} />
                     </div>
-                    <div onClick={handleClick2} > 
-
-                        <Avatar
-                          src={
-                            user.avatar !== null &&
-                            `${REACT_APP_BACKEND_URL}${user.avatar}`
-                          }
-                          className={classes.avatar}
-                          alt="Iqbal Athorid"
-                        />
-                                </div>
+                    <div onClick={handleClick2}>
+                      <Avatar
+                        src={
+                          user.avatar !== null &&
+                          `${REACT_APP_BACKEND_URL}${user.avatar}`
+                        }
+                        className={classes.avatar}
+                        alt="Iqbal Athorid"
+                      />
+                    </div>
                   </div>
                   <Menu
                     id="simple-menu"
