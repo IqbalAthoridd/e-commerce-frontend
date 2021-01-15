@@ -25,10 +25,10 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/" render={() => <Home />} exact />
-              <Route path="/dasboard" render={() => <Dasboard />} />
               <Route path="/login" render={() => <Login />} />
               <Route path="/register" render={() => <Register />} />
               <Route path="/search" render={() => <ItemSearch />} />
+              <Route path="/dasboard" render={() => <Dasboard />} />
               <Route path="/product" render={() => <EditProduct />} />
               <Route path="/category" render={() => <ItemCategory />} />
               <Route path="/checkout" render={() => <CheckOut />} />
