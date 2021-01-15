@@ -50,7 +50,7 @@ function ProductDetails() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const token = localStorage.getItem('token') || '';
+  const token = useSelector(state=>state.auth.token);
 
   const details = useSelector((state) => state.details);
   const cart = useSelector(state=>state.cart)

@@ -25,6 +25,7 @@ import AuthAction from '../../redux/action/auth';
 import { useStyles } from './navbarStyls';
 import filter from '../../assets/img/filter.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
+import {useHistory} from 'react-router-dom'
 const { REACT_APP_BACKEND_URL } = process.env;
 
 const useStylesReddit = makeStyles((theme) => ({
@@ -66,6 +67,7 @@ function InputTextNew(props) {
 
 const NavigationBar = () => {
   const classes = useStyles();
+  const history = useHistory()
   const isLogin = useSelector((state) => state.auth.isLogin);
   const token = localStorage.getItem('token') || '';
   const user = useSelector((state) => state.auth.user);
@@ -73,6 +75,7 @@ const NavigationBar = () => {
   const theme = useTheme();
   const [search, setSearch] = React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorE2, setAnchorE2] = React.useState(null);
   const login = false;
 
   // useEffect(() => {
@@ -87,8 +90,10 @@ const NavigationBar = () => {
   };
 
   const logout = () => {
+    setAnchorEl(null);
     localStorage.clear();
     dispatch(AuthAction.logout());
+    history.push('/login')
   };
 
   const handleClick = (event) => {
@@ -99,15 +104,23 @@ const NavigationBar = () => {
     setAnchorEl(null);
   };
 
+  const handleClick2 = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+
+  const handleClose2 = () => {
+    setAnchorE2(null);
+  };
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
 
   return (
     <>
-      {console.log(user)}
       <AppBar elevation={2} position="static" className={classes.NavigationBar}>
         <Grid container alignItems="center" direction="row">
+          {console.log("PPPPP")}
           <Grid item>
             <Link to="/">
               <img src={Logo} className={classes.logo} alt="Logo" />
@@ -139,6 +152,18 @@ const NavigationBar = () => {
                   />
                 </IconButton>
               </div>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorE2}
+                keepMounted
+                open={Boolean(anchorE2)}
+                onClose={handleClose2}
+              >
+                <Link to="/profile">
+                <MenuItem onClick={handleClose2}>MyProfile</MenuItem>
+                </Link>
+                <MenuItem onClick={logout}>Logout</MenuItem>
+              </Menu>
             </Grid>
           </form>
           {useMediaQuery(theme.breakpoints.down('sm')) ? (
@@ -277,8 +302,8 @@ const NavigationBar = () => {
                     <div className={classes.btnMargin2}>
                       <MailOutlineIcon className={classes.iconCart} />
                     </div>
-                    <div>
-                      <Link to="/profile">
+                    <div onClick={handleClick2} > 
+
                         <Avatar
                           src={
                             user.avatar !== null &&
@@ -287,8 +312,7 @@ const NavigationBar = () => {
                           className={classes.avatar}
                           alt="Iqbal Athorid"
                         />
-                      </Link>
-                    </div>
+                                </div>
                   </div>
                   <Menu
                     id="simple-menu"
