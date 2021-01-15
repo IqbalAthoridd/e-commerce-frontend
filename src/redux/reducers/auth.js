@@ -125,6 +125,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         alertMsg: '',
+        isSuccess:false,
         isError: false,
       };
     }

@@ -29,8 +29,23 @@ import DateFnsUtils from '@date-io/date-fns';
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import userAction from '../../redux/action/auth';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import { profileSchema } from '../../helpers/validationSchema';
 const { REACT_APP_BACKEND_URL } = process.env;
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 const useStylesReddit = makeStyles((theme) => ({
   root: {
@@ -67,6 +82,7 @@ export default function ProfileInfo() {
   const dispatch = useDispatch();
   const classes = profileStyle();
   const isLoading = useSelector((state) => state.auth.isLoading);
+  const isSuccess = useSelector((state) => state.auth.isSuccess);
   const user = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
   const [submit, setSubmit] = React.useState(false);
@@ -90,9 +106,17 @@ export default function ProfileInfo() {
     setSubmit(true);
   };
 
+  const handleClose = () => {
+    dispatch(userAction.clearMessage());
+  };
+
   return (
     <Grid className={classes.content} item md={9}>
-      {isLoading && <div>LOADING.....</div>}
+      <Snackbar open={isSuccess} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Profile succesfully updated!
+        </Alert>
+      </Snackbar>
       <Paper className={classes.paperContent} elevation={3}>
         <div>
           <div>
