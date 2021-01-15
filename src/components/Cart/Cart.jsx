@@ -31,7 +31,8 @@ const CustomCheckBox = withStyles({
   },
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-function Cart() {
+
+const Cart =()=> {
   const history = useHistory();
   const cart = cartStyle();
   const dispatch = useDispatch();
@@ -112,10 +113,8 @@ function Cart() {
   };
 
   return (
-    <>
-      {console.log('askdasd', itemList)}
+   <>
       <Grid item lg={12} xs={12} md={12} ms={12}>
-        {console.log(list)}
         <div className={styles.myBag}>
           <span>
             <h2>My Bagg</h2>
@@ -157,6 +156,7 @@ function Cart() {
               </FormControl>
             </Paper>
           </Grid>
+           </form>
 
           <Grid item lg={12}>
             {data.isLoading &&
@@ -172,7 +172,7 @@ function Cart() {
               ))}
 
             {list.length
-              ? list.map((data, index) => (
+              && list.map((data, index) => (
                   <>
                     <Paper
                       elevation={3}
@@ -243,10 +243,9 @@ function Cart() {
                       <div className={styles.container2}></div>
                     </Paper>
                   </>
-                ))
-              : ''}
+                ))}
           </Grid>
-        </form>
+       
       </Grid>
       <Grid item lg={4} xs={12} md={4}>
         <Paper elevation={3} className={styles.cartSpacing3}>
@@ -275,7 +274,7 @@ function Cart() {
           </div>
         </Paper>
       </Grid>
-    </>
+     </>
   );
 }
 

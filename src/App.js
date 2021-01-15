@@ -32,9 +32,10 @@ class App extends Component {
               <Route path="/product" render={() => <EditProduct />} />
               <Route path="/category" render={() => <ItemCategory />} />
               <Route path="/checkout" render={() => <CheckOut />} />
-              <PrivateRoute path="/cart">
+              <Route path="/cart" render={() => <Cart />} />
+              {/* <PrivateRoute path="/cart">
                 <Cart />
-              </PrivateRoute>
+              </PrivateRoute> */}
               <Route path="/profile" render={() => <Profile />}></Route>
               <Route path="/details/:id" render={() => <Details />} />
             </Switch>
