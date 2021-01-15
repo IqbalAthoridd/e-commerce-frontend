@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Logo from '../../assets/img/Logo.svg';
@@ -25,6 +25,7 @@ import AuthAction from '../../redux/action/auth';
 import { useStyles } from './navbarStyls';
 import filter from '../../assets/img/filter.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
+const { REACT_APP_BACKEND_URL } = process.env;
 
 const useStylesReddit = makeStyles((theme) => ({
   root: {
@@ -67,10 +68,17 @@ const NavigationBar = () => {
   const classes = useStyles();
   const isLogin = useSelector((state) => state.auth.isLogin);
   const token = localStorage.getItem('token') || '';
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const login = false;
+
+  // useEffect(() => {
+  //   if (token.length) {
+  //     dispatch(AuthAction.getProfile(token));
+  //   }
+  // }, []);
 
   const logout = () => {
     localStorage.clear();
@@ -87,11 +95,12 @@ const NavigationBar = () => {
 
   return (
     <>
+      {console.log(user)}
       <AppBar elevation={2} position="static" className={classes.NavigationBar}>
         <Grid container alignItems="center" direction="row">
           <Grid item>
             <Link to="/">
-            <img src={Logo} className={classes.logo} alt="Logo" />
+              <img src={Logo} className={classes.logo} alt="Logo" />
             </Link>
           </Grid>
           <Grid item style={{ flex: 1 }}>
@@ -173,6 +182,7 @@ const NavigationBar = () => {
                           flexDirection: 'row',
                           alignItems: 'center',
                         }}
+                        onClick={logout}
                       >
                         <NotificationsNoneIcon className={classes.iconCart} />
                         <span style={{ marginLeft: '10px', color: '#9b9b9b' }}>
@@ -239,18 +249,27 @@ const NavigationBar = () => {
                   >
                     <div className={classes.btnMargin2}>
                       <Link to="/cart">
-                      <ShoppingCartOutlinedIcon className={classes.iconCart} />
+                        <ShoppingCartOutlinedIcon
+                          className={classes.iconCart}
+                        />
                       </Link>
                     </div>
-                    <div className={classes.btnMargin2}>
+                    <div onClick={logout} className={classes.btnMargin2}>
                       <NotificationsNoneIcon className={classes.iconCart} />
                     </div>
                     <div className={classes.btnMargin2}>
                       <MailOutlineIcon className={classes.iconCart} />
                     </div>
                     <div>
-                    <Link to="/profile">
-                      <Avatar className={classes.avatar} alt="Iqbal Athorid" />
+                      <Link to="/profile">
+                        <Avatar
+                          src={
+                            user.avatar !== null &&
+                            `${REACT_APP_BACKEND_URL}${user.avatar}`
+                          }
+                          className={classes.avatar}
+                          alt="Iqbal Athorid"
+                        />
                       </Link>
                     </div>
                   </div>

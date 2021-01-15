@@ -16,12 +16,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import authAction from '../../redux/action/auth';
 import { useHistory } from 'react-router-dom';
 import InputTextNew from './InputTextNew';
+import userAction from '../../redux/action/auth';
+import userEvent from '@testing-library/user-event';
 
 const Login = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const button = ButtonStyle();
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   const [form, setform] = useState(true);
   const auth = useSelector((state) => state.auth);
@@ -29,13 +32,17 @@ const Login = (props) => {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    if (auth.isLogin) {
-      history.push('/');
-    } else if (auth.isError) {
-      setTimeout(() => {
-        dispatch(authAction.clearMessage());
-      }, 4000);
+    const getData = async () => {
+      if (auth.isLogin) {
+        await dispatch(userAction.getProfile(token));
+       history.push('/');
+     } else if (auth.isError) {
+       setTimeout(() => {
+         dispatch(authAction.clearMessage());
+       }, 4000);
+     }
     }
+    getData()
   }, [auth.isLogin, auth.isError]);
 
   const handleClose = (event, reason) => {

@@ -83,7 +83,11 @@ export default function CheckOut() {
 
   const changeAdress = (i) => {
     setPrimary(i)
-    setOpen(false);
+   setOpen(false);
+  }
+
+  const handlePay = ()=> {
+    history.push('/')
   }
 
   return (
@@ -125,7 +129,7 @@ export default function CheckOut() {
                 </div>
               </>
             )}
-
+{console.log("PPPPP",location.state)}
             <div>
               <Button
                 onClick={handleOpen}
@@ -200,7 +204,7 @@ export default function CheckOut() {
                   <span className={classes.priceText}>Shopping summary</span>
                 </div>
                 <div>
-                  <span className={classes.priceTotalText}>Rp.25,0000</span>
+                  <span className={classes.priceTotalText}>Rp.{location.state.summary+5000}</span>
                 </div>
               </div>
               <div>
@@ -286,11 +290,6 @@ export default function CheckOut() {
             className={classes.modal}
             open={open2}
             onClose={handleClose2}
-            // closeAfterTransition
-            // BackdropComponent={Backdrop}
-            // BackdropProps={{
-            //   timeout: 500,
-            // }}
           >
             <Fade in={open2}>
               <div className={classes.paper}>
@@ -645,7 +644,7 @@ export default function CheckOut() {
                         <span className={classes.totalLabel}>Order</span>
                       </div>
                       <div>
-                        <span className={classes.priceText}>Rp.20,0000</span>
+                        <span className={classes.priceText}>Rp.{location.state.summary}</span>
                       </div>
                     </div>
                     <div className={classes.totalWrapper2}>
@@ -665,12 +664,12 @@ export default function CheckOut() {
                         </span>
                         <div>
                           <span className={classes.priceTotalText}>
-                            Rp.25.0000
+                            Rp.{location.state.summary+5000}
                           </span>
                         </div>
                       </div>
                       <div>
-                        <Button className={classes.btnSave} variant="contained">
+                        <Button onClick={handlePay} className={classes.btnSave} variant="contained">
                           Buy
                         </Button>
                       </div>
