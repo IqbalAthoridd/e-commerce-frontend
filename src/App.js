@@ -26,7 +26,6 @@ class App extends Component {
             <Switch>
               <Route path="/" render={() => <Home />} exact />
               <Route path="/dasboard" render={() => <Dasboard />} />
-              <Route path="/dasboard/:query" component={Dasboard} />
               <Route path="/login" render={() => <Login />} />
               <Route path="/register" render={() => <Register />} />
               <Route path="/search" render={() => <ItemSearch />} />

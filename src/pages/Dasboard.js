@@ -76,7 +76,7 @@ export default function Dasboard() {
   const items = useSelector((state) => state.items);
   const classes = useStyles();
   const styles = dasboardStyle();
-  const token = localStorage.getItem('token');
+  const token = useSelector((state) => state.auth.token);
   const [open, setOpen] = React.useState(false);
   const [filter, setFilter] = useState({
     limit: 5,
@@ -154,6 +154,7 @@ export default function Dasboard() {
       <NavigationBar />
 
       <Grid className={styles.container} container>
+        {console.log("PPPPP",token)}
         <Grid item lg={12} md={12} xs={12} sm={12}>
           <div
             style={{
@@ -335,36 +336,42 @@ export default function Dasboard() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {items.data.map((row) => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row">
-                      {row.id}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {row.name}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.category}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.price}</StyledTableCell>
-                    <StyledTableCell align="left">
-                      {row.description}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.condition}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        <div>
-                          <Button variant="contained">UP</Button>
-                        </div>
-                        <div>
-                          <Button variant="contained">Del</Button>
-                        </div>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
+                {items.data !== undefined
+                  ? items.data.map((row) => (
+                      <StyledTableRow key={row.name}>
+                        <StyledTableCell component="th" scope="row">
+                          {row.id}
+                        </StyledTableCell>
+                        <StyledTableCell component="th" scope="row">
+                          {row.name}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          {row.category}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">
+                          {row.price}
+                        </StyledTableCell>
+                        <StyledTableCell align="left">
+                          {row.description}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {row.condition}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          <div
+                            style={{ display: 'flex', flexDirection: 'row' }}
+                          >
+                            <div>
+                              <Button variant="contained">UP</Button>
+                            </div>
+                            <div>
+                              <Button variant="contained">Del</Button>
+                            </div>
+                          </div>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))
+                  : null}
               </TableBody>
             </Table>
           </TableContainer>
@@ -374,7 +381,7 @@ export default function Dasboard() {
             <div>
               <Pagination
                 onChange={handlePagination}
-                count={items.pageInfo.pages}
+                count={items.pageInfo !== items.pageInfo.pages}
                 variant="outlined"
                 shape="rounded"
               />

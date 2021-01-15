@@ -13,12 +13,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+        isLogin: false,
         isSuccess: false,
       };
     }
     case 'AUTH_USER_REJECTED': {
       return {
         ...state,
+        isLogin: false,
         isLoading: false,
         isError: true,
         isSuccess: false,
@@ -26,7 +28,6 @@ export default (state = initialState, action) => {
       };
     }
     case 'AUTH_USER_FULFILLED': {
-      localStorage.setItem('token', action.payload.data.token);
       return {
         ...state,
         token: action.payload.data.token,

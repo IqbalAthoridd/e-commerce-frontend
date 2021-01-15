@@ -96,7 +96,7 @@ function ProductDetails() {
   return (
     <>
       <Grid item lg={12} xs={12} className={detail.link}>
-        {console.log(details)}
+     
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"

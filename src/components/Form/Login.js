@@ -32,10 +32,12 @@ const Login = (props) => {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
+    
     const getData = async () => {
+    
       if (auth.isLogin) {
         await dispatch(userAction.getProfile(token));
-       history.push('/');
+        history.push('/');
      } else if (auth.isError) {
        setTimeout(() => {
          dispatch(authAction.clearMessage());
