@@ -369,7 +369,7 @@ export default function Dasboard() {
             <div>
               <Pagination
                 onChange={handlePagination}
-                count={items.pageInfo !== items.pageInfo.pages}
+                count={items.pageInfo.pages}
                 variant="outlined"
                 shape="rounded"
               />
