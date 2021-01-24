@@ -32,7 +32,7 @@ const CustomCheckBox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-const Cart =()=> {
+const Cart = () => {
   const history = useHistory();
   const cart = cartStyle();
   const dispatch = useDispatch();
@@ -113,7 +113,7 @@ const Cart =()=> {
   };
 
   return (
-   <>
+    <>
       <Grid item lg={12} xs={12} md={12} ms={12}>
         <div className={styles.myBag}>
           <span>
@@ -156,96 +156,94 @@ const Cart =()=> {
               </FormControl>
             </Paper>
           </Grid>
-           </form>
+        </form>
 
-          <Grid item lg={12}>
-            {data.isLoading &&
-              arr.map((item) => (
-                <div style={{ marginBottom: 20 }}>
-                  <Skeleton
-                    variant="rect"
-                    style={{ borderRadius: 5 }}
-                    animation="wave"
-                    height={140}
-                  />
-                </div>
-              ))}
+        <Grid item lg={12}>
+          {data.isLoading &&
+            arr.map((item) => (
+              <div style={{ marginBottom: 20 }}>
+                <Skeleton
+                  variant="rect"
+                  style={{ borderRadius: 5 }}
+                  animation="wave"
+                  height={140}
+                />
+              </div>
+            ))}
 
-            {list.length
-              && list.map((data, index) => (
-                  <>
-                    <Paper
-                      elevation={3}
-                      className={`${styles.display2} ${styles.cartSpacing2}`}
-                    >
-                      <FormControl component="fieldset">
-                        <FormGroup className={cart.diplay}>
-                          <FormControlLabel
-                            control={
-                              <CustomCheckBox
-                                onChange={(e) => handleCheckBox(e, index)}
-                                name={`${data.name}`}
-                                // value={false}
-                              />
-                            }
-                            className={`${styles.checkboxPos}`}
-                          />
-                        </FormGroup>
-                      </FormControl>
+          {list.map((data, index) => (
+            <>
+              <Paper
+                elevation={3}
+                className={`${styles.display2} ${styles.cartSpacing2}`}
+              >
+                <FormControl component="fieldset">
+                  <FormGroup className={cart.diplay}>
+                    <FormControlLabel
+                      control={
+                        <CustomCheckBox
+                          onChange={(e) => handleCheckBox(e, index)}
+                          name={`${data.name}`}
+                          // value={false}
+                        />
+                      }
+                      className={`${styles.checkboxPos}`}
+                    />
+                  </FormGroup>
+                </FormControl>
 
-                      <div className={`${styles.product}`}>
-                        <div className={`${styles.cartImage}`}>
-                          <div className={`${styles.cartImage2}`}>
-                            <img
-                              className={`${styles.imageSize}`}
-                              src={`${REACT_APP_BACKEND_URL}${data.url}`}
-                            ></img>
-                          </div>
-                        </div>
+                <div className={`${styles.product}`}>
+                  <div className={`${styles.cartImage}`}>
+                    <div className={`${styles.cartImage2}`}>
+                      <img
+                        className={`${styles.imageSize}`}
+                        src={`${REACT_APP_BACKEND_URL}${data.url}`}
+                      ></img>
+                    </div>
+                  </div>
 
-                        <div className={styles.brandName}>
-                          <div>
-                            <span>{data.name}</span>
-                          </div>
-                          <div>
-                            <span>{data.category}</span>
-                          </div>
-                        </div>
+                  <div className={styles.brandName}>
+                    <div>
+                      <span>{data.name}</span>
+                    </div>
+                    <div>
+                      <span>{data.category}</span>
+                    </div>
+                  </div>
 
-                        <div className={styles.Quantity}>
-                          <div className={styles.btnQuantity}>
-                            <div className={styles.btnMin}>
-                              <IconButton
-                                disabled={data.total < 2 ? true : false}
-                                onClick={() => countDecrement(index)}
-                                className={cart.btnMin}
-                              >
-                                <RemoveIcon className={cart.iconMin} />
-                              </IconButton>
-                            </div>
-                            <div className={styles.btnMin}>
-                              <span>{data.total}</span>
-                            </div>
-                            <div>
-                              <IconButton
-                                onClick={() => countIncrement(index)}
-                                className={cart.btnPlus}
-                              >
-                                <AddIcon className={cart.iconPlus} />
-                              </IconButton>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <span>Rp {data.subTotal}</span>
-                        </div>
+                  <div className={styles.Quantity}>
+                    <div className={styles.btnQuantity}>
+                      <div className={styles.btnMin}>
+                        <IconButton
+                          disabled={data.total < 2 ? true : false}
+                          onClick={() => countDecrement(index)}
+                          className={cart.btnMin}
+                        >
+                          <RemoveIcon className={cart.iconMin} />
+                        </IconButton>
                       </div>
-                      <div className={styles.container2}></div>
-                    </Paper>
-                  </>
-                ))}
-          </Grid>
-       
+                      <div className={styles.btnMin}>
+                        <span>{data.total}</span>
+                      </div>
+                      <div>
+                        <IconButton
+                          onClick={() => countIncrement(index)}
+                          className={cart.btnPlus}
+                        >
+                          <AddIcon className={cart.iconPlus} />
+                        </IconButton>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <span>Rp {data.subTotal}</span>
+                  </div>
+                </div>
+                <div className={styles.container2}></div>
+              </Paper>
+            </>
+          ))}
+        </Grid>
       </Grid>
       <Grid item lg={4} xs={12} md={4}>
         <Paper elevation={3} className={styles.cartSpacing3}>
@@ -274,8 +272,8 @@ const Cart =()=> {
           </div>
         </Paper>
       </Grid>
-     </>
+    </>
   );
-}
+};
 
 export default Cart;
