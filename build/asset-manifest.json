@@ -1,30 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.e242701e.chunk.css",
-    "main.js": "/static/js/main.5e7fb253.chunk.js",
-    "main.js.map": "/static/js/main.5e7fb253.chunk.js.map",
+    "main.css": "/static/css/main.c4a5beda.chunk.css",
+    "main.js": "/static/js/main.8d14f333.chunk.js",
+    "main.js.map": "/static/js/main.8d14f333.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c8a21426.js",
     "runtime-main.js.map": "/static/js/runtime-main.c8a21426.js.map",
     "static/css/2.821b8ecc.chunk.css": "/static/css/2.821b8ecc.chunk.css",
-    "static/js/2.88e15c07.chunk.js": "/static/js/2.88e15c07.chunk.js",
-    "static/js/2.88e15c07.chunk.js.map": "/static/js/2.88e15c07.chunk.js.map",
+    "static/js/2.d9029dba.chunk.js": "/static/js/2.d9029dba.chunk.js",
+    "static/js/2.d9029dba.chunk.js.map": "/static/js/2.d9029dba.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.ce104fc59fa47e05b3fcb6459f80e47c.js": "/precache-manifest.ce104fc59fa47e05b3fcb6459f80e47c.js",
+    "precache-manifest.9aa1aac1b40c1a2d45751410def7b278.js": "/precache-manifest.9aa1aac1b40c1a2d45751410def7b278.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.821b8ecc.chunk.css.map": "/static/css/2.821b8ecc.chunk.css.map",
-    "static/css/main.e242701e.chunk.css.map": "/static/css/main.e242701e.chunk.css.map",
-    "static/js/2.88e15c07.chunk.js.LICENSE.txt": "/static/js/2.88e15c07.chunk.js.LICENSE.txt",
-    "static/media/Logo.svg": "/static/media/Logo.701dd39d.svg",
+    "static/css/main.c4a5beda.chunk.css.map": "/static/css/main.c4a5beda.chunk.css.map",
+    "static/js/2.d9029dba.chunk.js.LICENSE.txt": "/static/js/2.d9029dba.chunk.js.LICENSE.txt",
+    "static/media/Logo.svg": "/static/media/Logo.437fdbc5.svg",
     "static/media/details.module.css": "/static/media/Rubik-Var.86eb9863.ttf",
     "static/media/bajuko.jpg": "/static/media/bajuko.3b4833b1.jpg",
     "static/media/benjamin.jpg": "/static/media/benjamin.e8493ce5.jpg",
+    "static/media/filter.svg": "/static/media/filter.7e018bad.svg",
+    "static/media/gopay.png": "/static/media/gopay.1f401815.png",
     "static/media/tsirt.png": "/static/media/tsirt.74f77130.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c8a21426.js",
     "static/css/2.821b8ecc.chunk.css",
-    "static/js/2.88e15c07.chunk.js",
-    "static/css/main.e242701e.chunk.css",
-    "static/js/main.5e7fb253.chunk.js"
+    "static/js/2.d9029dba.chunk.js",
+    "static/css/main.c4a5beda.chunk.css",
+    "static/js/main.8d14f333.chunk.js"
   ]
 }
